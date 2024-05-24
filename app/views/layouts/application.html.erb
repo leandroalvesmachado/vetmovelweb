@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vetmovelweb</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= favicon_link_tag asset_path("favicon-vetmovel.ico") %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body class="layout-fixed control-sidebar-slide-open layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+      <%# <%= render partial: 'layouts/shared/application/preloader' %>
+      <%= render partial: 'layouts/shared/application/header' %>
+      <%= render partial: 'layouts/shared/application/menu' %>
+      <div class="content-wrapper">
+        <%= yield :breadcrumb %>
+        <section class="content">
+          <div class="container-fluid">
+            <% if flash.present? && (flash[:error].present? || flash[:success].present? || flash[:notice].present?) && flash[:warning].present? %>
+              <%= render Admin::FlashMessageComponent.new(type: flash[:type], message: flash[:message]) %>
+            <% end %>
+            <%= yield %>
+          </div>
+        </section>
+      </div>
+      <%= render partial: 'layouts/shared/application/footer' %>
+    </div>
+
+    <%= javascript_include_tag "jquery/jquery.min.js", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "bootstrap/js/bootstrap.bundle.min.js", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "adminlte.js", "data-turbo-track": "reload" %>
+  </body>
+</html>

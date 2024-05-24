@@ -1,0 +1,32 @@
+<aside class="main-sidebar sidebar-dark-warning elevation-4" style="background: #e58634;">
+  <%= link_to admin_root_path, class: 'brand-link', style: 'background: #e58634;' do %>
+    <%= image_tag 'logo-vetmovel.png', alt: 'VetMóvel Logo', class: 'brand-image elevation-3', style: 'opacity: .8' %>
+    <span class="brand-text font-weight-light">VetMóvel</span>
+  <% end %>
+  <div class="sidebar">
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <%= image_tag "usuario.png", class: "img-circle elevation-2", alt: "Usuário imagem" %>
+      </div>
+      <div class="info">
+        <a href="#" class="d-block"><%= current_usuario.nome %></a>
+      </div>
+    </div>
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
+          <%= link_to admin_root_path, class: 'nav-link' + (current_page?(admin_root_path) ? ' active' : '') do %>
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>Dashboard</p>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to admin_cirurgias_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/cirurgias')}" do %>
+            <i class="nav-icon fas fa-ambulance"></i>
+            <p>Cirurgias</p>
+          <% end %>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</aside>

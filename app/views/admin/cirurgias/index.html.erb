@@ -1,0 +1,56 @@
+<% content_for :breadcrumb do %>
+  <%= render Admin::BreadcrumbComponent.new do |component| %>
+    <% component.with_title do %> 
+      <i class="fas fa-ambulance"></i> Cirurgias 
+    <% end %>
+  <% end %>
+<% end %>
+
+<div class="row mb-3">
+  <div class="col-md-2 offset-md-10">
+    <%= link_to new_admin_cirurgia_path, class: 'btn btn-primary btn-block text-uppercase' do %>
+      <i class="fas fa-plus-circle"></i> Cirurgia
+    <% end %>
+  </div>
+</div>
+
+<%= render Admin::TableComponent.new(
+  title: 'Cirurgias',
+  subtitle: 'Listagem',
+  headers: ['Nome', 'Descrição', 'Ativo', 'Ações'],
+  records: @cirurgias,
+  pagy: @pagy
+) do %>
+  <% @cirurgias.each do |cirurgia| %>
+    <tr class="text-center">
+      <td class="align-middle"><%= cirurgia.nome %></td>
+      <td class="align-middle"><%= cirurgia.descricao %></td>
+      <td>
+        <%= render Admin::BadgeComponent.new(
+            badge_title: cirurgia.ativo ? 'Sim' : 'Não', 
+            badge_class: cirurgia.ativo ? 'bg-success' : 'bg-danger'
+        ) %>
+      </td>
+      <td>
+        <div class="dropdown dropright">
+          <button 
+            id="dropdown-<%= cirurgia.id %>" 
+            class="btn btn-warning dropdown-toggle" 
+            type="button" 
+            data-toggle="dropdown" 
+            aria-expanded="false"
+          >
+            <i class="fas fa-cog"></i>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdown-<%= cirurgia.id %>">
+            <%= link_to edit_admin_cirurgia_path(cirurgia), class: 'dropdown-item' do %>
+              <i class="fas fa-edit"></i> Editar
+            <% end %>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+<% end %>
