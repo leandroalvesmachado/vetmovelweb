@@ -1,42 +1,28 @@
 # frozen_string_literal: true
 
 class Admin::FlashMessageComponent < ViewComponent::Base
-  attr_reader :type, :message
+  attr_reader :flash
 
-  def initialize(type:, message:)
-    @type = type
-    @message = message
+  FLASH_CLASSES = {
+    success: { css: 'alert-success', icon: 'icon fas fa-check' },
+    error: { css: 'alert-danger', icon: 'icon fas fa-ban' },
+    warning: { css: 'alert-warning', icon: 'icon fas fa-exclamation-triangle' },
+    notice: { css: 'alert-info', icon: 'icon fas fa-info' },
+    default: { css: 'alert-info', icon: 'icon fas fa-info' }
+  }.freeze
+
+  def initialize(flash:)
+    @flash = flash
+    super
   end
 
   private
 
-  def flash_class
-    case type
-    when :success
-      'success'
-    when :error
-      'danger'
-    when :warning
-      'warning'
-    when :notice
-      'info'
-    else
-      'info'
-    end
+  def flash_class(type)
+    FLASH_CLASSES.fetch(type.to_sym, FLASH_CLASSES[:default])[:css]
   end
 
-  def flash_icon_class
-    case type
-    when :success
-      'icon fas fa-check'
-    when :error
-      'icon fas fa-ban'
-    when :warning
-      'icon fas fa-exclamation-triangle'
-    when :notice
-      'icon fas fa-info'
-    else
-      'icon fas fa-info'
-    end
+  def flash_icon_class(type)
+    FLASH_CLASSES.fetch(type.to_sym, FLASH_CLASSES[:default])[:icon]
   end
 end

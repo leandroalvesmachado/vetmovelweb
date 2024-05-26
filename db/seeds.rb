@@ -48,5 +48,5 @@ if usuario.present?
     )
   end
 else
-  puts "Usuário não encontrado com o email especificado"
+  puts 'Usuário não encontrado com o email especificado'
 end

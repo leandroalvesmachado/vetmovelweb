@@ -6,27 +6,25 @@ class Admin::CirurgiasController < AdminController
     @pagy, @cirurgias = pagy(@cirurgias)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @cirurgia = Cirurgia.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @cirurgia = Cirurgia.new(cirurgia_params)
-    
+
     if @cirurgia.save
-      flash[:message] = 'Salvo'
-      flash[:type] = :success
-      redirect_to admin_cirurgias_path, notice: 'Produto criado com sucesso.'
-    else
-      flash[:message] = 'Erro'
-      flash[:type] = :error
+      flash[:success] = 'Cirurgia cadastrada com sucesso'
+      redirect_to admin_cirurgias_path
+    elsif @cirurgia.errors.any?
       render :new, status: :unprocessable_entity
+    else
+      flash[:error] = 'Erro ao cadastrar a cirurgia'
+      redirect_to new_admin_cirurgia_path
     end
   end
 

@@ -19,8 +19,8 @@
         <%= yield :breadcrumb %>
         <section class="content">
           <div class="container-fluid">
-            <% if flash.present? && (flash[:error].present? || flash[:success].present? || flash[:notice].present?) && flash[:warning].present? %>
-              <%= render Admin::FlashMessageComponent.new(type: flash[:type], message: flash[:message]) %>
+            <% if flash.any? %>
+              <%= render Admin::FlashMessageComponent.new(flash: flash) %>
             <% end %>
             <%= yield %>
           </div>
