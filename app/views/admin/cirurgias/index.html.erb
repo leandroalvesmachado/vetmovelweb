@@ -46,8 +46,23 @@
             <%= link_to edit_admin_cirurgia_path(cirurgia), class: 'dropdown-item' do %>
               <i class="fas fa-edit"></i> Editar
             <% end %>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+
+            <%= link_to "cirurgia-modal-#{cirurgia.id}-destroy", class: 'dropdown-item', data: { toggle: 'modal', target: "#cirurgia-modal-#{cirurgia.id}-destroy" } do %>
+              <i class="fas fa-trash-alt"></i> Deletar
+            <% end %>
+
+            <% content_for :modal do %>
+              <%= 
+                render partial: 'modal_destroy', locals: {
+                  title: 'Cirurgia',
+                  subtitle: 'Deletar',
+                  target: "cirurgia-modal-#{cirurgia.id}-destroy",
+                  model: cirurgia
+                  #action: admin_cirurgias_path(cirurgia),
+                  #method: 'delete',
+                }
+              %>
+            <% end %>
           </div>
         </div>
       </td>
