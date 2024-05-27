@@ -15,7 +15,7 @@
         </h3>
       </div>
       <div class="card-body table-responsive p-0">
-        <table class="table table-hover text-nowrap">
+        <table class="table table-hover table-striped text-nowrap">
           <% if headers.present? %>
             <thead>
               <tr class="text-center text-uppercase">
@@ -41,8 +41,10 @@
       </div>
       
       <% if pagy.present? && pagy.pages > 1 %>
-        <div class="card-footer clearfix bg-pmf border-top">
-          <%== pagy_bootstrap_nav(pagy) %>
+        <div class="card-footer clearfix bg-pmf border-top" style="padding-bottom: 0.1px !important;">
+          <div class="float-right">
+            <%== pagy_bootstrap_nav(pagy) %>
+          </div>
         </div>
       <% end %>
     </div>

@@ -10,7 +10,7 @@
       <% end %>
     </h3>
   </div>
-  <%= form_with(model: model, url: admin_cirurgias_path, method: method) do |form| %>
+  <%= form_with(model: model, url: action, method: method) do |form| %>
     <div class="card-body">
       <% @form_builder = form %>
       <% @errors = model.errors %>

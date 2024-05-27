@@ -1,13 +1,13 @@
 <div class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
-      <div class="col-sm-6">
+      <div class="col-sm-6 text-uppercase">
         <h1 class="m-0"><%= title %></h1>
       </div>
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <% links.each_with_index do |link, index| %>
-            <li class="breadcrumb-item">
+            <li class="breadcrumb-item text-uppercase">
               <%= link_to link.name, link.link %>
             </li>
           <% end %>
