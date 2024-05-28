@@ -4,10 +4,10 @@
   tabindex="-1" 
   role="dialog" 
 >
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-<%= size %>" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">
+        <h5 class="modal-title text-uppercase">
           <%= title %>
           <span class="badge badge-secondary"><%= subtitle %></span>
         </h5>
@@ -16,11 +16,10 @@
         </button>
       </div>
       <div class="modal-body">
-        Tem certeza que deseja excluir esta cirurgia?
+        <%= body %>
       </div>
-      <div class="modal-footer">
-        <%= link_to "Cancelar", "#", class: "btn btn-secondary", data: { dismiss: "modal" } %>
-        <%= link_to "Confirmar", 'delete_cirurgia_path(cirurgia)', method: :delete, class: "btn btn-danger" %>
+      <div class="modal-footer justify-content-between">
+        <%= footer %>
       </div>
     </div>
   </div>

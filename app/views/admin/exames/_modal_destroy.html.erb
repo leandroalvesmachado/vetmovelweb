@@ -1,30 +1,30 @@
-<%= render Admin::ModalComponent.new(title: title, subtitle: subtitle, target: target, model: cirurgia) do |component| %>
+<%= render Admin::ModalComponent.new(title: title, subtitle: subtitle, target: target, model: exame) do |component| %>
   
   <% component.with_body do %> 
     <div class="row mb-3">
       <div class="col text-danger text-center">
-        Deseja deletar a cirurgia abaixo?
+        Deseja deletar o exame abaixo?
       </div>
     </div>
     <div class="row mb-3">
       <div class="col">
-        <p class="font-weight-bold">Criado por:</p> <%= 'cirurgia.usuario.nome' %>
+        <p class="font-weight-bold">Criado por:</p> <%= 'exame.usuario.nome' %>
       </div>
     </div>
     <div class="row mb-3">
       <div class="col">
-        <p class="font-weight-bold">Nome:</p> <%= cirurgia.nome %>
+        <p class="font-weight-bold">Nome:</p> <%= exame.nome %>
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <p class="font-weight-bold">Descrição:</p> <%= cirurgia.descricao %>
+        <p class="font-weight-bold">Descrição:</p> <%= exame.descricao %>
       </div>
     </div> 
   <% end %>
 
   <% component.with_footer do %>
-    <%= form_with(model: cirurgia, url: action, method: method) do %>
+    <%= form_with(model: exame, url: action, method: method) do %>
       <%= button_tag(type: 'submit', class: 'btn btn-danger font-weight-bold text-uppercase') do %>
         <i class="fas fa-trash"></i> Deletar
       <% end %>

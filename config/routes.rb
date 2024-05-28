@@ -23,7 +23,18 @@ Rails.application.routes.draw do
 
   namespace :admin, path: 'administracao' do
     root 'home#index'
+    
     resources :cirurgias, path: 'cirurgias', as: 'cirurgias', path_names: { 
+      index: '',
+      show: 'visualizacao',
+      new: 'cadastro' ,
+      edit: 'edicao',
+      create: 'criar',
+      update: 'atualizar',
+      destroy: 'excluir'
+    }
+
+    resources :exames, path: 'exames', as: 'exames', path_names: { 
       index: '',
       show: 'visualizacao',
       new: 'cadastro' ,

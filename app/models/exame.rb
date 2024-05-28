@@ -1,6 +1,6 @@
-class Cirurgia < ApplicationRecord
+class Exame < ApplicationRecord
   acts_as_paranoid
-  self.table_name = 'cirurgias'
+  self.table_name = 'exames'
 
   belongs_to :autor, class_name: 'Usuario', foreign_key: 'created_by',optional: true
 

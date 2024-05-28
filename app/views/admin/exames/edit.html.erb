@@ -1,0 +1,21 @@
+<% content_for :breadcrumb do %>
+  <%= render Admin::BreadcrumbComponent.new do |component| %>
+    <% component.with_title do %> 
+      <i class="fas fa-ambulance"></i> Exames
+    <% end %>
+    <% component.with_link(name: 'Exames', link: admin_exames_path) %>
+    <% component.with_link(name: 'Editar Exame', link: '#') %>
+  <% end %>
+<% end %>
+
+<%= 
+  render partial: 'form', locals: {
+    title: 'Exame',
+    subtitle: 'Edição',
+    action: admin_exame_path(@exame),
+    method: 'put',
+    model: @exame,
+    back_url: admin_exame_path,
+    submit_text: 'Atualizar'
+  } 
+%>

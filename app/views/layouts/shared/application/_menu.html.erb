@@ -14,16 +14,22 @@
     </div>
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <li class="nav-item">
+        <li class="nav-item text-uppercase">
           <%= link_to admin_root_path, class: 'nav-link' + (current_page?(admin_root_path) ? ' active' : '') do %>
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>Dashboard</p>
           <% end %>
         </li>
-        <li class="nav-item">
+        <li class="nav-item text-uppercase">
           <%= link_to admin_cirurgias_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/cirurgias')}" do %>
             <i class="nav-icon fas fa-ambulance"></i>
             <p>Cirurgias</p>
+          <% end %>
+        </li>
+        <li class="nav-item text-uppercase">
+          <%= link_to admin_exames_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/exames')}" do %>
+            <i class="nav-icon fas fa-ambulance"></i>
+            <p>Exames</p>
           <% end %>
         </li>
       </ul>

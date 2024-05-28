@@ -1,6 +1,6 @@
 class Admin::CirurgiasController < AdminController
   before_action :set_current_usuario
-  before_action :set_cirurgia, only: [:edit, :update]
+  before_action :set_cirurgia, only: [:edit, :update, :destroy]
 
   def index
     @cirurgias = Cirurgia.all
@@ -13,8 +13,7 @@ class Admin::CirurgiasController < AdminController
     @cirurgia = Cirurgia.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @cirurgia = Cirurgia.new(cirurgia_params)
@@ -40,6 +39,16 @@ class Admin::CirurgiasController < AdminController
       flash[:error] = 'Erro ao atualizar a cirurgia'
       redirect_to edit_admin_cirurgia_path(@cirurgia)
     end
+  end
+
+  def destroy
+    if @cirurgia.destroy
+      flash[:success] = 'Cirurgia deletada com sucesso'
+    else
+      flash[:error] = 'Erro ao deletar a cirurgia'
+    end
+
+    redirect_to admin_cirurgias_path
   end
 
   private

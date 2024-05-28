@@ -1,40 +1,40 @@
 <% content_for :breadcrumb do %>
   <%= render Admin::BreadcrumbComponent.new do |component| %>
     <% component.with_title do %> 
-      <i class="fas fa-ambulance"></i> Cirurgias 
+      <i class="fas fa-ambulance"></i> Exames 
     <% end %>
   <% end %>
 <% end %>
 
 <div class="row mb-3">
   <div class="col-md-2 offset-md-10">
-    <%= link_to new_admin_cirurgia_path, class: 'btn btn-primary btn-block text-uppercase font-weight-bold' do %>
-      <i class="fas fa-plus-circle"></i> Cirurgia
+    <%= link_to new_admin_exame_path, class: 'btn btn-primary btn-block text-uppercase font-weight-bold' do %>
+      <i class="fas fa-plus-circle"></i> Exame
     <% end %>
   </div>
 </div>
 
 <%= render Admin::TableComponent.new(
-  title: 'Cirurgias',
+  title: 'Exames',
   subtitle: 'Listagem',
   headers: ['Nome', 'Descrição', 'Ativo', 'Ações'],
-  records: @cirurgias,
+  records: @exames,
   pagy: @pagy
 ) do %>
-  <% @cirurgias.each do |cirurgia| %>
+  <% @exames.each do |exame| %>
     <tr class="text-center">
-      <td class="align-middle"><%= cirurgia.nome %></td>
-      <td class="align-middle"><%= cirurgia.descricao %></td>
+      <td class="align-middle"><%= exame.nome %></td>
+      <td class="align-middle"><%= exame.descricao %></td>
       <td>
         <%= render Admin::BadgeComponent.new(
-            badge_title: cirurgia.ativo ? 'Sim' : 'Não', 
-            badge_class: cirurgia.ativo ? 'bg-success' : 'bg-danger'
+            badge_title: exame.ativo ? 'Sim' : 'Não', 
+            badge_class: exame.ativo ? 'bg-success' : 'bg-danger'
         ) %>
       </td>
       <td>
         <div class="dropdown dropright">
           <button 
-            id="dropdown-<%= cirurgia.id %>" 
+            id="dropdown-<%= exame.id %>" 
             class="btn btn-warning dropdown-toggle" 
             type="button" 
             data-toggle="dropdown" 
@@ -42,23 +42,23 @@
           >
             <i class="fas fa-cog"></i>
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdown-<%= cirurgia.id %>">
-            <%= link_to edit_admin_cirurgia_path(cirurgia), class: 'dropdown-item' do %>
+          <div class="dropdown-menu" aria-labelledby="dropdown-<%= exame.id %>">
+            <%= link_to edit_admin_exame_path(exame), class: 'dropdown-item' do %>
               <i class="fas fa-edit"></i> Editar
             <% end %>
 
-            <%= link_to "cirurgia-modal-#{cirurgia.id}-destroy", class: 'dropdown-item', data: { toggle: 'modal', target: "#cirurgia-modal-#{cirurgia.id}-destroy" } do %>
+            <%= link_to "exame-modal-#{exame.id}-destroy", class: 'dropdown-item', data: { toggle: 'modal', target: "#exame-modal-#{exame.id}-destroy" } do %>
               <i class="fas fa-trash-alt"></i> Deletar
             <% end %>
 
             <% content_for :modal do %>
               <%= 
                 render partial: 'modal_destroy', locals: {
-                  title: 'Cirurgia',
+                  title: 'Exame',
                   subtitle: 'Deletar',
-                  target: "cirurgia-modal-#{cirurgia.id}-destroy",
-                  cirurgia: cirurgia,
-                  action: admin_cirurgia_path(cirurgia),
+                  target: "exame-modal-#{exame.id}-destroy",
+                  exame: exame,
+                  action: admin_exame_path(exame),
                   method: 'delete'
                 }
               %>
