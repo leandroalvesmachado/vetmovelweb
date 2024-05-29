@@ -7,9 +7,15 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <% links.each_with_index do |link, index| %>
-            <li class="breadcrumb-item text-uppercase">
-              <%= link_to link.name, link.link %>
-            </li>
+            <% if index == links.size - 1 %>
+              <li class="breadcrumb-item text-uppercase active">
+                <%= link.name %>
+              </li>
+            <% else %>
+              <li class="breadcrumb-item text-uppercase">
+                <%= link_to link.name, link.link %>
+              </li>
+            <% end %>
           <% end %>
         </ol>
       </div>

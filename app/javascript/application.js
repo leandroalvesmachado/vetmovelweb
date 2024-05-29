@@ -3,3 +3,7 @@ import "@hotwired/turbo-rails"
 import "controllers"
 
 Turbo.session.drive = false
+
+import "./theme/plugins/jquery/jquery"
+import "./theme/plugins/bootstrap/js/bootstrap.bundle.min"
+import "./theme/dist/js/adminlte"

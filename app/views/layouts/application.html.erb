@@ -6,7 +6,7 @@
     <title>VetMóvel</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= favicon_link_tag asset_path("favicon-vetmovel.ico") %>
+    <%= favicon_link_tag asset_path('favicon-vetmovel.ico') %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
@@ -28,10 +28,6 @@
       </div>
       <%= render partial: 'layouts/shared/application/footer' %>
     </div>
-
-    <%= javascript_include_tag "jquery/jquery.min.js", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "bootstrap/js/bootstrap.bundle.min.js", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "adminlte.js", "data-turbo-track": "reload" %>
     <%= yield :modal %>
   </body>
 </html>

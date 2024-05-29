@@ -1,2 +1,32 @@
-@import url("../stylesheets/dist/adminlte.css");
-@import url("../stylesheets/plugins/fontawesome-free/css/all.css");
+@import url("theme/dist/css/adminlte.css");
+@import url("theme/plugins/fontawesome-free/css/all.css");
+
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('theme/fonts/static/SourceSans3-Regular.ttf') format('truetype');
+}
+
+.bg-pmf {
+    background-color: #f7b93a !important;
+}
+  
+.bg-vetmovel {
+    background-color: #f47424 !important;
+}
+
+.btn-vetmovel {
+    color: #fff;
+    background-color: #f47424;
+    border-color: #f47424;
+    box-shadow: none;
+}
+
+.main-footer {
+    /* background-color: #fff; */
+    background-color: #f7b93a;
+    border-top: 1px solid #dee2e6;
+    /* color: #869099; */
+    color: #000000;
+    padding: 1rem;
+}
+

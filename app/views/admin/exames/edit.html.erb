@@ -12,7 +12,7 @@
   render partial: 'form', locals: {
     title: 'Exame',
     subtitle: 'Edição',
-    action: admin_exame_path(@exame),
+    action: update_admin_exames_path(@exame),
     method: 'put',
     model: @exame,
     back_url: admin_exame_path,
