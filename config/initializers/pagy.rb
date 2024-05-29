@@ -1,3 +1,3 @@
 require 'pagy/extras/bootstrap'
 
-Pagy::DEFAULT[:items] = 5 # items per page
+Pagy::DEFAULT[:items] = 10 # items per page

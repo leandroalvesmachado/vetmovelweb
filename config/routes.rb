@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  # root "home#index"
+  root 'admin/home#index'
 
   namespace :admin, path: 'administracao' do
     root 'home#index'
@@ -51,6 +51,21 @@ Rails.application.routes.draw do
       collection do
         post '/cadastro', to: 'exames#create', as: 'create'
         put ':id/edicao', to: 'exames#update', as: 'update'
+      end
+    end
+
+    resources :vacinas, path: 'vacinas', as: 'vacinas', path_names: { 
+      index: '',
+      show: 'visualizacao',
+      new: 'cadastro',
+      edit: 'edicao',
+      create: 'cadastro',
+      update: 'atualizar',
+      destroy: 'excluir'
+    } do
+      collection do
+        post '/cadastro', to: 'vacinas#create', as: 'create'
+        put ':id/edicao', to: 'vacinas#update', as: 'update'
       end
     end
   end

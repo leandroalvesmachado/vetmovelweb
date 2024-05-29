@@ -1,0 +1,7 @@
+<% content_for :breadcrumb do %>
+  <%= render Admin::BreadcrumbComponent.new do |component| %>
+    <% component.with_title do %> 
+      <i class="fas fa-tachometer-alt"></i> Dashboard
+    <% end %>
+  <% end %>
+<% end %>

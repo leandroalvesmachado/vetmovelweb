@@ -3,26 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Vetmovelweb - Login</title>
+    <title>VetMóvel - Login</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "devise", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <body class="login-page">
+  <body class="hold-transition login-page">
     <div class="login-box">
-      <div class="login-logo">
-        <%= image_tag 'logo-vetmovel.png', class: '', alt: 'Logo vetmovel', width: '50%' %>
-      </div>
-      <div class="card">
-        <div class="card-body login-card-body">
+      <div class="card card-outline card-primary">
+        <div class="card-header text-center">
+          <%= image_tag 'logo-vetmovel.png', class: '', alt: 'Logo vetmovel', width: '50%' %>
+        </div>
+        <div class="card-body">
           <%= yield %>
         </div>
       </div>
     </div>
-
-    <%= javascript_include_tag "jquery/jquery.min.js", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "bootstrap/js/bootstrap.bundle.min.js", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "adminlte.js", "data-turbo-track": "reload" %>
   </body>
 </html>

@@ -1,0 +1,21 @@
+<% content_for :breadcrumb do %>
+  <%= render Admin::BreadcrumbComponent.new do |component| %>
+    <% component.with_title do %> 
+      <i class="fas fa-syringe"></i> Vacinas
+    <% end %>
+    <% component.with_link(name: 'Vacinas', link: admin_vacinas_path) %>
+    <% component.with_link(name: 'Editar Vacina', link: '#') %>
+  <% end %>
+<% end %>
+
+<%= 
+  render partial: 'form', locals: {
+    title: 'Vacina',
+    subtitle: 'Edição',
+    action: update_admin_vacinas_path(@vacina),
+    method: 'put',
+    model: @vacina,
+    back_url: admin_vacinas_path,
+    submit_text: 'Atualizar'
+  } 
+%>

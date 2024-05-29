@@ -1,9 +1,10 @@
 class Admin::CirurgiasController < AdminController
   before_action :set_current_usuario
+  before_action :set_cirurgia_repository
   before_action :set_cirurgia, only: [:edit, :update, :destroy]
 
   def index
-    @cirurgias = Cirurgia.all
+    @cirurgias = @cirurgia_repository.paginate(params)
     @pagy, @cirurgias = pagy(@cirurgias)
   end
 
@@ -18,34 +19,39 @@ class Admin::CirurgiasController < AdminController
   def create
     @cirurgia = Cirurgia.new(cirurgia_params)
 
-    if @cirurgia.save
-      flash[:success] = 'Cirurgia cadastrada com sucesso'
-      redirect_to admin_cirurgias_path
-    elsif @cirurgia.errors.any?
-      render :new, status: :unprocessable_entity
+    if @cirurgia.valid?
+      result = @cirurgia_repository.create(cirurgia_params)
+
+      if result == true
+        flash[:success] = 'Cirurgia cadastrada com sucesso'
+        redirect_to admin_cirurgias_path
+      else
+        flash[:error] = result
+        redirect_to new_admin_cirurgia_path
+      end
     else
-      flash[:error] = 'Erro ao cadastrar a cirurgia'
-      redirect_to new_admin_cirurgia_path
+      render :new, status: :unprocessable_entity
     end
   end
 
   def update
-    if @cirurgia.update(cirurgia_params)
+    result = @cirurgia_repository.update(@cirurgia, cirurgia_params)
+
+    if result == true
       flash[:success] = 'Cirurgia atualizada com sucesso'
       redirect_to admin_cirurgias_path
-    elsif @cirurgia.errors.any?
-      render :edit, status: :unprocessable_entity
     else
-      flash[:error] = 'Erro ao atualizar a cirurgia'
-      redirect_to edit_admin_cirurgia_path(@cirurgia)
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    if @cirurgia.destroy
+    result = @cirurgia_repository.destroy(@cirurgia)
+    
+    if result == true
       flash[:success] = 'Cirurgia deletada com sucesso'
     else
-      flash[:error] = 'Erro ao deletar a cirurgia'
+      flash[:error] = result
     end
 
     redirect_to admin_cirurgias_path
@@ -55,6 +61,10 @@ class Admin::CirurgiasController < AdminController
 
   def set_current_usuario
     Thread.current[:current_usuario] = current_usuario
+  end
+
+  def set_cirurgia_repository
+    @cirurgia_repository = CirurgiaRepository.new
   end
 
   def cirurgia_params

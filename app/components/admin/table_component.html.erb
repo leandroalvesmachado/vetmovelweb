@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-12">
     <div class="card">
-      <div class="card-header text-uppercase bg-pmf">
+      <div class="card-header text-uppercase">
         <h3 class="card-title font-weight-bold text-uppercase">
           <% if icon.present? %>
             <i class="<%= icon %>"></i>
@@ -25,23 +25,21 @@
               </tr>
             </thead>
           <% end %>
-
-          <% if records.present? %>
-            <tbody>
-              <% if records.length > 0 %>
-                <%= content %>
-              <% else %>
-                <tr class="text-center">
-                  <td class="align-middle" colspan="<%= headers.length %>">Nenhum registro encontrado</td>
-                </tr>
-              <% end %>
-            </tbody>
-          <% end %>
+          
+          <tbody>
+            <% if records.length > 0 %>
+              <%= content %>
+            <% else %>
+              <tr class="text-center">
+                <td class="align-middle" colspan="<%= headers.length %>">Nenhum registro encontrado.</td>
+              </tr>
+            <% end %>
+          </tbody>
         </table>
       </div>
       
       <% if pagy.present? && pagy.pages > 1 %>
-        <div class="card-footer clearfix bg-pmf border-top" style="padding-bottom: 0.1px !important;">
+        <div class="card-footer clearfix border-top bg-transparent" style="padding-bottom: 0.1px !important;">
           <div class="float-right">
             <%== pagy_bootstrap_nav(pagy) %>
           </div>

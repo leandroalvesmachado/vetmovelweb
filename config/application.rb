@@ -28,5 +28,8 @@ module Vetmovelweb
 
     # Set default encoding to UTF-8
     config.encoding = "utf-8"
+
+    # Configura o locale padrão para português brasileiro
+    config.i18n.default_locale = :'pt-BR'
   end
 end

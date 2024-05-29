@@ -10,22 +10,16 @@
       <% end %>
     </h3>
   </div>
-  <%= form_with(model: model, url: action, method: method) do |form| %>
+  <%= form_with(url: action, method: method, id: 'filter-form') do |form| %>
     <div class="card-body">
       <% @form_builder = form %>
-      <% @errors = model.errors %>
       <%= content %>
     </div>
     <div class="card-footer bg-transparent border-top">
       <div class="row justify-content-end">
         <div class="col-6 col-sm-6 col-md-2">
-          <%= link_to back_url, class: 'btn btn-dark btn-block text-uppercase font-weight-bold' do %>
-            <i class="fas fa-backward"></i> Voltar
-          <% end %>
-        </div>
-        <div class="col-6 col-sm-6 col-md-2">
           <%= button_tag(type: 'submit', class: 'btn btn-primary btn-block text-uppercase font-weight-bold') do %>
-            <i class="fas fa-save"></i> <%= submit_text %>
+            <i class="fas fa-search"></i> <%= submit_text %>
           <% end %>
         </div>
       </div>

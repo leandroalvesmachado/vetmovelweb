@@ -5,12 +5,17 @@
         <i class="fas fa-bars"></i>
       </a>
     </li>
-  </ul>
-  <ul class="navbar-nav ml-auto">
     <li class="nav-item">
       <a class="nav-link" data-widget="fullscreen" href="#" role="button">
         <i class="fas fa-expand-arrows-alt"></i>
       </a>
+    </li>
+  </ul>
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <%= button_to destroy_usuario_session_path, method: :delete, class: 'nav-link btn btn-danger text-white text-uppercase' do %>
+        <i class="fas fa-power-off"></i> Sair
+      <% end %>
     </li>
   </ul>
 </nav>

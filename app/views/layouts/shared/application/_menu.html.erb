@@ -1,35 +1,41 @@
-<aside class="main-sidebar sidebar-dark-warning elevation-4">
-  <%= link_to admin_root_path, class: 'brand-link', style: '' do %>
+<aside class="main-sidebar sidebar-dark-warning elevation-4" style="background: #e78300;">
+  <%= link_to admin_root_path, class: 'brand-link', style: 'background: #e78300;' do %>
     <%= image_tag 'logo-vetmovel.png', alt: 'VetMóvel Logo', class: 'brand-image elevation-3', style: 'opacity: .8' %>
     <span class="brand-text font-weight-light">VetMóvel</span>
   <% end %>
-  <div class="sidebar">
+  <div class="sidebar" style="background: #e78300;">
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
         <%= image_tag "usuario.png", class: "img-circle elevation-2", alt: "Usuário imagem" %>
       </div>
       <div class="info">
-        <a href="#" class="d-block"><%= current_usuario.nome %></a>
+        <a href="#" class="d-block text-dark font-weight-bold"><%= current_usuario.nome %></a>
       </div>
     </div>
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item text-uppercase">
           <%= link_to admin_root_path, class: 'nav-link' + (current_page?(admin_root_path) ? ' active' : '') do %>
-            <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>Dashboard</p>
+            <i class="nav-icon fas fa-tachometer-alt text-dark"></i>
+            <p class="text-dark font-weight-bold">Dashboard</p>
           <% end %>
         </li>
         <li class="nav-item text-uppercase">
           <%= link_to admin_cirurgias_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/cirurgias')}" do %>
-            <i class="nav-icon fas fa-ambulance"></i>
-            <p>Cirurgias</p>
+            <i class="nav-icon fas fa-procedures text-dark"></i>
+            <p class="text-dark font-weight-bold">Cirurgias</p>
           <% end %>
         </li>
         <li class="nav-item text-uppercase">
           <%= link_to admin_exames_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/exames')}" do %>
-            <i class="nav-icon fas fa-stethoscope"></i>
-            <p>Exames</p>
+            <i class="nav-icon fas fa-stethoscope text-dark"></i>
+            <p class="text-dark font-weight-bold">Exames</p>
+          <% end %>
+        </li>
+        <li class="nav-item text-uppercase">
+          <%= link_to admin_vacinas_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/vacinas')}" do %>
+            <i class="nav-icon fas fa-syringe text-dark"></i>
+            <p class="text-dark font-weight-bold">Vacinas</p>
           <% end %>
         </li>
       </ul>
