@@ -1,6 +1,6 @@
-class Vermifugo < ApplicationRecord
+class Pelagem < ApplicationRecord
   acts_as_paranoid
-  self.table_name = 'vermifugos'
+  self.table_name = 'pelagens'
 
   belongs_to :autor, class_name: 'Usuario', foreign_key: 'created_by',optional: true
 

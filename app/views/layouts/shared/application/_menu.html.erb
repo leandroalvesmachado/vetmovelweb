@@ -45,6 +45,12 @@
           <% end %>
         </li>
         <li class="nav-item text-uppercase">
+          <%= link_to admin_pelagens_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/pelagens')}" do %>
+            <i class="nav-icon fas fa-palette text-white"></i>
+            <p class="text-white">Pelagens</p>
+          <% end %>
+        </li>
+        <li class="nav-item text-uppercase">
           <%= link_to admin_racas_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/racas')}" do %>
             <i class="nav-icon fas fa-stethoscope text-white"></i>
             <p class="text-white">Raças</p>
