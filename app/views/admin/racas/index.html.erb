@@ -1,0 +1,99 @@
+<% content_for :breadcrumb do %>
+  <%= render Admin::BreadcrumbComponent.new do |component| %>
+    <% component.with_title do %> 
+      <i class="fas fa-pills"></i> Raças
+    <% end %>
+  <% end %>
+<% end %>
+
+<div class="row mb-3">
+  <div class="col-md-2 offset-md-10">
+    <%= link_to new_admin_raca_path, class: 'btn btn-primary btn-block text-uppercase font-weight-bold' do %>
+      <i class="fas fa-plus-circle"></i> Raça
+    <% end %>
+  </div>
+</div>
+
+<%= render Admin::FormSearchComponent.new(
+  title: 'Raças',
+  subtitle: 'Pesquisa',
+  action: admin_racas_path
+) do |form| %>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.form_builder.label :especie_id, 'Espécie' %>
+        <%= form.form_builder.select :especie_id, @especies, {}, class: "form-control", id: 'especie_id' %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.form_builder.label :nome, 'Nome' %>
+        <%= form.form_builder.text_field :nome, class: 'form-control', id: 'nome', value: params[:nome], placeholder: 'Digite o nome' %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.form_builder.label :descricao, 'Descrição' %>
+        <%= form.form_builder.text_field :descricao, class: 'form-control', id: 'descricao', value: params[:descricao], placeholder: 'Digite o descrição' %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= render Admin::TableComponent.new(
+  title: 'Raças',
+  subtitle: 'Listagem',
+  headers: ['Nome', 'Descrição', 'Ativo', 'Ações'],
+  records: @racas,
+  pagy: @pagy
+) do %>
+  <% @racas.each do |raca| %>
+    <tr class="text-center">
+      <td class="align-middle"><%= raca.especie.nome %></td>
+      <td class="align-middle"><%= raca.nome %></td>
+      <td class="align-middle limited-width"><%= raca.descricao %></td>
+      <td class="align-middle">
+        <%= render Admin::BadgeComponent.new(
+            badge_title: raca.ativo ? 'Sim' : 'Não', 
+            badge_class: raca.ativo ? 'bg-success' : 'bg-danger'
+        ) %>
+      </td>
+      <td class="align-middle">
+        <div class="dropdown dropright">
+          <button 
+            id="dropdown-<%= raca.id %>" 
+            class="btn btn-warning dropdown-toggle" 
+            type="button" 
+            data-toggle="dropdown" 
+            aria-expanded="false"
+          >
+            <i class="fas fa-cog"></i>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdown-<%= raca.id %>">
+            <%= link_to edit_admin_raca_path(raca), class: 'dropdown-item' do %>
+              <i class="fas fa-edit"></i> Editar
+            <% end %>
+
+            <%= link_to "raca-modal-#{raca.id}-destroy", class: 'dropdown-item', data: { toggle: 'modal', target: "#raca-modal-#{raca.id}-destroy" } do %>
+              <i class="fas fa-trash-alt"></i> Deletar
+            <% end %>
+
+            <% content_for :modal do %>
+              <%= 
+                render partial: 'modal_destroy', locals: {
+                  title: 'Raça',
+                  subtitle: 'Deletar',
+                  target: "raca-modal-#{raca.id}-destroy",
+                  raca: raca,
+                  action: admin_raca_path(raca),
+                  method: 'delete'
+                }
+              %>
+            <% end %>
+          </div>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+<% end %>

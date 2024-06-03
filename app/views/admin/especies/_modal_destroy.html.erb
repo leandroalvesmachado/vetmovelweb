@@ -1,0 +1,39 @@
+<%= render Admin::ModalComponent.new(title: title, subtitle: subtitle, target: target, model: especie) do |component| %>
+  
+  <% component.with_body do %> 
+    <div class="row mb-3">
+      <div class="col text-danger text-center">
+        Deseja deletar a espécie abaixo?
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <p class="font-weight-bold">Nome:</p> <%= especie.nome %>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col">
+        <p class="font-weight-bold">Descrição:</p> <%= especie.descricao %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p class="font-weight-bold">Criado por:</p> <%= especie.autor.nome %>
+      </div>
+      <div class="col">
+        <p class="font-weight-bold">Data:</p> <%= especie.created_at %>
+      </div>
+    </div>
+  <% end %>
+
+  <% component.with_footer do %>
+    <%= form_with(model: especie, url: action, method: method) do %>
+      <%= button_tag(type: 'submit', class: 'btn btn-danger font-weight-bold text-uppercase') do %>
+        <i class="fas fa-trash"></i> Deletar
+      <% end %>
+    <% end %>
+    <button type="button" class="btn btn-dark font-weight-bold text-uppercase" data-dismiss="modal">
+      <i class="fas fa-times-circle"></i> Fechar
+    </button>
+  <% end %>
+<% end %>

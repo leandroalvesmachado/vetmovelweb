@@ -14,3 +14,12 @@
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym "RESTful"
 # end
+
+ActiveSupport::Inflector.inflections(:'pt-BR') do |inflect|
+  inflect.irregular 'especie', 'especies'
+end
+
+# Para garantir que funcione no ambiente padrão (se 'pt-BR' não estiver configurado corretamente)
+ActiveSupport::Inflector.inflections do |inflect|
+  inflect.irregular 'especie', 'especies'
+end

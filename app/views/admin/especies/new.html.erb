@@ -1,0 +1,21 @@
+<% content_for :breadcrumb do %>
+  <%= render Admin::BreadcrumbComponent.new do |component| %>
+    <% component.with_title do %> 
+      <i class="fas fa-paw"></i> Espécies
+    <% end %>
+    <% component.with_link(name: 'Espécies', link: admin_especies_path) %>
+    <% component.with_link(name: 'Nova Espécie', link: '#') %>
+  <% end %>
+<% end %>
+
+<%= 
+  render partial: 'form', locals: {
+    title: 'Espécie',
+    subtitle: 'Novo',
+    action: create_admin_especies_path,
+    method: 'POST',
+    model: @especie,
+    back_url: admin_especies_path,
+    submit_text: 'Salvar'
+  } 
+%>

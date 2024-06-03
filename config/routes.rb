@@ -42,12 +42,30 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :especies, path: 'especies', as: 'especies', path_names: {
+      index: '', show: 'visualizacao', new: 'cadastro', edit: 'edicao', create: 'cadastro', update: 'atualizar', destroy: 'excluir'
+    } do
+      collection do
+        post '/cadastro', to: 'especies#create', as: 'create'
+        put ':id/edicao', to: 'especies#update', as: 'update'
+      end
+    end
+
     resources :exames, path: 'exames', as: 'exames', path_names: { 
       index: '', show: 'visualizacao', new: 'cadastro', edit: 'edicao', create: 'cadastro', update: 'atualizar', destroy: 'excluir'
     } do
       collection do
         post '/cadastro', to: 'exames#create', as: 'create'
         put ':id/edicao', to: 'exames#update', as: 'update'
+      end
+    end
+
+    resources :racas, path: 'racas', as: 'racas', path_names: { 
+      index: '', show: 'visualizacao', new: 'cadastro', edit: 'edicao', create: 'cadastro', update: 'atualizar', destroy: 'excluir'
+    } do
+      collection do
+        post '/cadastro', to: 'racas#create', as: 'create'
+        put ':id/edicao', to: 'racas#update', as: 'update'
       end
     end
 

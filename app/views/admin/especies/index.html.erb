@@ -1,0 +1,92 @@
+<% content_for :breadcrumb do %>
+  <%= render Admin::BreadcrumbComponent.new do |component| %>
+    <% component.with_title do %> 
+      <i class="fas fa-paw"></i> Espécies
+    <% end %>
+  <% end %>
+<% end %>
+
+<div class="row mb-3">
+  <div class="col-md-2 offset-md-10">
+    <%= link_to new_admin_especie_path, class: 'btn btn-primary btn-block text-uppercase font-weight-bold' do %>
+      <i class="fas fa-plus-circle"></i> Espécie
+    <% end %>
+  </div>
+</div>
+
+<%= render Admin::FormSearchComponent.new(
+  title: 'Espécies',
+  subtitle: 'Pesquisa',
+  action: admin_especies_path
+) do |form| %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.form_builder.label :nome, 'Nome' %>
+        <%= form.form_builder.text_field :nome, class: 'form-control', id: 'nome', value: params[:nome], placeholder: 'Digite o nome' %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.form_builder.label :descricao, 'Descrição' %>
+        <%= form.form_builder.text_field :descricao, class: 'form-control', id: 'descricao', value: params[:descricao], placeholder: 'Digite o descrição' %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= render Admin::TableComponent.new(
+  title: 'Espécies',
+  subtitle: 'Listagem',
+  headers: ['Nome', 'Descrição', 'Ativo', 'Ações'],
+  records: @especies,
+  pagy: @pagy
+) do %>
+  <% @especies.each do |especie| %>
+    <tr class="text-center">
+      <td class="align-middle"><%= especie.nome %></td>
+      <td class="align-middle limited-width"><%= especie.descricao %></td>
+      <td class="align-middle">
+        <%= render Admin::BadgeComponent.new(
+            badge_title: especie.ativo ? 'Sim' : 'Não', 
+            badge_class: especie.ativo ? 'bg-success' : 'bg-danger'
+        ) %>
+      </td>
+      <td class="align-middle">
+        <div class="dropdown dropright">
+          <button 
+            id="dropdown-<%= especie.id %>" 
+            class="btn btn-warning dropdown-toggle" 
+            type="button" 
+            data-toggle="dropdown" 
+            aria-expanded="false"
+          >
+            <i class="fas fa-cog"></i>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdown-<%= especie.id %>">
+            <%= link_to edit_admin_especie_path(especie), class: 'dropdown-item' do %>
+              <i class="fas fa-edit"></i> Editar
+            <% end %>
+
+            <%= link_to "especie-modal-#{especie.id}-destroy", class: 'dropdown-item', data: { toggle: 'modal', target: "#especie-modal-#{especie.id}-destroy" } do %>
+              <i class="fas fa-trash-alt"></i> Deletar
+            <% end %>
+
+            <% content_for :modal do %>
+              <%= 
+                render partial: 'modal_destroy', locals: {
+                  title: 'Espécie',
+                  subtitle: 'Deletar',
+                  target: "especie-modal-#{especie.id}-destroy",
+                  especie: especie,
+                  action: admin_especie_path(especie),
+                  method: 'delete'
+                }
+              %>
+            <% end %>
+          </div>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+<% end %>

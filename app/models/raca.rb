@@ -1,10 +1,11 @@
-class Antipulga < ApplicationRecord
+class Raca < ApplicationRecord
   acts_as_paranoid
-  self.table_name = 'antipulgas'
+  self.table_name = 'racas'
 
-  belongs_to :autor, class_name: 'Usuario', foreign_key: 'created_by',optional: true
+  belongs_to :especie, class_name: 'Especie', foreign_key: 'especie_id'
+  belongs_to :autor, class_name: 'Usuario', foreign_key: 'created_by', optional: true
 
-  validates :nome, :descricao, presence: true
+  validates :especie_id, :nome, :descricao, presence: true
   validates :nome, :descricao, length: { maximum: 255 }
 
   before_create :set_created_by

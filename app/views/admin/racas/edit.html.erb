@@ -1,0 +1,21 @@
+<% content_for :breadcrumb do %>
+  <%= render Admin::BreadcrumbComponent.new do |component| %>
+    <% component.with_title do %> 
+      <i class="fas fa-pills"></i> Raças
+    <% end %>
+    <% component.with_link(name: 'Raças', link: admin_racas_path) %>
+    <% component.with_link(name: 'Editar Raça', link: '#') %>
+  <% end %>
+<% end %>
+
+<%= 
+  render partial: 'form', locals: {
+    title: 'Espécie',
+    subtitle: 'Edição',
+    action: update_admin_racas_path(@raca),
+    method: 'put',
+    model: @raca,
+    back_url: admin_racas_path,
+    submit_text: 'Atualizar'
+  } 
+%>

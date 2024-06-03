@@ -1,2 +1,13 @@
 pt-BR:
-  hello: "Hello world"
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'A validação falhou: %{errors}'
+        restrict_dependent_destroy:
+          has_one: Não é possível excluir o registro pois existe um %{record} dependente
+          has_many: Não é possível excluir o registro pois existem %{record} dependentes
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      blank: "%{attribute} não pode ficar em branco"
+      too_long: "%{count} caracteres é o máximo permitido"

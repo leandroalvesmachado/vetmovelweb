@@ -1,6 +1,6 @@
-class EspecieRepository
+class RacaRepository
   def initialize()
-    @model = Especie
+    @model = Raca
   end
 
   def all
@@ -35,9 +35,9 @@ class EspecieRepository
     end
   end
 
-  def update(especie, attributes)
+  def update(raca, attributes)
     begin
-      especie.update!(attributes)
+      raca.update!(attributes)
 
       return true
     rescue => e
@@ -45,25 +45,13 @@ class EspecieRepository
     end
   end
 
-  def destroy(especie)
+  def destroy(raca)
     begin
-      especie.destroy!
+      raca.destroy!
 
       return true
     rescue => e
       return "Ocorreu um erro: #{e.message}"
-    end
-  end
-
-  def select_option()
-    begin
-      especies = @model.order(:nome).pluck(:descricao, :id)
-      especies.unshift(['Escolha a opção', nil])
-      options = especies.to_h
-
-      return options
-    rescue => e
-      return [[e.message, nil]]
     end
   end
 end
