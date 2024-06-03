@@ -22,9 +22,15 @@
     box-shadow: none;
 }
 
+.limited-width {
+    max-width: 150px; /* Ajuste este valor conforme necessário */
+    word-wrap: break-word;
+    white-space: normal;
+}
+
 .main-footer {
     /* background-color: #fff; */
-    background-color: #f7b93a;
+    /* background-color: #f7b93a; */
     border-top: 1px solid #dee2e6;
     /* color: #869099; */
     color: #000000;

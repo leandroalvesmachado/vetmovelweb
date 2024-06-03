@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_22_173809) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_03_123301) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -26,6 +26,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_22_173809) do
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_animais_sexos_on_deleted_at"
+  end
+
+  create_table "antipulgas", force: :cascade do |t|
+    t.string "nome", null: false
+    t.text "descricao", null: false
+    t.decimal "preco", precision: 8, scale: 2
+    t.boolean "ativo", default: true, null: false
+    t.uuid "created_by", null: false
+    t.uuid "updated_by", null: false
+    t.uuid "deleted_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_antipulgas_on_deleted_at"
   end
 
   create_table "cirurgias", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -173,6 +187,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_22_173809) do
   add_foreign_key "animais_sexos", "usuarios", column: "created_by"
   add_foreign_key "animais_sexos", "usuarios", column: "deleted_by"
   add_foreign_key "animais_sexos", "usuarios", column: "updated_by"
+  add_foreign_key "antipulgas", "usuarios", column: "created_by"
+  add_foreign_key "antipulgas", "usuarios", column: "deleted_by"
+  add_foreign_key "antipulgas", "usuarios", column: "updated_by"
   add_foreign_key "cirurgias", "usuarios", column: "created_by"
   add_foreign_key "cirurgias", "usuarios", column: "deleted_by"
   add_foreign_key "cirurgias", "usuarios", column: "updated_by"

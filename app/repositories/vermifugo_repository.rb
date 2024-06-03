@@ -1,0 +1,57 @@
+class VermifugoRepository
+  def initialize()
+    @model = Vermifugo
+  end
+
+  def all
+    return @model.all
+  end
+
+  def paginate(params)
+    begin
+      query = @model
+
+      if params[:nome].present?
+        query = query.where("nome LIKE ?", "%#{params[:nome]}%")
+      end
+
+      if params[:descricao].present?
+        query = query.where("descricao LIKE ?", "%#{params[:descricao]}%")
+      end
+
+      return query
+    rescue => e
+      return @model.none
+    end
+  end
+
+  def create(attributes)
+    begin
+      @model.create!(attributes)
+
+      return true
+    rescue => e
+      return "Ocorreu um erro: #{e.message}"
+    end
+  end
+
+  def update(vermifugo, attributes)
+    begin
+      vermifugo.update!(attributes)
+
+      return true
+    rescue => e
+      return "Ocorreu um erro: #{e.message}"
+    end
+  end
+
+  def destroy(vermifugo)
+    begin
+      vermifugo.destroy!
+
+      return true
+    rescue => e
+      return "Ocorreu um erro: #{e.message}"
+    end
+  end
+end

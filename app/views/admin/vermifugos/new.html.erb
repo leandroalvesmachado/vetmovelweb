@@ -1,0 +1,21 @@
+<% content_for :breadcrumb do %>
+  <%= render Admin::BreadcrumbComponent.new do |component| %>
+    <% component.with_title do %> 
+      <i class="fas fa-pills"></i> Vermífugos
+    <% end %>
+    <% component.with_link(name: 'Vermífugos', link: admin_vermifugos_path) %>
+    <% component.with_link(name: 'Novo Vermífugo', link: '#') %>
+  <% end %>
+<% end %>
+
+<%= 
+  render partial: 'form', locals: {
+    title: 'Vermífugo',
+    subtitle: 'Novo',
+    action: create_admin_vermifugos_path,
+    method: 'POST',
+    model: @vermifugo,
+    back_url: admin_vermifugos_path,
+    submit_text: 'Salvar'
+  } 
+%>

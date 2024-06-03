@@ -1,23 +1,23 @@
 <% content_for :breadcrumb do %>
   <%= render Admin::BreadcrumbComponent.new do |component| %>
     <% component.with_title do %> 
-      <i class="fas fa-syringe"></i> Vacinas
+      <i class="fas fa-pills"></i> Vermífugos
     <% end %>
   <% end %>
 <% end %>
 
 <div class="row mb-3">
   <div class="col-md-2 offset-md-10">
-    <%= link_to new_admin_vacina_path, class: 'btn btn-primary btn-block text-uppercase font-weight-bold' do %>
-      <i class="fas fa-plus-circle"></i> Vacina
+    <%= link_to new_admin_vermifugo_path, class: 'btn btn-primary btn-block text-uppercase font-weight-bold' do %>
+      <i class="fas fa-plus-circle"></i> Vermífugo
     <% end %>
   </div>
 </div>
 
 <%= render Admin::FormSearchComponent.new(
-  title: 'Vacinas',
+  title: 'Vermífugos',
   subtitle: 'Pesquisa',
-  action: admin_vacinas_path
+  action: admin_vermifugos_path
 ) do |form| %>
   <div class="row">
     <div class="col-md-6">
@@ -36,26 +36,26 @@
 <% end %>
 
 <%= render Admin::TableComponent.new(
-  title: 'Vacinas',
+  title: 'Vermífugos',
   subtitle: 'Listagem',
   headers: ['Nome', 'Descrição', 'Ativo', 'Ações'],
-  records: @vacinas,
+  records: @vermifugos,
   pagy: @pagy
 ) do %>
-  <% @vacinas.each do |vacina| %>
+  <% @vermifugos.each do |vermifugo| %>
     <tr class="text-center">
-      <td class="align-middle"><%= vacina.nome %></td>
-      <td class="align-middle limited-width"><%= vacina.descricao %></td>
+      <td class="align-middle"><%= vermifugo.nome %></td>
+      <td class="align-middle limited-width"><%= vermifugo.descricao %></td>
       <td class="align-middle">
         <%= render Admin::BadgeComponent.new(
-            badge_title: vacina.ativo ? 'Sim' : 'Não', 
-            badge_class: vacina.ativo ? 'bg-success' : 'bg-danger'
+            badge_title: vermifugo.ativo ? 'Sim' : 'Não', 
+            badge_class: vermifugo.ativo ? 'bg-success' : 'bg-danger'
         ) %>
       </td>
       <td class="align-middle">
         <div class="dropdown dropright">
           <button 
-            id="dropdown-<%= vacina.id %>" 
+            id="dropdown-<%= vermifugo.id %>" 
             class="btn btn-warning dropdown-toggle" 
             type="button" 
             data-toggle="dropdown" 
@@ -63,23 +63,23 @@
           >
             <i class="fas fa-cog"></i>
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdown-<%= vacina.id %>">
-            <%= link_to edit_admin_vacina_path(vacina), class: 'dropdown-item' do %>
+          <div class="dropdown-menu" aria-labelledby="dropdown-<%= vermifugo.id %>">
+            <%= link_to edit_admin_vermifugo_path(vermifugo), class: 'dropdown-item' do %>
               <i class="fas fa-edit"></i> Editar
             <% end %>
 
-            <%= link_to "vacina-modal-#{vacina.id}-destroy", class: 'dropdown-item', data: { toggle: 'modal', target: "#vacina-modal-#{vacina.id}-destroy" } do %>
+            <%= link_to "vermifugo-modal-#{vermifugo.id}-destroy", class: 'dropdown-item', data: { toggle: 'modal', target: "#vermifugo-modal-#{vermifugo.id}-destroy" } do %>
               <i class="fas fa-trash-alt"></i> Deletar
             <% end %>
 
             <% content_for :modal do %>
               <%= 
                 render partial: 'modal_destroy', locals: {
-                  title: 'Vacina',
+                  title: 'Vermífugo',
                   subtitle: 'Deletar',
-                  target: "vacina-modal-#{vacina.id}-destroy",
-                  vacina: vacina,
-                  action: admin_vacina_path(vacina),
+                  target: "vermifugo-modal-#{vermifugo.id}-destroy",
+                  vermifugo: vermifugo,
+                  action: admin_vermifugo_path(vermifugo),
                   method: 'delete'
                 }
               %>

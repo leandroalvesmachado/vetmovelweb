@@ -23,15 +23,18 @@ Rails.application.routes.draw do
 
   namespace :admin, path: 'administracao' do
     root 'home#index'
+
+    resources :antipulgas, path: 'antipulgas', as: 'antipulgas', path_names: { 
+      index: '', show: 'visualizacao', new: 'cadastro', edit: 'edicao', create: 'cadastro', update: 'atualizar', destroy: 'excluir'
+    } do
+      collection do
+        post '/cadastro', to: 'antipulgas#create', as: 'create'
+        put ':id/edicao', to: 'antipulgas#update', as: 'update'
+      end
+    end
     
     resources :cirurgias, path: 'cirurgias', as: 'cirurgias', path_names: { 
-      index: '',
-      show: 'visualizacao',
-      new: 'cadastro',
-      edit: 'edicao',
-      create: 'cadastro',
-      update: 'atualizar',
-      destroy: 'excluir'
+      index: '', show: 'visualizacao', new: 'cadastro', edit: 'edicao', create: 'cadastro', update: 'atualizar', destroy: 'excluir'
     } do
       collection do
         post '/cadastro', to: 'cirurgias#create', as: 'create'
@@ -40,13 +43,7 @@ Rails.application.routes.draw do
     end
 
     resources :exames, path: 'exames', as: 'exames', path_names: { 
-      index: '',
-      show: 'visualizacao',
-      new: 'cadastro',
-      edit: 'edicao',
-      create: 'cadastro',
-      update: 'atualizar',
-      destroy: 'excluir'
+      index: '', show: 'visualizacao', new: 'cadastro', edit: 'edicao', create: 'cadastro', update: 'atualizar', destroy: 'excluir'
     } do
       collection do
         post '/cadastro', to: 'exames#create', as: 'create'
@@ -55,17 +52,20 @@ Rails.application.routes.draw do
     end
 
     resources :vacinas, path: 'vacinas', as: 'vacinas', path_names: { 
-      index: '',
-      show: 'visualizacao',
-      new: 'cadastro',
-      edit: 'edicao',
-      create: 'cadastro',
-      update: 'atualizar',
-      destroy: 'excluir'
+      index: '', show: 'visualizacao', new: 'cadastro', edit: 'edicao', create: 'cadastro', update: 'atualizar', destroy: 'excluir'
     } do
       collection do
         post '/cadastro', to: 'vacinas#create', as: 'create'
         put ':id/edicao', to: 'vacinas#update', as: 'update'
+      end
+    end
+
+    resources :vermifugos, path: 'vermifugos', as: 'vermifugos', path_names: { 
+      index: '', show: 'visualizacao', new: 'cadastro', edit: 'edicao', create: 'cadastro', update: 'atualizar', destroy: 'excluir'
+    } do
+      collection do
+        post '/cadastro', to: 'vermifugos#create', as: 'create'
+        put ':id/edicao', to: 'vermifugos#update', as: 'update'
       end
     end
   end
