@@ -9,6 +9,9 @@ pt-BR:
         nome_social: Nome Social
         data_nascimento: Data Nascimento
         email: E-mail
+        telefone: Telefone
+        celular: Celular
+        telefone_contato: Telefone Contato
         ativo: Ativo
         created_by: Criado por
         updated_by: Atualizado por

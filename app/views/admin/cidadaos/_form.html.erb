@@ -68,8 +68,37 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-4">
       <div class="form-group">
+        <%= form.form_builder.label :telefone %>
+        <%= form.form_builder.text_field :telefone,
+          class: "form-control mask_phone_with_ddd #{'is-invalid' if form.errors.has_key?(:telefone)}", 
+          id: 'telefone', 
+          placeholder: 'Digite o telefone' 
+        %>
+        <span class="text-danger"><%= form.errors[:telefone].first %></span>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.form_builder.label :celular %>
+        <%= form.form_builder.text_field :celular,
+          class: "form-control mask_phone_with_ddd #{'is-invalid' if form.errors.has_key?(:celular)}", 
+          id: 'celular', 
+          placeholder: 'Digite o celular' 
+        %>
+        <span class="text-danger"><%= form.errors[:celular].first %></span>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.form_builder.label :telefone_contato %>
+        <%= form.form_builder.text_field :telefone_contato,
+          class: "form-control mask_phone_with_ddd #{'is-invalid' if form.errors.has_key?(:telefone_contato)}", 
+          id: 'telefone_contato', 
+          placeholder: 'Digite o telefone do contato' 
+        %>
+        <span class="text-danger"><%= form.errors[:telefone_contato].first %></span>
       </div>
     </div>
   </div>

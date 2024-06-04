@@ -73,7 +73,10 @@ class Admin::CidadaosController < AdminController
       :nome,
       :nome_social,
       :data_nascimento,
-      :email
+      :email,
+      :telefone,
+      :celular,
+      :telefone_contato
     )
   end
 

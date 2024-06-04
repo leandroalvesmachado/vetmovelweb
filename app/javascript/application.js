@@ -16,11 +16,16 @@ $(document).ready(function() {
     showMaskOnHover: false, 
     showMaskOnFocus: false 
   });
+
   $(".mask_date").inputmask({ 
     mask: "99/99/9999",
     placeholder: "dd/mm/yyyy",
     clearIncomplete: true, 
     showMaskOnHover: false, 
     showMaskOnFocus: false 
+  });
+
+  $(".mask_phone_with_ddd").inputmask({ 
+    mask: "(99) 9999[9]-9999"
   });
 });
