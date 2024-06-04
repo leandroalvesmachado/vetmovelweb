@@ -9,7 +9,13 @@
         <%= image_tag "usuario.png", class: "img-circle elevation-2", alt: "Usuário imagem" %>
       </div>
       <div class="info">
-        <a href="#" class="d-block text-white"><%= current_usuario.nome.split.first %></a>
+        <a href="#" class="d-block text-white">
+          <%= current_usuario.nome.split.first %>
+          <br>
+          <% if current_usuario.usuario_perfis.any? %>
+            <%= current_usuario.usuario_perfis.first.perfil.nome %>
+          <% end %>
+        </a>
       </div>
     </div>
     <nav class="mt-2">
@@ -24,6 +30,12 @@
           <%= link_to admin_antipulgas_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/antipulgas')}" do %>
             <i class="nav-icon fas fa-bug text-white"></i>
             <p class="text-white">Antipulgas</p>
+          <% end %>
+        </li>
+        <li class="nav-item text-uppercase">
+          <%= link_to admin_cidadaos_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/cidadaos')}" do %>
+            <i class="nav-icon fas fa-user-tie text-white"></i>
+            <p class="text-white">Cidadãos</p>
           <% end %>
         </li>
         <li class="nav-item text-uppercase">

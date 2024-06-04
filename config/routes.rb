@@ -32,6 +32,15 @@ Rails.application.routes.draw do
         put ':id/edicao', to: 'antipulgas#update', as: 'update'
       end
     end
+
+    resources :cidadaos, path: 'cidadaos', as: 'cidadaos', path_names: { 
+      index: '', show: 'visualizacao', new: 'cadastro', edit: 'edicao', create: 'cadastro', update: 'atualizar', destroy: 'excluir'
+    } do
+      collection do
+        post '/cadastro', to: 'cidadaos#create', as: 'create'
+        put ':id/edicao', to: 'cidadaos#update', as: 'update'
+      end
+    end
     
     resources :cirurgias, path: 'cirurgias', as: 'cirurgias', path_names: { 
       index: '', show: 'visualizacao', new: 'cadastro', edit: 'edicao', create: 'cadastro', update: 'atualizar', destroy: 'excluir'

@@ -1,0 +1,76 @@
+<%= render Admin::FormComponent.new(
+  title: title,
+  subtitle: subtitle,
+  model: model,
+  action: action,
+  back_url: back_url,
+  submit_text: submit_text,
+  method: method
+
+) do |form| %>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.form_builder.label :cpf %>
+        <%= form.form_builder.text_field :cpf,
+          class: "form-control mask_cpf #{'is-invalid' if form.errors.has_key?(:cpf)}", 
+          id: 'cpf', 
+          placeholder: 'Digite o CPF' 
+        %>
+        <span class="text-danger"><%= form.errors[:cpf].first %></span>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.form_builder.label :data_nascimento %>
+        <%= form.form_builder.text_field :data_nascimento,
+          class: "form-control mask_date #{'is-invalid' if form.errors.has_key?(:data_nascimento)}", 
+          id: 'data_nascimento', 
+          placeholder: 'Digite o data de nascimento' 
+        %>
+        <span class="text-danger"><%= form.errors[:data_nascimento].first %></span>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.form_builder.label :email %>
+        <%= form.form_builder.text_field :email,
+          class: "form-control #{'is-invalid' if form.errors.has_key?(:email)}", 
+          id: 'email', 
+          placeholder: 'Digite o e-mail' 
+        %>
+        <span class="text-danger"><%= form.errors[:email].first %></span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.form_builder.label :nome %>
+        <%= form.form_builder.text_field :nome,
+          class: "form-control #{'is-invalid' if form.errors.has_key?(:nome)}", 
+          id: 'nome', 
+          placeholder: 'Digite o nome' 
+        %>
+        <span class="text-danger"><%= form.errors[:nome].first %></span>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.form_builder.label :nome_social %>
+        <%= form.form_builder.text_field :nome_social,
+          class: "form-control #{'is-invalid' if form.errors.has_key?(:nome_social)}", 
+          id: 'nome_social', 
+          placeholder: 'Digite o nome social' 
+        %>
+        <span class="text-danger"><%= form.errors[:nome_social].first %></span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+      </div>
+    </div>
+  </div>
+<% end %>

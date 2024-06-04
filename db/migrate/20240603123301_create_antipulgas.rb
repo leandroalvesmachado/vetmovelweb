@@ -1,6 +1,6 @@
 class CreateAntipulgas < ActiveRecord::Migration[7.1]
   def change
-    create_table :antipulgas do |t|
+    create_table :antipulgas, id: :uuid do |t|
       t.string :nome, null: false
       t.text :descricao, null: false
       t.decimal :preco, precision: 8, scale: 2, null: true

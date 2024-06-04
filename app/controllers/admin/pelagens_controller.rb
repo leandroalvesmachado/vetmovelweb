@@ -49,7 +49,7 @@ class Admin::PelagensController < AdminController
     result = @pelagem_repository.destroy(@pelagem)
     
     if result == true
-      flash[:success] = 'Vermífugo deletado com sucesso'
+      flash[:success] = 'Pelagem deletada com sucesso'
     else
       flash[:error] = result
     end

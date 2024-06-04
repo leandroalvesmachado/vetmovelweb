@@ -6,4 +6,21 @@ Turbo.session.drive = false
 
 import "./theme/plugins/jquery/jquery"
 import "./theme/plugins/bootstrap/js/bootstrap.bundle.min"
+import "./theme/plugins/inputmask/jquery.inputmask.min"
 import "./theme/dist/js/adminlte"
+
+$(document).ready(function() {
+  $(".mask_cpf").inputmask({
+    mask: "999.999.999-99", 
+    clearIncomplete: true, 
+    showMaskOnHover: false, 
+    showMaskOnFocus: false 
+  });
+  $(".mask_date").inputmask({ 
+    mask: "99/99/9999",
+    placeholder: "dd/mm/yyyy",
+    clearIncomplete: true, 
+    showMaskOnHover: false, 
+    showMaskOnFocus: false 
+  });
+});

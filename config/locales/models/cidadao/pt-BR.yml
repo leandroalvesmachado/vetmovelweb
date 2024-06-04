@@ -1,0 +1,18 @@
+pt-BR:
+  activerecord:
+    models:
+      cidadao: Cidadão
+    attributes:
+      cidadao:
+        cpf: CPF
+        nome: Nome
+        nome_social: Nome Social
+        data_nascimento: Data Nascimento
+        email: E-mail
+        ativo: Ativo
+        created_by: Criado por
+        updated_by: Atualizado por
+        deleted_by: Deletado por
+        created_at: Criado em
+        updated_by: Atualizado em
+        deleted_by: Deletado em
