@@ -159,6 +159,37 @@ begin
           updated_by: usuario.id
         )
       end
+
+      pelagens = [
+        { nome: 'Amarelo', descricao: 'Animal com cor do pelo amarelo' },
+        { nome: 'Azul', descricao: 'Animal com cor do pelo azul' },
+        { nome: 'Branco', descricao: 'Animal com cor do pelo branco' },
+        { nome: 'Preto', descricao: 'Animal com cor do pelo preto' }
+      ]
+
+      pelagens.each do |pelagem|
+        Pelagem.create!(
+          nome: pelagem[:nome],
+          descricao: pelagem[:descricao],
+          created_by: usuario.id,
+          updated_by: usuario.id
+        )
+      end
+
+      especies = [
+        { nome: 'Aves', descricao: 'Aves' },
+        { nome: 'Canina', descricao: 'Canina' },
+        { nome: 'Felina', descricao: 'Felina' },
+      ]
+
+      especies.each do |especie|
+        Especie.create!(
+          nome: especie[:nome],
+          descricao: especie[:descricao],
+          created_by: usuario.id,
+          updated_by: usuario.id
+        )
+      end
     else
       puts 'Usuário não encontrado com o email especificado'
     end

@@ -4,18 +4,20 @@ class Cidadao < ApplicationRecord
 
   belongs_to :autor, class_name: 'Usuario', foreign_key: 'created_by', optional: true
 
-  before_validation :remove_mascara
+  before_validation :remove_mask
   before_create :set_created_by
   before_update :set_updated_by
   before_destroy :set_deleted_by
+  after_validation :remove_mask
 
   validates :cpf, :nome, presence: true
   validates :cpf, uniqueness: true
   validates :cpf, length: { maximum: 11 }
-  validates :nome, :nome_social, length: { maximum: 255 }
+  validates :nome, :nome_social, :email, length: { maximum: 255 }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
-  validates :telefone, allow_blank: true, format: { with: /\A\(\d{2}\) \d{4,5}-?\d{4}\z/, message: "formato inválido" }
-  validates :celular, allow_blank: true, format: { with: /\A\(\d{2}\) \d{4,5}-?\d{4}\z/, message: "formato inválido" }
+  # validates :telefone, allow_blank: true, format: { with: /\A\d{2}\d{4,5}-\d{4}\z/, message: "formato inválido" }
+  # validates :telefone, :celular, length: { minimum: 8, maximum: 9 }, allow_blank: true
+  # validates :celular, allow_blank: true, format: { with: /\A\d{2}\d{4,5}-\d{4}\z/, message: "formato inválido" }
 
   private
 
@@ -34,7 +36,10 @@ class Cidadao < ApplicationRecord
     save(validate: false)
   end
 
-  def remove_mascara
+  def remove_mask
     self.cpf = cpf.gsub(/\D/, '') if cpf.present?
+    self.telefone = telefone.gsub(/\D/, '') if telefone.present?
+    self.celular = celular.gsub(/\D/, '') if celular.present?
+    self.telefone_contato = telefone_contato.gsub(/\D/, '') if telefone_contato.present?
   end
 end

@@ -9,6 +9,7 @@ class CreateCidadaos < ActiveRecord::Migration[7.1]
       t.string :telefone, null: true
       t.string :celular, null: true
       t.string :telefone_contato, null: true
+      t.boolean :ativo, null: false, default: true
       t.uuid :created_by, null: false
       t.uuid :updated_by, null: false
       t.uuid :deleted_by, null: true

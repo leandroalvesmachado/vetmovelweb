@@ -32,14 +32,17 @@
 <%= render Admin::TableComponent.new(
   title: 'Cidadãos',
   subtitle: 'Listagem',
-  headers: ['Nome', 'Descrição', 'Ativo', 'Ações'],
+  headers: ['CPF', 'Nome', 'Nome Social', 'E-mail', 'Data Nascimento', 'Ativo', 'Ações'],
   records: @cidadaos,
   pagy: @pagy
 ) do %>
   <% @cidadaos.each do |cidadao| %>
     <tr class="text-center">
+      <td class="align-middle"><%= cidadao.cpf %></td>
       <td class="align-middle"><%= cidadao.nome %></td>
-      <td class="align-middle limited-width"></td>
+      <td class="align-middle"><%= cidadao.nome_social %></td>
+      <td class="align-middle limited-width"><%= cidadao.email %></td>
+      <td class="align-middle"><%= l(cidadao.data_nascimento, format: :short) if cidadao.data_nascimento.present? %></td>
       <td class="align-middle">
         <%= render Admin::BadgeComponent.new(
             badge_title: cidadao.ativo ? 'Sim' : 'Não', 
@@ -58,6 +61,10 @@
             <i class="fas fa-cog"></i>
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdown-<%= cidadao.id %>">
+            <%= link_to admin_cidadao_path(cidadao), class: 'dropdown-item' do %>
+              <i class="fas fa-search"></i> Detalhes
+            <% end %>
+
             <%= link_to edit_admin_cidadao_path(cidadao), class: 'dropdown-item' do %>
               <i class="fas fa-edit"></i> Editar
             <% end %>

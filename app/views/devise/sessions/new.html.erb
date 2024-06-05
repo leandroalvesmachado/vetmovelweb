@@ -1,10 +1,6 @@
 <p class="login-box-msg">Faça login para iniciar sua sessão.</p>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <!-- Exibindo mensagens de erro -->
-  <% if resource.errors.any? %>
-    <li>sim</li>
-  <% end %>
   <div class="input-group mb-3">
     <%= f.email_field :email, 
       class: "form-control",

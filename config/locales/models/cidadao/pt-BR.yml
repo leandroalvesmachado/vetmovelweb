@@ -19,3 +19,9 @@ pt-BR:
         created_at: Criado em
         updated_by: Atualizado em
         deleted_by: Deletado em
+  date:
+    formats:
+      short: "%d/%m/%Y"
+  time:
+    formats:
+      short: "%d/%m/%Y %H:%M:%S"

@@ -1,0 +1,36 @@
+<div class="card card-primary card-outline">
+  <div class="card-body box-profile">
+    <div class="text-center">
+      <%= image_tag "usuario.png", class: "profile-user-img img-fluid img-circle", alt: "Cidadão imagem" %>
+    </div>
+    <h3 class="profile-username text-center">Nome: <%= cidadao.nome %></h3>
+    <p class="text-muted text-center">CPF: <%= cidadao.formatted_cpf %></p>
+    <ul class="list-group list-group-unbordered mb-3">
+      <li class="list-group-item">
+        <b>Nome Social:</b> <%= cidadao.nome_social %>
+      </li>
+      <li class="list-group-item">
+        <b>Data Nascimento:</b> <%= l(cidadao.data_nascimento, format: :short) if cidadao.data_nascimento.present? %>
+      </li>
+      <li class="list-group-item">
+        <b>E-mail:</b> <%= cidadao.email %>
+      </li>
+      <li class="list-group-item">
+        <b>Telefone:</b> <%= cidadao.formatted_telefone %>
+      </li>
+      <li class="list-group-item">
+        <b>Celular:</b> <%= cidadao.formatted_celular %>
+      </li>
+      <li class="list-group-item">
+        <b>Telefone Contato:</b> <%= cidadao.formatted_telefone_contato %>
+      </li>
+      <li class="list-group-item">
+        <b>Ativo:</b>
+        <%= render Admin::BadgeComponent.new(
+            badge_title: cidadao.ativo ? 'Sim' : 'Não', 
+            badge_class: cidadao.ativo ? 'bg-success' : 'bg-danger'
+        ) %>
+      </li>
+    </ul>
+  </div>
+</div>

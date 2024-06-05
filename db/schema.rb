@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_04_180058) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_05_151639) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "animais", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "nome", null: false
+    t.uuid "animal_sexo_id", null: false
+    t.datetime "data_nascimento"
+    t.uuid "pelagem_id"
+    t.uuid "especie_id", null: false
+    t.uuid "raca_id"
+    t.boolean "castrado"
+    t.boolean "obito", default: false, null: false
+    t.boolean "ativo", default: true, null: false
+    t.uuid "created_by", null: false
+    t.uuid "updated_by", null: false
+    t.uuid "deleted_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_animais_on_deleted_at"
+  end
 
   create_table "animais_sexos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nome", null: false
@@ -47,10 +66,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_04_180058) do
     t.string "nome", null: false
     t.string "nome_social"
     t.datetime "data_nascimento"
-    t.string "email", null: false
+    t.string "email"
     t.string "telefone"
     t.string "celular"
     t.string "telefone_contato"
+    t.boolean "ativo", default: true, null: false
     t.uuid "created_by", null: false
     t.uuid "updated_by", null: false
     t.uuid "deleted_by"
@@ -286,6 +306,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_04_180058) do
     t.index ["deleted_at"], name: "index_vermifugos_on_deleted_at"
   end
 
+  add_foreign_key "animais", "animais_sexos"
+  add_foreign_key "animais", "especies"
+  add_foreign_key "animais", "pelagens"
+  add_foreign_key "animais", "racas"
+  add_foreign_key "animais", "usuarios", column: "created_by"
+  add_foreign_key "animais", "usuarios", column: "deleted_by"
+  add_foreign_key "animais", "usuarios", column: "updated_by"
   add_foreign_key "animais_sexos", "usuarios", column: "created_by"
   add_foreign_key "animais_sexos", "usuarios", column: "deleted_by"
   add_foreign_key "animais_sexos", "usuarios", column: "updated_by"

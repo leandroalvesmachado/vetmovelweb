@@ -1,0 +1,23 @@
+<% content_for :breadcrumb do %>
+  <%= render Admin::BreadcrumbComponent.new do |component| %>
+    <% component.with_title do %> 
+      <i class="fas fa-user-tie"></i> Cidadãos
+    <% end %>
+    <% component.with_link(name: 'Cidadãos', link: admin_cidadaos_path) %>
+    <% component.with_link(name: 'Editar Cidadão', link: '#') %>
+  <% end %>
+<% end %>
+
+<%= @cidadao.inspect %>
+
+<%= 
+  render partial: 'form', locals: {
+    title: 'Cidadão',
+    subtitle: 'Edição',
+    action: update_admin_cidadaos_path(@cidadao),
+    method: 'put',
+    model: @cidadao,
+    back_url: admin_cidadaos_path,
+    submit_text: 'Atualizar'
+  } 
+%>

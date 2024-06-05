@@ -1,7 +1,7 @@
 class Admin::CidadaosController < AdminController
   before_action :set_current_usuario
   before_action :set_cidadao_repository
-  before_action :set_cidadao, only: [:edit, :update, :destroy]
+  before_action :set_cidadao, only: [:show, :edit, :update, :destroy]
 
   def index
     @cidadaos = @cidadao_repository.paginate(params)
@@ -81,6 +81,6 @@ class Admin::CidadaosController < AdminController
   end
 
   def set_cidadao
-    @cidadao = Cidadao.find(params[:id])
+    @cidadao = Cidadao.find(params[:id]).decorate
   end
 end

@@ -20,6 +20,7 @@ ActiveSupport::Inflector.inflections(:'pt-BR') do |inflect|
   inflect.irregular 'pelagem', 'pelagens'
   inflect.irregular 'regional', 'regionais'
   inflect.irregular 'animal_sexo', 'animais_sexos'
+  inflect.irregular 'animal', 'animais'
 end
 
 # Para garantir que funcione no ambiente padrão (se 'pt-BR' não estiver configurado corretamente)
@@ -28,4 +29,5 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'pelagem', 'pelagens'
   inflect.irregular 'regional', 'regionais'
   inflect.irregular 'animal_sexo', 'animais_sexos'
+  inflect.irregular 'animal', 'animais'
 end
