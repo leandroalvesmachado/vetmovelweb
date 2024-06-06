@@ -64,6 +64,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_05_151639) do
 
   create_table "cidadaos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "cpf", null: false
+    t.string "rg"
     t.string "nome", null: false
     t.string "nome_social"
     t.datetime "data_nascimento"
@@ -78,6 +79,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_05_151639) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.index ["cpf"], name: "index_cidadaos_on_cpf", unique: true
     t.index ["deleted_at"], name: "index_cidadaos_on_deleted_at"
   end
 

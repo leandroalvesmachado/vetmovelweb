@@ -57,7 +57,7 @@ class EspecieRepository
 
   def select_option()
     begin
-      especies = @model.order(:nome).pluck(:descricao, :id)
+      especies = @model.order(:nome).pluck(:nome, :id)
       especies.unshift(['Escolha a opção', nil])
       options = especies.to_h
 

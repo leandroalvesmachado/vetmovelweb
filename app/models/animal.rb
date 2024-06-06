@@ -2,9 +2,13 @@ class Animal < ApplicationRecord
   acts_as_paranoid
   self.table_name = 'animais'
 
-  belongs_to :autor, class_name: 'Usuario', foreign_key: 'created_by',optional: true
+  belongs_to :sexo, class_name: 'AnimalSexo', foreign_key: 'animal_sexo_id', optional: true
+  belongs_to :pelagem, class_name: 'Pelagem', foreign_key: 'pelagem_id', optional: true
+  belongs_to :especie, class_name: 'Especie', foreign_key: 'especie_id', optional: true
+  belongs_to :raca, class_name: 'Raca', foreign_key: 'raca_id', optional: true
+  belongs_to :autor, class_name: 'Usuario', foreign_key: 'created_by', optional: true
 
-  validates :nome, presence: true
+  validates :nome, :animal_sexo_id, :especie_id, :obito, presence: true
 
   before_create :set_created_by
   before_update :set_updated_by

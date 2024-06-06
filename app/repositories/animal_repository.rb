@@ -21,9 +21,10 @@ class AnimalRepository
     end
   end
 
-  def create(attributes)
+  def create(cidadao, attributes)
     begin
-      @model.create!(attributes)
+      attributes_with_cidadao = attributes.merge(cidadao_id: cidadao.id)
+      @model.create!(attributes_with_cidadao)
 
       return true
     rescue => e
@@ -31,9 +32,10 @@ class AnimalRepository
     end
   end
 
-  def update(animal, attributes)
+  def update(cidadao, animal, attributes)
     begin
-      animal.update!(attributes)
+      attributes_with_cidadao = attributes.merge(cidadao_id: cidadao.id)
+      animal.update!(attributes_with_cidadao)
 
       return true
     rescue => e
@@ -48,6 +50,28 @@ class AnimalRepository
       return true
     rescue => e
       return "Ocorreu um erro: #{e.message}"
+    end
+  end
+
+  def select_option_castrado()
+    begin
+      castrado = [['Escolha a opção', ''], ['Sim', 1], ['Não', 0]]
+      options = castrado.to_h
+
+      return options
+    rescue => e
+      return [[e.message, nil]]
+    end
+  end
+
+  def select_option_obito()
+    begin
+      obito = [['Escolha a opção', ''], ['Sim', 1], ['Não', 0]]
+      options = obito.to_h
+
+      return options
+    rescue => e
+      return [[e.message, nil]]
     end
   end
 end

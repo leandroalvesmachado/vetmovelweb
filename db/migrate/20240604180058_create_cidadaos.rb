@@ -2,6 +2,7 @@ class CreateCidadaos < ActiveRecord::Migration[7.1]
   def change
     create_table :cidadaos, id: :uuid do |t|
       t.string :cpf, null: false
+      t.string :rg, null: true
       t.string :nome, null: false
       t.string :nome_social, null: true
       t.datetime :data_nascimento, null: true
@@ -17,6 +18,7 @@ class CreateCidadaos < ActiveRecord::Migration[7.1]
       t.datetime :deleted_at, index: true
     end
 
+    add_index :cidadaos, :cpf, unique: true
     add_foreign_key :cidadaos, :usuarios, column: :created_by, primary_key: "id"
     add_foreign_key :cidadaos, :usuarios, column: :updated_by, primary_key: "id"
     add_foreign_key :cidadaos, :usuarios, column: :deleted_by, primary_key: "id"

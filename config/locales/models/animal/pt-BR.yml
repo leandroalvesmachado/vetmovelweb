@@ -1,0 +1,22 @@
+pt-BR:
+  activerecord:
+    models:
+      animal: Animal
+    attributes:
+      animal:
+        cidadao_id: Cidadão
+        nome: Nome
+        animal_sexo_id: Sexo
+        data_nascimento: Data Nascimento
+        pelagem_id: Pelagem (Cor dos Pelos)
+        especie_id: Espécie
+        raca_id: Raça
+        castrado: Castrado
+        obito: Óbito
+        ativo: Ativo
+        created_by: Criado por
+        updated_by: Atualizado por
+        deleted_by: Deletado por
+        created_at: Criado em
+        updated_by: Atualizado em
+        deleted_by: Deletado em

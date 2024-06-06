@@ -17,9 +17,16 @@
 
 .btn-vetmovel {
     color: #fff;
-    background-color: #198754;
-    border-color: #198754;
+    background-color: #8354d3;
+    border-color: #8354d3;
     box-shadow: none;
+}
+
+.btn-vetmovel:focus, .btn-vetmovel.focus {
+    color: #fff;
+    background-color: #8354d3;
+    border-color: #8354d3;
+    box-shadow: 0 0 0 0 rgba(38, 143, 255, 0.5);
 }
 
 .limited-width {
@@ -41,9 +48,22 @@
     color: #000 !important;
 }
 
+.card-primary.card-outline {
+    border-top: 3px solid #8354d3;
+}
+
 .card-header {
     background-color: #d1e7dd;
     color: #009074;
+}
+
+.modal-header {
+    background-color: #d1e7dd;
+    color: #009074;
+}
+
+.modal-footer {
+    background-color: #e9ecef;
 }
 
 .form-control:focus {
@@ -58,6 +78,6 @@
     /* color: #869099; */
     color: #198754;
     padding: 1rem;
-    font-size: 12px;
+    font-size: 13px;
 }
 

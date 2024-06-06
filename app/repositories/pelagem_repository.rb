@@ -54,4 +54,16 @@ class PelagemRepository
       return "Ocorreu um erro: #{e.message}"
     end
   end
+
+  def select_option()
+    begin
+      pelagens = @model.order(:nome).pluck(:nome, :id)
+      pelagens.unshift(['Escolha a opção', nil])
+      options = pelagens.to_h
+
+      return options
+    rescue => e
+      return [[e.message, nil]]
+    end
+  end
 end

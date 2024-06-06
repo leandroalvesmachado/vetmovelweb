@@ -10,4 +10,20 @@ class AnimalDecorator < Draper::Decorator
   #     end
   #   end
 
+  def formatted_data_nascimento
+    return object.data_nascimento.strftime("%d/%m/%Y") if object.data_nascimento.present?
+  end
+
+  def idade
+    if object.data_nascimento.present?
+      hoje = Date.today
+      nascimento = object.data_nascimento.to_date
+      idade = hoje.year - nascimento.year
+      idade -= 1 if hoje.month < nascimento.month || (hoje.month == nascimento.month && hoje.day < nascimento.day)
+      
+      return idade
+    else
+      ""
+    end
+  end
 end

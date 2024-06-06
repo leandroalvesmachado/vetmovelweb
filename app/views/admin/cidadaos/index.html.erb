@@ -8,7 +8,7 @@
 
 <div class="row mb-3">
   <div class="col-md-2 offset-md-10">
-    <%= link_to new_admin_cidadao_path, class: 'btn btn-primary btn-block text-uppercase font-weight-bold' do %>
+    <%= link_to new_admin_cidadao_path, class: 'btn btn-vetmovel btn-block text-uppercase font-weight-bold' do %>
       <i class="fas fa-plus-circle"></i> Cidadão
     <% end %>
   </div>
@@ -38,11 +38,11 @@
 ) do %>
   <% @cidadaos.each do |cidadao| %>
     <tr class="text-center">
-      <td class="align-middle"><%= cidadao.cpf %></td>
+      <td class="align-middle"><%= cidadao.formatted_cpf %></td>
       <td class="align-middle"><%= cidadao.nome %></td>
       <td class="align-middle"><%= cidadao.nome_social %></td>
       <td class="align-middle limited-width"><%= cidadao.email %></td>
-      <td class="align-middle"><%= l(cidadao.data_nascimento, format: :short) if cidadao.data_nascimento.present? %></td>
+      <td class="align-middle"><%= cidadao.formatted_data_nascimento %></td>
       <td class="align-middle">
         <%= render Admin::BadgeComponent.new(
             badge_title: cidadao.ativo ? 'Sim' : 'Não', 
@@ -53,7 +53,7 @@
         <div class="dropdown dropright">
           <button 
             id="dropdown-<%= cidadao.id %>" 
-            class="btn btn-warning dropdown-toggle" 
+            class="btn btn-vetmovel dropdown-toggle" 
             type="button" 
             data-toggle="dropdown" 
             aria-expanded="false"

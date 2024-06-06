@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   namespace :admin, path: 'administracao' do
     root 'home#index'
 
+    get 'ajax/especies/:especie_id/racas', to: 'ajax#racas_by_especie'
+
     resources :antipulgas, path: 'antipulgas', as: 'antipulgas', path_names: { 
       index: '', show: 'visualizacao', new: 'cadastro', edit: 'edicao', create: 'cadastro', update: 'atualizar', destroy: 'excluir'
     } do

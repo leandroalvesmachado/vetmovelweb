@@ -10,7 +10,7 @@
         <b>Nome Social:</b> <%= cidadao.nome_social %>
       </li>
       <li class="list-group-item">
-        <b>Data Nascimento:</b> <%= l(cidadao.data_nascimento, format: :short) if cidadao.data_nascimento.present? %>
+        <b>Data Nascimento:</b> <%= cidadao.formatted_data_nascimento %>
       </li>
       <li class="list-group-item">
         <b>E-mail:</b> <%= cidadao.email %>

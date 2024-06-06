@@ -14,6 +14,10 @@ class CidadaoDecorator < Draper::Decorator
     object.cpf.gsub(/(\d{3})(\d{3})(\d{3})(\d{2})/, '\1.\2.\3-\4') if object.cpf.present?
   end
 
+  def formatted_data_nascimento
+    object.data_nascimento.strftime("%d/%m/%Y") if object.data_nascimento.present?
+  end
+
   def formatted_telefone_celular(telefone)
     return unless telefone.present?
 
@@ -38,5 +42,9 @@ class CidadaoDecorator < Draper::Decorator
 
   def formatted_celular
     formatted_telefone_celular(object.celular)
+  end
+
+  def animais
+    object.animais.decorate if object.animais.any?
   end
 end

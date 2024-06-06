@@ -54,4 +54,14 @@ class RacaRepository
       return "Ocorreu um erro: #{e.message}"
     end
   end
+
+  def find_by_especie(especie_id)
+    begin
+      query = @model.where(especie_id: especie_id)
+
+      return query
+    rescue => e
+      return {}
+    end
+  end
 end

@@ -6,6 +6,7 @@ class Admin::CidadaosController < AdminController
   def index
     @cidadaos = @cidadao_repository.paginate(params)
     @pagy, @cidadaos = pagy(@cidadaos)
+    @cidadaos = @cidadaos.map(&:decorate)
   end
 
   def show; end
