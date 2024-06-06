@@ -6,3 +6,7 @@
     /* src: url('theme/fonts/static/SourceSans3-Regular.ttf') format('truetype'); */
     src: url('theme/fonts/static/SourceSans3-Regular.ttf') format('truetype');
 }
+
+.login-box, .register-box {
+    width: 400px;
+}

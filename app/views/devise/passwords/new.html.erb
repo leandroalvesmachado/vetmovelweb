@@ -12,9 +12,14 @@
     </div>
   </div>
 
+  <div class="row mb-3">
+    <div class="col-12">
+      <%= f.submit t('devise.passwords.new.send_me_reset_password_instructions'), class: 'btn btn-primary btn-block text-uppercase' %>
+    </div>
+  </div>
   <div class="row">
     <div class="col-12">
-      <%= f.submit t('devise.passwords.new.send_me_reset_password_instructions'), class: 'btn btn-primary btn-block' %>
+      <%= link_to 'Voltar para o Login', new_usuario_session_path, class: 'btn btn-primary btn-block text-uppercase' %>
     </div>
   </div>
 <% end %>

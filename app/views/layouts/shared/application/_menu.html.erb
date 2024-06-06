@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-warning elevation-4">
-  <%= link_to admin_root_path, class: 'brand-link', style: '' do %>
-    <%= image_tag 'logo-vetmovel.png', alt: 'VetMóvel Logo', class: 'brand-image elevation-3', style: 'opacity: .8' %>
-    <span class="brand-text font-weight-light">VetMóvel</span>
+  <%= link_to admin_root_path, class: 'brand-link text-center', style: '' do %>
+    <!-- <%= image_tag 'logo-vetmovel.png', alt: 'VetMóvel Logo', class: 'brand-image elevation-3', style: 'opacity: .8' %> -->
+    <span class="brand-text font-weight-light font-weight-bold">VetMóvel</span>
   <% end %>
   <div class="sidebar">
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -9,7 +9,7 @@
         <%= image_tag "usuario.png", class: "img-circle elevation-2", alt: "Usuário imagem" %>
       </div>
       <div class="info">
-        <a href="#" class="d-block text-white">
+        <a href="#" class="d-block text-white font-weight-bold">
           <%= current_usuario.nome.split.first %>
           <br>
           <% if current_usuario.usuario_perfis.any? %>
@@ -19,7 +19,7 @@
       </div>
     </div>
     <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <ul class="nav nav-pills nav-sidebar flex-column  font-weight-bold" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item text-uppercase">
           <%= link_to admin_root_path, class: 'nav-link' + (current_page?(admin_root_path) ? ' active' : '') do %>
             <i class="nav-icon fas fa-tachometer-alt text-white"></i>

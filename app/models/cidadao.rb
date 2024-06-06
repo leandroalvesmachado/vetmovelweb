@@ -3,6 +3,7 @@ class Cidadao < ApplicationRecord
   self.table_name = 'cidadaos'
 
   belongs_to :autor, class_name: 'Usuario', foreign_key: 'created_by', optional: true
+  has_many :animais, class_name: 'Animal', foreign_key: 'cidadao_id', dependent: :destroy
 
   before_validation :remove_mask
   before_create :set_created_by

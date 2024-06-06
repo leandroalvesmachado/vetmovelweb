@@ -17,8 +17,8 @@
 
 .btn-vetmovel {
     color: #fff;
-    background-color: #f47424;
-    border-color: #f47424;
+    background-color: #198754;
+    border-color: #198754;
     box-shadow: none;
 }
 
@@ -28,12 +28,36 @@
     white-space: normal;
 }
 
+.main-header {
+    background-color: #d1e7dd;
+}
+
+.brand-link {
+    background-color: #8354d3 !important;
+}
+
+.main-sidebar {
+    background-color: #8354d3;
+    color: #000 !important;
+}
+
+.card-header {
+    background-color: #d1e7dd;
+    color: #009074;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 .25rem rgba(20, 255, 239, .25) !important;
+    border: 1px solid #009074 !important;
+}
+
 .main-footer {
-    /* background-color: #fff; */
+    background-color: #d1e7dd;
     /* background-color: #f7b93a; */
     border-top: 1px solid #dee2e6;
     /* color: #869099; */
-    color: #000000;
+    color: #198754;
     padding: 1rem;
+    font-size: 12px;
 }
 

@@ -1,4 +1,4 @@
-class Admin::AnimalDecorator < Draper::Decorator
+class AnimalDecorator < Draper::Decorator
   delegate_all
 
   # Define presentation-specific methods here. Helpers are accessed through

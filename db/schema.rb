@@ -16,6 +16,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_05_151639) do
   enable_extension "plpgsql"
 
   create_table "animais", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "cidadao_id", null: false
     t.string "nome", null: false
     t.uuid "animal_sexo_id", null: false
     t.datetime "data_nascimento"
@@ -307,6 +308,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_05_151639) do
   end
 
   add_foreign_key "animais", "animais_sexos"
+  add_foreign_key "animais", "cidadaos"
   add_foreign_key "animais", "especies"
   add_foreign_key "animais", "pelagens"
   add_foreign_key "animais", "racas"
