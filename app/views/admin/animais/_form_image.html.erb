@@ -8,5 +8,17 @@
   method: method
 
 ) do |form| %>
-
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.form_builder.label :imagens %>
+        <%= form.form_builder.file_field :imagens,
+          multiple: true,
+          class: "form-control-file #{'is-invalid' if form.errors.has_key?(:imagens)}", 
+          id: 'imagens'
+        %>
+        <span class="text-danger"><%= form.errors[:imagens].first %></span>
+      </div>
+    </div>
+  </div>
 <% end %>

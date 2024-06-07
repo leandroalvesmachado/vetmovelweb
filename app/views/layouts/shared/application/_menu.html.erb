@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-warning elevation-4">
   <%= link_to admin_root_path, class: 'brand-link text-center', style: '' do %>
-    <!-- <%= image_tag 'logo-vetmovel.png', alt: 'VetMóvel Logo', class: 'brand-image elevation-3', style: 'opacity: .8' %> -->
-    <span class="brand-text font-weight-light font-weight-bold">VetMóvel</span>
+    <%= image_tag 'vetmovel.png', alt: 'VetMóvel Logo', class: 'brand-image', style: '' %>
+    <%# <span class="brand-text font-weight-light font-weight-bold">VetMóvel</span> %>
   <% end %>
   <div class="sidebar">
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -26,6 +26,14 @@
             <p class="text-white">Dashboard</p>
           <% end %>
         </li>
+        <!--
+        <li class="nav-item text-uppercase">
+          <%= link_to admin_animais_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/animais')}" do %>
+            <i class="nav-icon fas fa-bug text-white"></i>
+            <p class="text-white">Animais</p>
+          <% end %>
+        </li>
+        -->
         <li class="nav-item text-uppercase">
           <%= link_to admin_antipulgas_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/antipulgas')}" do %>
             <i class="nav-icon fas fa-bug text-white"></i>

@@ -2,7 +2,7 @@ class Vacina < ApplicationRecord
   acts_as_paranoid
   self.table_name = 'vacinas'
 
-  belongs_to :autor, class_name: 'Usuario', foreign_key: 'created_by',optional: true
+  belongs_to :autor, class_name: 'Usuario', foreign_key: 'created_by', optional: true
 
   validates :nome, presence: true
   validates :descricao, presence: true

@@ -3,19 +3,17 @@ class Admin::AnimaisController < ApplicationController
   before_action :set_repositories
   before_action :set_cidadao
   before_action :set_dependencies, only: [:new, :edit, :create]
-  before_action :set_animal, only: [:new_image]
+  before_action :set_animal, only: [:new_image, :create_image, :destroy]
 
   def new
     @animal = Animal.new
   end
 
-  def new_image
-  end
+  def new_image; end
 
   def edit; end
 
   def create
-    puts animal_params
     @animal = Animal.new(animal_params)
 
     if @animal.valid?
@@ -31,6 +29,30 @@ class Admin::AnimaisController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def create_image
+    result = @animal_repository.create_image(@animal, animal_imagem_params[:imagens])
+
+    if result == true
+      flash[:success] = 'Imagem adicionada com sucesso'
+      redirect_to new_image_admin_cidadao_animais_path(cidadao_id: @cidadao.id, id: @animal.id)
+    else
+      flash[:error] = 'Erro ao adicionar a imagem: ' + result
+      render :new_image, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    result = @animal_repository.destroy(@animal)
+    
+    if result == true
+      flash[:success] = 'Animal deletado com sucesso'
+    else
+      flash[:error] = 'Erro ao deletar o animal: ' + result
+    end
+
+    redirect_to admin_cidadao_path(@cidadao)
   end
 
   private
@@ -73,5 +95,9 @@ class Admin::AnimaisController < ApplicationController
       :raca_id,
       :obito
     )
+  end
+
+  def animal_imagem_params
+    params.require(:animal).permit(imagens: [])
   end
 end

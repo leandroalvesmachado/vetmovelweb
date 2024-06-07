@@ -1,36 +1,49 @@
-<div class="card card-primary card-outline">
-  <div class="card-body box-profile">
-    <div class="text-center">
-      <%= image_tag "usuario.png", class: "profile-user-img img-fluid img-circle", alt: "Cidadão imagem" %>
+<%= render Admin::CardComponent.new(title: 'Cidadão', subtitle: 'Detalhes', back_url: admin_cidadaos_path) do |component| %>
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <p class="font-weight-bold">CPF</p>
+      <%= cidadao.formatted_cpf %>
     </div>
-    <h3 class="profile-username text-center">Nome: <%= cidadao.nome %></h3>
-    <p class="text-muted text-center">CPF: <%= cidadao.formatted_cpf %></p>
-    <ul class="list-group list-group-unbordered mb-3">
-      <li class="list-group-item">
-        <b>Nome Social:</b> <%= cidadao.nome_social %>
-      </li>
-      <li class="list-group-item">
-        <b>Data Nascimento:</b> <%= cidadao.formatted_data_nascimento %>
-      </li>
-      <li class="list-group-item">
-        <b>E-mail:</b> <%= cidadao.email %>
-      </li>
-      <li class="list-group-item">
-        <b>Telefone:</b> <%= cidadao.formatted_telefone %>
-      </li>
-      <li class="list-group-item">
-        <b>Celular:</b> <%= cidadao.formatted_celular %>
-      </li>
-      <li class="list-group-item">
-        <b>Telefone Contato:</b> <%= cidadao.formatted_telefone_contato %>
-      </li>
-      <li class="list-group-item">
-        <b>Ativo:</b>
-        <%= render Admin::BadgeComponent.new(
-            badge_title: cidadao.ativo ? 'Sim' : 'Não', 
-            badge_class: cidadao.ativo ? 'bg-success' : 'bg-danger'
-        ) %>
-      </li>
-    </ul>
+    <div class="col-md-4">
+      <p class="font-weight-bold">Data Nascimento</p>
+      <%= cidadao.formatted_data_nascimento %>
+    </div>
+    <div class="col-md-4">
+      <p class="font-weight-bold">E-mail</p>
+      <%= cidadao.email %>
+    </div>
   </div>
-</div>
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <p class="font-weight-bold">Nome</p>
+      <%= cidadao.nome %>
+    </div>
+    <div class="col-md-6">
+      <p class="font-weight-bold">Nome Social</p>
+      <%= cidadao.nome_social %>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <p class="font-weight-bold">Telefone</p>
+      <%= cidadao.formatted_telefone %>
+    </div>
+    <div class="col-md-4">
+      <p class="font-weight-bold">Celular</p>
+      <%= cidadao.formatted_celular %>
+    </div>
+    <div class="col-md-4">
+      <p class="font-weight-bold">Telefone Contato</p>
+      <%= cidadao.formatted_telefone_contato %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p class="font-weight-bold">Ativo</p>
+      <%= render Admin::BadgeComponent.new(
+        badge_title: cidadao.ativo ? 'Sim' : 'Não', 
+        badge_class: cidadao.ativo ? 'bg-success' : 'bg-danger'
+      ) %>
+    </div>
+  </div>
+<% end %>

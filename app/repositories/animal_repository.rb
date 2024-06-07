@@ -32,6 +32,20 @@ class AnimalRepository
     end
   end
 
+  def create_image(animal, imagens)
+    begin
+      imagens.each_with_index do |imagem, index|
+        extensao = File.extname(imagem.original_filename).downcase
+        nome_imagem = "imagem_#{SecureRandom.uuid}#{extensao}"
+        animal.imagens.attach(io: imagem, filename: nome_imagem)
+      end
+      
+      return true
+    rescue => e
+      return "Ocorreu um erro: #{e.message}"
+    end
+  end
+
   def update(cidadao, animal, attributes)
     begin
       attributes_with_cidadao = attributes.merge(cidadao_id: cidadao.id)

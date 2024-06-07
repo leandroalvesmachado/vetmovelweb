@@ -43,6 +43,10 @@
     background-color: #8354d3 !important;
 }
 
+.brand-link .brand-image {
+    float: none;
+}
+
 .main-sidebar {
     background-color: #8354d3;
     color: #000 !important;

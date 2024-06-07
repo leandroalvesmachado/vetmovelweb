@@ -7,17 +7,21 @@ class Animal < ApplicationRecord
   belongs_to :especie, class_name: 'Especie', foreign_key: 'especie_id', optional: true
   belongs_to :raca, class_name: 'Raca', foreign_key: 'raca_id', optional: true
   belongs_to :autor, class_name: 'Usuario', foreign_key: 'created_by', optional: true
-  has_many_attached :imagens do |attachable|
+  has_many_attached :imagens, dependent: :destroy do |attachable|
     attachable.variant(:thumb, resize_to_limit: [100, 100])
     attachable.variant(:cover, resize_to_limit: [200, 200])
   end
 
-
   validates :nome, :animal_sexo_id, :especie_id, :obito, presence: true
+  validates :imagens, presence: true, content_type: ['image/png', 'image/jpg', 'image/jpeg'], size: { between: 1..5.megabytes }, on: :new_image
 
   before_create :set_created_by
   before_update :set_updated_by
-  before_destroy :set_deleted_by
+  before_destroy :set_deleted_by, :excluir_imagens_associadas
+
+  def thumbnail
+    return imagens.attached? ? imagens.last : nil
+  end
 
   private
 
@@ -34,5 +38,9 @@ class Animal < ApplicationRecord
     self.deleted_by ||= Thread.current[:current_usuario].try(:id)
     # Salvar o registro sem validações, caso contrário ele não será salvo se estiver sendo destruído
     save(validate: false)
+  end
+
+  def excluir_imagens_associadas
+    imagens.purge   # Isso irá excluir todas as imagens associadas ao animal
   end
 end

@@ -14,13 +14,18 @@
   </div>
 </div>
 
+<div class="row mb-3">
+  <div class="col-md-2 offset-md-10">
+    <%= link_to new_admin_cidadao_animal_path(cidadao_id: @cidadao.id), class: 'btn btn-vetmovel btn-block text-uppercase font-weight-bold' do %>
+      <i class="fas fa-plus-circle"></i> Animal
+    <% end %>
+  </div>
+</div>
+
 <div class="card">
   <div class="card-header">
     <h3 class="card-title text-uppercase font-weight-bold">
-      <i class="fas fa-dog"></i> <i class="fas fa-cat"></i> <i class="fas fa-dove"></i> Animais
-      <%= link_to new_admin_cidadao_animal_path(cidadao_id: @cidadao.id), class: 'btn btn-vetmovel text-uppercase font-weight-bold' do %>
-        <i class="fas fa-plus-circle"></i> Animal
-      <% end %>
+      <i class="fas fa-paw"></i> Animais
     </h3>
     <div class="card-tools">
       <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -50,23 +55,28 @@
                 <% end %>
               </div>
               <div class="card-body pt-0">
-                <div class="row mt-2">
-                  <div class="col-md-12">
-                    <b>Nome:</b> <%= animal.nome %>
+                <div class="row mt-2 mb-2">
+                  <div class="col-md-12 text-center">
+                    <% if animal.thumbnail.present? %>
+                      <%= image_tag animal.thumbnail.variant(:cover), class: 'rounded img-fluid' %>
+                    <% else %>
+                      <%= image_tag 'sem-foto.png', class: '' %>
+                    <% end %>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-12">
+                  <div class="col-md-6">
+                    <b>Nome:</b> <%= animal.nome %>
+                  </div>
+                  <div class="col-md-6">
                     <b>Data Nascimento:</b> <%= animal.formatted_data_nascimento %>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-12">
+                  <div class="col-md-6">
                     <b>Idade:</b> <%= animal.idade %>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
+                  <div class="col-md-6">
                     <b>Castrado:</b>
                     <%= render Admin::BadgeComponent.new(
                         badge_title: animal.castrado ? 'Sim' : 'Não', 
@@ -75,8 +85,15 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-12">
+                  <div class="col-md-6">
                     <b>Sexo:</b> <%= animal.sexo.nome %>
+                  </div>
+                  <div class="col-md-6">
+                    <b>Óbito:</b>
+                    <%= render Admin::BadgeComponent.new(
+                        badge_title: animal.obito ? 'Sim' : 'Não', 
+                        badge_class: animal.obito ? 'bg-secondary' : 'bg-success'
+                    ) %>
                   </div>
                 </div>
                 <div class="row">
@@ -94,26 +111,19 @@
                     <b>Raça:</b> <%= animal.raca.nome if animal.raca_id.present? %>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <b>Óbito:</b>
-                    <%= render Admin::BadgeComponent.new(
-                        badge_title: animal.obito ? 'Sim' : 'Não', 
-                        badge_class: animal.obito ? 'bg-secondary' : 'bg-success'
-                    ) %>
-                  </div>
-                </div>
               </div>
               <div class="card-footer">
-                <div class="text-right">
-                  <%= link_to "animal-modal-#{animal.id}-destroy", class: 'btn btn-sm btn-danger text-uppercase font-weight-bold', data: { toggle: 'modal', target: "#animal-modal-#{animal.id}-destroy" } do %>
-                    <i class="fas fa-trash-alt"></i> Deletar
-                  <% end %>
-                  <%= link_to '#', class: 'btn btn-sm btn-primary text-uppercase font-weight-bold' do %>
+                <div>
+                  <%= link_to '#', class: 'btn btn-sm btn-primary btn-block text-uppercase font-weight-bold' do %>
                     <i class="fas fa-edit"></i> Editar
                   <% end %>
-                  <%= link_to new_image_admin_cidadao_animais_path(cidadao_id: @cidadao.id, id: animal.id), class: 'btn btn-sm btn-primary text-uppercase font-weight-bold' do %>
+
+                  <%= link_to new_image_admin_cidadao_animais_path(cidadao_id: @cidadao.id, id: animal.id), class: 'btn btn-sm btn-primary btn-block text-uppercase font-weight-bold' do %>
                     <i class="fas fa-camera-retro"></i> Imagem
+                  <% end %>
+
+                  <%= link_to "animal-modal-#{animal.id}-destroy", class: 'btn btn-sm btn-danger btn-block text-uppercase font-weight-bold', data: { toggle: 'modal', target: "#animal-modal-#{animal.id}-destroy" } do %>
+                    <i class="fas fa-trash-alt"></i> Deletar
                   <% end %>
 
                   <% content_for :modal do %>
@@ -123,7 +133,7 @@
                         subtitle: 'Deletar',
                         target: "animal-modal-#{animal.id}-destroy",
                         animal: animal,
-                        action: '#',
+                        action: admin_cidadao_animal_path(cidadao_id: @cidadao.id, id: animal.id),
                         method: 'delete'
                       }
                     %>

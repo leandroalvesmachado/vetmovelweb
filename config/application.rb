@@ -37,5 +37,8 @@ module Vetmovelweb
     config.generators do |g|
       g.orm :active_record, primary_key_type: :uuid
     end
+
+    # ActiveStorage
+    config.active_storage.variant_processor = :mini_magick
   end
 end

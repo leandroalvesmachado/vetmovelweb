@@ -26,6 +26,15 @@ Rails.application.routes.draw do
 
     get 'ajax/especies/:especie_id/racas', to: 'ajax#racas_by_especie'
 
+    resources :animais, path: 'animais', as: 'animais', path_names: {
+      index: '', show: 'visualizacao', new: 'cadastro', edit: 'edicao', create: 'cadastro', update: 'atualizar', destroy: 'excluir'
+    } do
+      collection do
+        post '/cadastro', to: 'animais#create', as: 'create'
+        put ':id/edicao', to: 'animais#update', as: 'update'
+      end
+    end
+
     resources :antipulgas, path: 'antipulgas', as: 'antipulgas', path_names: { 
       index: '', show: 'visualizacao', new: 'cadastro', edit: 'edicao', create: 'cadastro', update: 'atualizar', destroy: 'excluir'
     } do
@@ -43,6 +52,15 @@ Rails.application.routes.draw do
         put ':id/edicao', to: 'cidadaos#update', as: 'update'
       end
 
+      resources :enderecos, controller: 'cidadaos_enderecos', path: 'enderecos', as: 'enderecos', path_names: {
+        index: '', show: 'visualizacao', new: 'cadastro', edit: 'edicao', create: 'cadastro', update: 'atualizar', destroy: 'excluir'
+      } do
+        collection do
+          post '/cadastro', to: 'cidadaos_enderecos#create', as: 'create'
+          put ':id/edicao', to: 'cidadaos_enderecos#update', as: 'update'
+        end
+      end
+
       resources :animais, path: 'animais', as: 'animais', path_names: {
         index: '', show: 'visualizacao', new: 'cadastro', edit: 'edicao', create: 'cadastro', update: 'atualizar', destroy: 'excluir'
       } do
@@ -50,7 +68,7 @@ Rails.application.routes.draw do
           post '/cadastro', to: 'animais#create', as: 'create'
           put ':id/edicao', to: 'animais#update', as: 'update'
           get ':id/imagens/cadastro', to: 'animais#new_image', as: 'new_image'
-          post ':id/imagens/cadastro', to: 'animais#create_image', as: 'create_image'
+          put ':id/imagens/cadastro', to: 'animais#create_image', as: 'create_image'
         end
       end
     end

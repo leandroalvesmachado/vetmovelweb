@@ -5,6 +5,7 @@ pt-BR:
     attributes:
       cidadao:
         cpf: CPF
+        rg: Registro Geral (RG)
         nome: Nome
         nome_social: Nome Social
         data_nascimento: Data Nascimento

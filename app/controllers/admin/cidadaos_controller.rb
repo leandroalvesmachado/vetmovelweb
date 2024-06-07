@@ -70,7 +70,8 @@ class Admin::CidadaosController < AdminController
 
   def cidadao_params
     params.require(:cidadao).permit(
-      :cpf, 
+      :cpf,
+      :rg,
       :nome,
       :nome_social,
       :data_nascimento,

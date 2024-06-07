@@ -61,6 +61,9 @@ gem 'pagy', '~> 8.4'
 # Draper adds an object-oriented layer of presentation logic to your Rails apps.
 gem 'draper', '~> 4.0', '>= 4.0.2'
 
+# Validations for Active Storage (presence)
+gem 'active_storage_validations', '~> 1.1', '>= 1.1.4'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]

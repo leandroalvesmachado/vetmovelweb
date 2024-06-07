@@ -74,34 +74,19 @@ Rails.application.configure do
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
 
-  # config.action_mailer.default_url_options = { host: 'localhost', port: 443, protocol: 'https' }
-  # config.action_mailer.default_options = { from: '"VetMóvel" <noreply@cgm.fortaleza.ce.gov.br>' }
+  # E-mail
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #   address: 'smtps.fortaleza.ce.gov.br',
-  #   port: 587,
-  #   domain: 'example.com',
-  #   user_name: ENV['SMTP_USER_NAME'],
-  #   password: ENV['SMTP_PASSWORD'],
-  #   authentication: 'plain',
-  #   enable_starttls: true,
-  #   open_timeout: 5,
-  #   read_timeout: 5
-  # }
-
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000, protocol: 'http' }
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
-    :user_name => '6cdf6bac59c55b',
-    :password => '********05ad',
-    :address => 'sandbox.smtp.mailtrap.io',
-    :host => 'sandbox.smtp.mailtrap.io',
-    :port => '2525',
-    :authentication => :login
+    address: 'sandbox.smtp.mailtrap.io',
+    port: 2525,
+    user_name: '6cdf6bac59c55b',
+    password: '8f74ee758105ad',
+    authentication: 'login'
   }
 
   # Store files locally.
   Rails.application.config.generators { |g| g.orm :active_record, primary_key_type: :uuid }
   config.active_storage.service = :local
-
-
 end

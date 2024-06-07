@@ -20,6 +20,19 @@
         <span class="text-danger"><%= form.errors[:cpf].first %></span>
       </div>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.form_builder.label :rg %>
+        <%= form.form_builder.text_field :rg,
+          class: "form-control #{'is-invalid' if form.errors.has_key?(:rg)}", 
+          id: 'rg',
+          placeholder: 'Digite o RG' 
+        %>
+        <span class="text-danger"><%= form.errors[:rg].first %></span>
+      </div>
+    </div>
     <div class="col-md-3">
       <div class="form-group">
         <%= form.form_builder.label :data_nascimento %>

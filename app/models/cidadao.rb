@@ -14,6 +14,7 @@ class Cidadao < ApplicationRecord
   validates :cpf, :nome, presence: true
   validates :cpf, uniqueness: true
   validates :cpf, length: { maximum: 11 }
+  validates :rg, length: { maximum: 20 }, allow_blank: true
   validates :nome, :nome_social, :email, length: { maximum: 255 }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
   # validates :telefone, allow_blank: true, format: { with: /\A\d{2}\d{4,5}-\d{4}\z/, message: "formato inválido" }

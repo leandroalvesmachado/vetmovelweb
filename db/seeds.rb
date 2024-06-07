@@ -190,6 +190,25 @@ begin
           updated_by: usuario.id
         )
       end
+
+      vacinas = [
+        { nome: 'Vacina Giárdia	', descricao: 'Vacina Giárdia' },
+        { nome: 'Vacina Gripe	', descricao: 'Vacina Gripe' },
+        { nome: 'Vacina Leish-tec	', descricao: 'Vacina Leish-tec' },
+        { nome: 'Vacina Raiva', descricao: 'Vacina Raiva' },
+        { nome: 'Vacina V10 Inomune', descricao: 'Vacina V10 Inomune' },
+        { nome: 'Vacina V10 Vanguard Plus', descricao: 'Vacina V10 Vanguard Plus' },
+        { nome: 'Vacina V5', descricao: 'Vacina V5' },
+      ]
+
+      vacinas.each do |vacina|
+        Vacina.create!(
+          nome: vacina[:nome],
+          descricao: vacina[:descricao],
+          created_by: usuario.id,
+          updated_by: usuario.id
+        )
+      end
     else
       puts 'Usuário não encontrado com o email especificado'
     end
