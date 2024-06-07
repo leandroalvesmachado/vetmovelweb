@@ -33,5 +33,9 @@ module Vetmovelweb
     config.i18n.default_locale = :'pt-BR'
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
 
+    # Configuração para usar UUIDs como chave primária por padrão
+    config.generators do |g|
+      g.orm :active_record, primary_key_type: :uuid
+    end
   end
 end

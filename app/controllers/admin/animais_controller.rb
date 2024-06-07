@@ -3,9 +3,13 @@ class Admin::AnimaisController < ApplicationController
   before_action :set_repositories
   before_action :set_cidadao
   before_action :set_dependencies, only: [:new, :edit, :create]
+  before_action :set_animal, only: [:new_image]
 
   def new
     @animal = Animal.new
+  end
+
+  def new_image
   end
 
   def edit; end
@@ -37,6 +41,10 @@ class Admin::AnimaisController < ApplicationController
 
   def set_cidadao
     @cidadao = Cidadao.find(params[:cidadao_id]).decorate
+  end
+
+  def set_animal
+    @animal = Animal.find(params[:id]).decorate
   end
 
   def set_repositories

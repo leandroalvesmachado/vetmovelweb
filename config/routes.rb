@@ -49,6 +49,8 @@ Rails.application.routes.draw do
         collection do
           post '/cadastro', to: 'animais#create', as: 'create'
           put ':id/edicao', to: 'animais#update', as: 'update'
+          get ':id/imagens/cadastro', to: 'animais#new_image', as: 'new_image'
+          post ':id/imagens/cadastro', to: 'animais#create_image', as: 'create_image'
         end
       end
     end

@@ -18,7 +18,7 @@
   <div class="card-header">
     <h3 class="card-title text-uppercase font-weight-bold">
       <i class="fas fa-dog"></i> <i class="fas fa-cat"></i> <i class="fas fa-dove"></i> Animais
-      <%= link_to new_admin_cidadao_animal_path(cidadao_id: @cidadao.id), class: 'btn btn-primary text-uppercase font-weight-bold' do %>
+      <%= link_to new_admin_cidadao_animal_path(cidadao_id: @cidadao.id), class: 'btn btn-vetmovel text-uppercase font-weight-bold' do %>
         <i class="fas fa-plus-circle"></i> Animal
       <% end %>
     </h3>
@@ -30,7 +30,7 @@
   </div>
   <div class="card-body">
     <div class="row">
-      <% if @cidadao.animais.any? %>
+      <% unless @cidadao.animais.nil? %>
         <% @cidadao.animais.each do |animal| %>
           <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
             <div class="card bg-light d-flex flex-fill">
@@ -111,6 +111,9 @@
                   <% end %>
                   <%= link_to '#', class: 'btn btn-sm btn-primary text-uppercase font-weight-bold' do %>
                     <i class="fas fa-edit"></i> Editar
+                  <% end %>
+                  <%= link_to new_image_admin_cidadao_animais_path(cidadao_id: @cidadao.id, id: animal.id), class: 'btn btn-sm btn-primary text-uppercase font-weight-bold' do %>
+                    <i class="fas fa-camera-retro"></i> Imagem
                   <% end %>
 
                   <% content_for :modal do %>

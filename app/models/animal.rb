@@ -7,6 +7,11 @@ class Animal < ApplicationRecord
   belongs_to :especie, class_name: 'Especie', foreign_key: 'especie_id', optional: true
   belongs_to :raca, class_name: 'Raca', foreign_key: 'raca_id', optional: true
   belongs_to :autor, class_name: 'Usuario', foreign_key: 'created_by', optional: true
+  has_many_attached :imagens do |attachable|
+    attachable.variant(:thumb, resize_to_limit: [100, 100])
+    attachable.variant(:cover, resize_to_limit: [200, 200])
+  end
+
 
   validates :nome, :animal_sexo_id, :especie_id, :obito, presence: true
 
