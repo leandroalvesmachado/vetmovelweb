@@ -1,0 +1,67 @@
+<%= render Admin::CardComponent.new(title: 'Animal', subtitle: 'Detalhes', back_url: admin_animais_path, footer: false) do |component| %>
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <p class="font-weight-bold">RGA</p>
+      <%= animal.rga %>
+    </div>
+    <div class="col-md-4">
+      <p class="font-weight-bold">Nome</p>
+      <%= animal.nome %>
+    </div>
+    <div class="col-md-4">
+      <p class="font-weight-bold">Data Nascimento</p>
+      <%= animal.formatted_data_nascimento %>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <p class="font-weight-bold">Idade</p>
+      <%= animal.idade %>
+    </div>
+    <div class="col-md-4">
+      <p class="font-weight-bold">Castrado</p>
+      <%= render Admin::BadgeComponent.new(
+        badge_title: animal.castrado ? 'Sim' : 'Não', 
+        badge_class: animal.castrado ? 'bg-success' : 'bg-danger'
+      ) %>
+    </div>
+    <div class="col-md-4">
+      <p class="font-weight-bold">Sexo</p>
+      <%= animal.sexo.nome %>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <p class="font-weight-bold">Óbito</p>
+      <%= render Admin::BadgeComponent.new(
+        badge_title: animal.obito ? 'Sim' : 'Não', 
+        badge_class: animal.obito ? 'bg-success' : 'bg-danger'
+      ) %>
+    </div>
+    <div class="col-md-4">
+      <p class="font-weight-bold">Pelagem (Cor dos Pelos)</p>
+      <%= animal.pelagem.nome %>
+    </div>
+    <div class="col-md-4">
+      <p class="font-weight-bold">Espécie</p>
+      <%= animal.especie.nome %>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <p class="font-weight-bold">Raça</p>
+      <%= animal.raca.nome if animal.raca_id.present? %>
+    </div>
+    <div class="col-md-4">
+      <p class="font-weight-bold">Pelagem (Cor dos Pelos)</p>
+      <%= animal.pelagem.nome if animal.pelagem_id.present? %>
+    </div>
+    <div class="col-md-4">
+      <p class="font-weight-bold">Ativo</p>
+      <%= render Admin::BadgeComponent.new(
+        badge_title: animal.ativo ? 'Sim' : 'Não', 
+        badge_class: animal.ativo ? 'bg-success' : 'bg-danger'
+      ) %>
+    </div>
+  </div>
+<% end %>

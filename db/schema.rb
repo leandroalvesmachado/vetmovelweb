@@ -44,10 +44,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_07_012926) do
   end
 
   create_table "animais", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "rga", null: false
     t.uuid "cidadao_id", null: false
     t.string "nome", null: false
     t.uuid "animal_sexo_id", null: false
     t.datetime "data_nascimento"
+    t.string "chip"
     t.uuid "pelagem_id"
     t.uuid "especie_id", null: false
     t.uuid "raca_id"
@@ -61,6 +63,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_07_012926) do
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_animais_on_deleted_at"
+    t.index ["rga"], name: "index_animais_on_rga", unique: true
   end
 
   create_table "animais_sexos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

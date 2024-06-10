@@ -1,0 +1,18 @@
+<% content_for :breadcrumb do %>
+  <%= render Admin::BreadcrumbComponent.new do |component| %>
+    <% component.with_title do %> 
+      <i class="fas fa-paw"></i> Animais
+    <% end %>
+    <% component.with_link(name: 'Animais', link: admin_animais_path) %>
+    <% component.with_link(name: 'Detalhe do Animal', link: '#') %>
+  <% end %>
+<% end %>
+
+<div class="row mb-3">
+  <div class="col-md-6">
+    <%= render partial: 'cidadao', locals: { animal: @animal } %>
+  </div>
+  <div class="col-md-6">
+    <%= render partial: 'animal', locals: { animal: @animal } %>
+  </div>
+</div>

@@ -65,6 +65,11 @@
                   </div>
                 </div>
                 <div class="row">
+                  <div class="col-md-12">
+                    <b>RGA:</b> <%= animal.rga %>
+                  </div>
+                </div>
+                <div class="row">
                   <div class="col-md-6">
                     <b>Nome:</b> <%= animal.nome %>
                   </div>
@@ -114,30 +119,7 @@
               </div>
               <div class="card-footer">
                 <div>
-                  <%= link_to '#', class: 'btn btn-sm btn-primary btn-block text-uppercase font-weight-bold' do %>
-                    <i class="fas fa-edit"></i> Editar
-                  <% end %>
-
-                  <%= link_to new_image_admin_cidadao_animais_path(cidadao_id: @cidadao.id, id: animal.id), class: 'btn btn-sm btn-primary btn-block text-uppercase font-weight-bold' do %>
-                    <i class="fas fa-camera-retro"></i> Imagem
-                  <% end %>
-
-                  <%= link_to "animal-modal-#{animal.id}-destroy", class: 'btn btn-sm btn-danger btn-block text-uppercase font-weight-bold', data: { toggle: 'modal', target: "#animal-modal-#{animal.id}-destroy" } do %>
-                    <i class="fas fa-trash-alt"></i> Deletar
-                  <% end %>
-
-                  <% content_for :modal do %>
-                    <%= 
-                      render partial: 'animal_modal_destroy', locals: {
-                        title: 'Animal',
-                        subtitle: 'Deletar',
-                        target: "animal-modal-#{animal.id}-destroy",
-                        animal: animal,
-                        action: admin_cidadao_animal_path(cidadao_id: @cidadao.id, id: animal.id),
-                        method: 'delete'
-                      }
-                    %>
-                  <% end %>
+                  
                 </div>
               </div>
             </div>

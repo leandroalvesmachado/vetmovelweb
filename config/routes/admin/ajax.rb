@@ -1,0 +1,1 @@
+get 'ajax/especies/:especie_id/racas', to: 'ajax#racas_by_especie'

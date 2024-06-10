@@ -69,7 +69,7 @@ class AnimalRepository
 
   def select_option_castrado()
     begin
-      castrado = [['Escolha a opção', ''], ['Sim', 1], ['Não', 0]]
+      castrado = [['Escolha a opção', ''], ['Sim', true], ['Não', false]]
       options = castrado.to_h
 
       return options
@@ -80,7 +80,7 @@ class AnimalRepository
 
   def select_option_obito()
     begin
-      obito = [['Escolha a opção', ''], ['Sim', 1], ['Não', 0]]
+      obito = [['Escolha a opção', ''], ['Sim', true], ['Não', false]]
       options = obito.to_h
 
       return options

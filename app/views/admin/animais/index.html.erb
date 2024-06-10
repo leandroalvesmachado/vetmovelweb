@@ -1,0 +1,126 @@
+<% content_for :breadcrumb do %>
+  <%= render Admin::BreadcrumbComponent.new do |component| %>
+    <% component.with_title do %> 
+      <i class="fas fa-paw"></i> Animais
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= render Admin::FormSearchComponent.new(
+  title: 'Animais',
+  subtitle: 'Pesquisa',
+  action: admin_animais_path
+) do |form| %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.form_builder.label :rga, 'RGA' %>
+        <%= form.form_builder.text_field :rga, class: 'form-control', id: 'rga', value: params[:rga], placeholder: 'Digite o rga' %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.form_builder.label :nome, 'Nome' %>
+        <%= form.form_builder.text_field :nome, class: 'form-control', id: 'nome', value: params[:nome], placeholder: 'Digite o nome' %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.form_builder.label :castrado, 'Castrado' %>
+        <%= form.form_builder.select :castrado, options_for_select(@castrados, selected: params[:castrado]), {},
+          class: 'form-control',
+          id: 'castrado'
+        %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.form_builder.label :obito, 'Óbito' %>
+        <%= form.form_builder.select :obito, options_for_select(@obitos, selected: params[:obito]), {},
+          class: 'form-control',
+          id: 'castrado'
+        %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.form_builder.label :animal_sexo_id, 'Sexo' %>
+        <%= form.form_builder.select :animal_sexo_id, options_for_select(@animais_sexos, selected: params[:animal_sexo_id]), {},
+          class: 'form-control',
+          id: 'castrado'
+        %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= render Admin::TableComponent.new(
+  title: 'Animais',
+  subtitle: 'Listagem',
+  headers: ['RGA', 'Nome', 'Espécie', 'Castrado', 'Óbito', 'Sexo', 'Cidadão', 'Ações'],
+  records: @animais,
+  pagy: @pagy
+) do %>
+  <% @animais.each do |animal| %>
+    <tr class="text-center">
+      <td class="align-middle"><%= animal.rga %></td>
+      <td class="align-middle"><%= animal.nome %></td>
+      <td class="align-middle"><%= animal.especie.nome %></td>
+      <td class="align-middle">
+        <%= render Admin::BadgeComponent.new(
+          badge_title: animal.castrado ? 'Sim' : 'Não', 
+          badge_class: animal.castrado ? 'bg-success' : 'bg-danger'
+        ) %>
+      </td>
+      <td class="align-middle">
+        <%= render Admin::BadgeComponent.new(
+          badge_title: animal.obito ? 'Sim' : 'Não', 
+          badge_class: animal.obito ? 'bg-success' : 'bg-danger'
+        ) %>
+      </td>
+      <td class="align-middle"><%= animal.sexo.nome %></td>
+      <td class="align-middle"><%= animal.cidadao.nome %></td>
+      <td class="align-middle">
+        <div class="dropdown dropright">
+          <button 
+            id="dropdown-<%= animal.id %>" 
+            class="btn btn-vetmovel dropdown-toggle" 
+            type="button" 
+            data-toggle="dropdown" 
+            aria-expanded="false"
+          >
+            <i class="fas fa-cog"></i>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdown-<%= animal.id %>">
+            <%= link_to admin_animal_path(animal), class: 'dropdown-item' do %>
+              <i class="fas fa-search"></i> Detalhes
+            <% end %>
+
+            <%= link_to edit_admin_animal_path(animal), class: 'dropdown-item' do %>
+              <i class="fas fa-edit"></i> Editar
+            <% end %>
+
+            <%= link_to "animal-modal-#{animal.id}-destroy", class: 'dropdown-item', data: { toggle: 'modal', target: "#animal-modal-#{animal.id}-destroy" } do %>
+              <i class="fas fa-trash-alt"></i> Deletar
+            <% end %>
+
+            <% content_for :modal do %>
+              <%= 
+                render partial: 'modal_destroy', locals: {
+                  title: 'Animal',
+                  subtitle: 'Deletar',
+                  target: "animal-modal-#{animal.id}-destroy",
+                  animal: animal,
+                  action: admin_animal_path(animal),
+                  method: 'delete'
+                }
+              %>
+            <% end %>
+          </div>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+<% end %>

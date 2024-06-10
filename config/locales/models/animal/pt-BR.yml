@@ -4,6 +4,7 @@ pt-BR:
       animal: Animal
     attributes:
       animal:
+        rga: RGA (Registro Geral do Animal)
         cidadao_id: Cidadão
         nome: Nome
         animal_sexo_id: Sexo

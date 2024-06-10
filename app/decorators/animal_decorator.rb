@@ -10,6 +10,10 @@ class AnimalDecorator < Draper::Decorator
   #     end
   #   end
 
+  def decorated_cidadao
+    object.cidadao.decorate
+  end
+
   def formatted_data_nascimento
     return object.data_nascimento.strftime("%d/%m/%Y") if object.data_nascimento.present?
   end
