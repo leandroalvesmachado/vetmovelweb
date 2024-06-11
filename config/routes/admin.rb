@@ -11,6 +11,7 @@ namespace :admin, path: 'administracao' do
   draw 'admin/exames'
   draw 'admin/pelagens'
   draw 'admin/racas'
+  draw 'admin/servicos'
   draw 'admin/vacinas'
   draw 'admin/vermifugos'
 end

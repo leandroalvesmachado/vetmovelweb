@@ -3,7 +3,7 @@ class CreateVacinas < ActiveRecord::Migration[7.1]
     create_table :vacinas, id: :uuid do |t|
       t.string :nome, null: false
       t.text :descricao, null: false
-      t.decimal :preco, precision: 8, scale: 2, null: true
+      t.decimal :preco, precision: 10, scale: 2, null: true
       t.boolean :ativo, null: false, default: true
       t.uuid :created_by, null: false
       t.uuid :updated_by, null: false

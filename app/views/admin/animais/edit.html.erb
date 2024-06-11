@@ -1,0 +1,30 @@
+<% content_for :breadcrumb do %>
+  <%= render Admin::BreadcrumbComponent.new do |component| %>
+    <% component.with_title do %> 
+      <i class="fas fa-user-tie"></i> Animais
+    <% end %>
+    <% component.with_link(name: 'Animais', link: admin_animais_path) %>
+    <% component.with_link(name: 'Editar Animal', link: '#') %>
+  <% end %>
+<% end %>
+
+<div class="row mb-3">
+  <div class="col-md-6">
+    <%= render partial: 'cidadao', locals: { animal: @animal } %>
+  </div>
+  <div class="col-md-6">
+    <%= render partial: 'animal', locals: { animal: @animal } %>
+  </div>
+</div>
+
+<%= 
+  render partial: 'form', locals: {
+    title: 'Animal',
+    subtitle: 'Edição',
+    action: update_admin_animais_path(@animal),
+    method: 'put',
+    model: @animal,
+    back_url: admin_animais_path,
+    submit_text: 'Atualizar'
+  } 
+%>

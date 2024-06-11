@@ -1,0 +1,49 @@
+<%= render Admin::CardComponent.new(title: 'Cidadão', subtitle: 'Detalhes', back_url: admin_animais_path, footer: false) do |component| %>
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <p class="font-weight-bold">CPF</p>
+      <%= animal.decorated_cidadao.formatted_cpf %>
+    </div>
+    <div class="col-md-4">
+      <p class="font-weight-bold">Data Nascimento</p>
+      <%= animal.decorated_cidadao.formatted_data_nascimento %>
+    </div>
+    <div class="col-md-4">
+      <p class="font-weight-bold">E-mail</p>
+      <%= animal.cidadao.email %>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <p class="font-weight-bold">Nome</p>
+      <%= animal.cidadao.nome %>
+    </div>
+    <div class="col-md-6">
+      <p class="font-weight-bold">Nome Social</p>
+      <%= animal.cidadao.nome_social %>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <p class="font-weight-bold">Telefone</p>
+      <%= animal.decorated_cidadao.formatted_telefone %>
+    </div>
+    <div class="col-md-4">
+      <p class="font-weight-bold">Celular</p>
+      <%= animal.decorated_cidadao.formatted_celular %>
+    </div>
+    <div class="col-md-4">
+      <p class="font-weight-bold">Telefone Contato</p>
+      <%= animal.decorated_cidadao.formatted_telefone_contato %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p class="font-weight-bold">Ativo</p>
+      <%= render Admin::BadgeComponent.new(
+        badge_title: animal.cidadao.ativo ? 'Sim' : 'Não', 
+        badge_class: animal.cidadao.ativo ? 'bg-success' : 'bg-danger'
+      ) %>
+    </div>
+  </div>
+<% end %>

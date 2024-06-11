@@ -17,7 +17,7 @@ export default class extends Controller {
     }
 
     try {
-      const response = await fetch(`../../../ajax/especies/${especieId}/racas`)
+      const response = await fetch(`${window.location.origin}/administracao/ajax/especies/${especieId}/racas`)
       const racas = await response.json()
 
       racaSelect.innerHTML = "<option value=''>Escolha a opção</option>"

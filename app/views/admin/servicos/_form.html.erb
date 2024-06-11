@@ -1,0 +1,38 @@
+<%= render Admin::FormComponent.new(
+  title: title,
+  subtitle: subtitle,
+  model: model,
+  action: action,
+  back_url: back_url,
+  submit_text: submit_text,
+  method: method
+
+) do |form| %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.form_builder.label :nome %>
+        <%= form.form_builder.text_field :nome,
+          class: "form-control #{'is-invalid' if form.errors.has_key?(:nome)}", 
+          id: 'nome', 
+          placeholder: 'Digite o nome' 
+        %>
+        <span class="text-danger"><%= form.errors[:nome].first %></span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= form.form_builder.label :descricao %>
+        <%= form.form_builder.text_area :descricao,
+          class: "form-control #{'is-invalid' if form.errors.has_key?(:descricao)}",
+          rows: 5,
+          id: 'descricao', 
+          placeholder: 'Digite a descrição' 
+        %>
+        <span class="text-danger"><%= form.errors[:descricao].first %></span>
+      </div>
+    </div>
+  </div>
+<% end %>

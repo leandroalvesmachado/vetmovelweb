@@ -8,9 +8,9 @@ class Animal < ApplicationRecord
   belongs_to :especie, class_name: 'Especie', foreign_key: 'especie_id'
   belongs_to :raca, class_name: 'Raca', foreign_key: 'raca_id', optional: true
   belongs_to :autor, class_name: 'Usuario', foreign_key: 'created_by', optional: true
-  has_one_attached :avatar
+  has_one_attached :imagem
   has_many_attached :imagens do |attachable|
-    attachable.variant(:thumb, resize_to_limit: [100, 100])
+    attachable.variant(:thumbnail, resize_to_limit: [100, 100])
     attachable.variant(:cover, resize_to_limit: [200, 200])
   end
 
@@ -18,16 +18,20 @@ class Animal < ApplicationRecord
   validates :nome, :animal_sexo_id, :especie_id, presence: true
   validates :castrado, presence: true, if: -> { castrado.nil? }
   validates :obito, presence: true, if: -> { obito.nil? }
-  validates :imagens, presence: true, content_type: ['image/png', 'image/jpg', 'image/jpeg'], size: { between: 1..5.megabytes }, on: :new_image
+  validates :imagem, content_type: ['image/png', 'image/jpg', 'image/jpeg'], 
+    size: { between: 1..5.megabytes },
+    dimension: { width: { max: 350 }, height: { max: 350 } },
+    on: :animais_imagens
+  validates :imagens, content_type: ['image/png', 'image/jpg', 'image/jpeg'],
+    size: { between: 1..5.megabytes },
+    dimension: { width: { max: 350 }, height: { max: 350 } },
+    on: :animais_imagens
+
 
   before_validation :numero_rga, on: :create
   before_create :set_created_by
   before_update :set_updated_by
   before_destroy :set_deleted_by, :purge_attachments
-
-  def thumbnail
-    return imagens.attached? ? imagens.last : nil
-  end
 
   private
 

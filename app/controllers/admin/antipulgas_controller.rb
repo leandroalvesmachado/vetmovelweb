@@ -35,10 +35,15 @@ class Admin::AntipulgasController < AdminController
   end
 
   def update
-    result = @antipulga_repository.update(@antipulga, antipulga_params)
+    if @antipulga.valid?
+      result = @antipulga_repository.update(@antipulga, antipulga_params)
 
-    if result == true
-      flash[:success] = 'Antipulga atualizado com sucesso'
+      if result == true
+        flash[:success] = 'Antipulga atualizado com sucesso'
+      else
+        flash[:error] = 'Erro ao atualizar o antipulga: ' + result
+      end
+
       redirect_to admin_antipulgas_path
     else
       render :edit, status: :unprocessable_entity

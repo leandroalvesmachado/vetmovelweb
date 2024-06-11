@@ -1,0 +1,21 @@
+<% content_for :breadcrumb do %>
+  <%= render Admin::BreadcrumbComponent.new do |component| %>
+    <% component.with_title do %> 
+      <i class="fas fa-tools"></i> Serviços
+    <% end %>
+    <% component.with_link(name: 'Serviços', link: admin_servicos_path) %>
+    <% component.with_link(name: 'Novo Serviço', link: '#') %>
+  <% end %>
+<% end %>
+
+<%= 
+  render partial: 'form', locals: {
+    title: 'Serviço',
+    subtitle: 'Novo',
+    action: create_admin_servicos_path,
+    method: 'post',
+    model: @servico,
+    back_url: admin_servicos_path,
+    submit_text: 'Salvar'
+  } 
+%>

@@ -59,12 +59,19 @@
 <%= render Admin::TableComponent.new(
   title: 'Animais',
   subtitle: 'Listagem',
-  headers: ['RGA', 'Nome', 'Espécie', 'Castrado', 'Óbito', 'Sexo', 'Cidadão', 'Ações'],
+  headers: ['Imagem', 'RGA', 'Nome', 'Espécie', 'Castrado', 'Óbito', 'Sexo', 'Cidadão', 'Ações'],
   records: @animais,
   pagy: @pagy
 ) do %>
   <% @animais.each do |animal| %>
     <tr class="text-center">
+      <td class="align-middle">
+        <% if animal.imagem.present? %>
+          <%= image_tag animal.imagem, class: 'img-thumbnail img-thumbnail-sm', style: 'width: 50%;' %>
+        <% else %>
+          <%= image_tag 'sem-foto.png', class: '' %>
+        <% end %>
+      </td>
       <td class="align-middle"><%= animal.rga %></td>
       <td class="align-middle"><%= animal.nome %></td>
       <td class="align-middle"><%= animal.especie.nome %></td>
@@ -77,7 +84,7 @@
       <td class="align-middle">
         <%= render Admin::BadgeComponent.new(
           badge_title: animal.obito ? 'Sim' : 'Não', 
-          badge_class: animal.obito ? 'bg-success' : 'bg-danger'
+          badge_class: animal.obito ? 'bg-danger' : 'bg-secondary'
         ) %>
       </td>
       <td class="align-middle"><%= animal.sexo.nome %></td>
@@ -96,6 +103,10 @@
           <div class="dropdown-menu" aria-labelledby="dropdown-<%= animal.id %>">
             <%= link_to admin_animal_path(animal), class: 'dropdown-item' do %>
               <i class="fas fa-search"></i> Detalhes
+            <% end %>
+
+            <%= link_to create_admin_animal_imagens_path(animal), class: 'dropdown-item' do %>
+              <i class="fas fa-images"></i> Imagens
             <% end %>
 
             <%= link_to edit_admin_animal_path(animal), class: 'dropdown-item' do %>

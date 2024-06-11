@@ -50,6 +50,7 @@ begin
         { codigo: 1, nome: 'Administrador', descricao: 'Perfil de acesso ao sistema como Administrador' },
         { codigo: 2, nome: 'Central', descricao: 'Perfil de acesso ao sistema como Central' },
         { codigo: 3, nome: 'Cidadão', descricao: 'Perfil de acesso ao sistema como Cidadão' },
+        { codigo: 4, nome: 'Funcionário', descricao: 'Perfil de acesso ao sistema como Funcionário' },
       ]
 
       perfis.each do |perfil|

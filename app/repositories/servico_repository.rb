@@ -1,6 +1,6 @@
-class CidadaoRepository
+class ServicoRepository
   def initialize()
-    @model = Cidadao
+    @model = Servico
   end
 
   def all
@@ -35,9 +35,9 @@ class CidadaoRepository
     end
   end
 
-  def update(cidadao, attributes)
+  def update(servico, attributes)
     begin
-      cidadao.update!(attributes)
+      servico.update!(attributes)
 
       return true
     rescue => e
@@ -45,25 +45,10 @@ class CidadaoRepository
     end
   end
 
-  def destroy(cidadao)
+  def destroy(servico)
     begin
-      ActiveRecord::Base.transaction do
-        if cidadao.animais.any?
-          cidadao.animais.each do |animal|
-            animal.imagem.purge if animal.imagem.attached?
+      servico.destroy!
 
-            if animal.imagens.attached?
-              animal.imagens.each do |imagem|
-                imagem.purge
-              end
-            end
-
-            animal.destroy!
-          end
-        end
-        
-        cidadao.destroy!
-      end
       return true
     rescue => e
       return "Ocorreu um erro: #{e.message}"

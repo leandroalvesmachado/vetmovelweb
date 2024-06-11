@@ -15,7 +15,8 @@
         <%= form.form_builder.text_field :nome,
           class: "form-control #{'is-invalid' if form.errors.has_key?(:nome)}", 
           id: 'nome', 
-          placeholder: 'Digite o nome do animal' 
+          placeholder: 'Digite o nome do animal',
+          value: (params.dig(:animal, :nome) || model.nome)
         %>
         <span class="text-danger"><%= form.errors[:nome].first %></span>
       </div>
@@ -26,7 +27,8 @@
         <%= form.form_builder.text_field :data_nascimento,
           class: "form-control mask_date #{'is-invalid' if form.errors.has_key?(:data_nascimento)}", 
           id: 'data_nascimento', 
-          placeholder: 'Digite a data de nascimento' 
+          placeholder: 'Digite a data de nascimento',
+          value: (params[:data_nascimento] || model.formatted_data_nascimento)
         %>
         <span class="text-danger"><%= form.errors[:data_nascimento].first %></span>
       </div>
@@ -36,7 +38,8 @@
         <%= form.form_builder.label :castrado %>
         <%= form.form_builder.select :castrado, @castrados, {},
           class: "form-control #{'is-invalid' if form.errors.has_key?(:castrado)}",
-          id: 'castrado'
+          id: 'castrado',
+          value: (params.dig(:animal, :castrado) || model.castrado)
         %>
         <span class="text-danger"><%= form.errors[:castrado].first %></span>
       </div>
@@ -48,7 +51,8 @@
         <%= form.form_builder.label :animal_sexo_id %>
         <%= form.form_builder.select :animal_sexo_id, @animais_sexos, {},
           class: "form-control #{'is-invalid' if form.errors.has_key?(:animal_sexo_id)}",
-          id: 'animal_sexo_id'
+          id: 'animal_sexo_id',
+          value: (params.dig(:animal, :animal_sexo_id) || model.animal_sexo_id)
         %>
         <span class="text-danger"><%= form.errors[:animal_sexo_id].first %></span>
       </div>
@@ -58,7 +62,8 @@
         <%= form.form_builder.label :pelagem_id %>
         <%= form.form_builder.select :pelagem_id, @pelagens, {},
           class: "form-control #{'is-invalid' if form.errors.has_key?(:pelagem_id)}",
-          id: 'pelagem_id'
+          id: 'pelagem_id',
+          value: (params.dig(:animal, :pelagem_id) || model.pelagem_id)
         %>
         <span class="text-danger"><%= form.errors[:pelagem_id].first %></span>
       </div>
@@ -69,7 +74,8 @@
         <%= form.form_builder.select :especie_id, @especies, {},
           class: "form-control #{'is-invalid' if form.errors.has_key?(:especie_id)}",
           id: 'especie_id',
-          data: { controller: 'racas', action: 'change->racas#loadRacas', racas_target: 'especie' }
+          data: { controller: 'racas', action: 'change->racas#loadRacas', racas_target: 'especie' },
+          value: (params.dig(:animal, :especie_id) || model.especie_id)
         %>
         <span class="text-danger"><%= form.errors[:especie_id].first %></span>
       </div>
@@ -79,7 +85,8 @@
         <%= form.form_builder.label :raca_id %>
         <%= form.form_builder.select :raca_id, {}, {},
           class: "form-control #{'is-invalid' if form.errors.has_key?(:raca_id)}",
-          id: 'raca_id'
+          id: 'raca_id',
+          value: (params.dig(:animal, :raca_id) || model.raca_id)
         %>
         <span class="text-danger"><%= form.errors[:raca_id].first %></span>
       </div>
@@ -91,7 +98,8 @@
         <%= form.form_builder.label :obito %>
         <%= form.form_builder.select :obito, @obitos, {},
           class: "form-control #{'is-invalid' if form.errors.has_key?(:obito)}",
-          id: 'obito'
+          id: 'obito',
+          value: (params.dig(:animal, :obito) || model.obito)
         %>
         <span class="text-danger"><%= form.errors[:obito].first %></span>
       </div>

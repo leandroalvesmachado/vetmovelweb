@@ -1,85 +1,95 @@
 <% content_for :breadcrumb do %>
   <%= render Admin::BreadcrumbComponent.new do |component| %>
     <% component.with_title do %> 
-      <i class="fas fa-ambulance"></i> Cirurgias 
+      <i class="fas fa-tools"></i> Serviços
     <% end %>
   <% end %>
 <% end %>
 
 <div class="row mb-3">
   <div class="col-md-2 offset-md-10">
-    <%= link_to new_admin_cirurgia_path, class: 'btn btn-primary btn-block text-uppercase font-weight-bold' do %>
-      <i class="fas fa-plus-circle"></i> Cirurgia
+    <%= link_to new_admin_servico_path, class: 'btn btn-vetmovel btn-block text-uppercase font-weight-bold' do %>
+      <i class="fas fa-plus-circle"></i> Serviço
     <% end %>
   </div>
 </div>
 
 <%= render Admin::FormSearchComponent.new(
-  title: 'Cirurgias',
+  title: 'Serviços',
   subtitle: 'Pesquisa',
-  action: admin_cirurgias_path
+  action: admin_animais_path
 ) do |form| %>
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">
         <%= form.form_builder.label :nome, 'Nome' %>
-        <%= form.form_builder.text_field :nome, class: 'form-control', id: 'nome', value: params[:nome], placeholder: 'Digite o nome' %>
+        <%= form.form_builder.text_field :nome,
+          class: 'form-control',
+          id: 'nome',
+          value: params[:nome],
+          placeholder: 'Digite o nome'
+        %>
       </div>
     </div>
     <div class="col-md-6">
       <div class="form-group">
         <%= form.form_builder.label :descricao, 'Descrição' %>
-        <%= form.form_builder.text_field :descricao, class: 'form-control', id: 'descricao', value: params[:descricao], placeholder: 'Digite o descrição' %>
+        <%= form.form_builder.text_field :descricao, 
+          class: 'form-control',
+          id: 'descricao',
+          value: params[:descricao],
+          placeholder: 'Digite a descrição'
+        %>
       </div>
     </div>
   </div>
 <% end %>
 
 <%= render Admin::TableComponent.new(
-  title: 'Cirurgias',
+  title: 'Serviços',
   subtitle: 'Listagem',
   headers: ['Nome', 'Descrição', 'Ativo', 'Ações'],
-  records: @cirurgias,
+  records: @servicos,
   pagy: @pagy
 ) do %>
-  <% @cirurgias.each do |cirurgia| %>
+  <% @servicos.each do |servico| %>
     <tr class="text-center">
-      <td class="align-middle"><%= cirurgia.nome %></td>
-      <td class="align-middle"><%= cirurgia.descricao %></td>
+      <td class="align-middle"><%= servico.nome %></td>
+      <td class="align-middle"><%= servico.descricao %></td>
       <td>
         <%= render Admin::BadgeComponent.new(
-            badge_title: cirurgia.ativo ? 'Sim' : 'Não', 
-            badge_class: cirurgia.ativo ? 'bg-success' : 'bg-danger'
+            badge_title: servico.ativo ? 'Sim' : 'Não', 
+            badge_class: servico.ativo ? 'bg-success' : 'bg-danger'
         ) %>
       </td>
       <td class="align-middle">
         <div class="dropdown dropright">
           <button 
-            id="dropdown-<%= cirurgia.id %>" 
-            class="btn btn-warning dropdown-toggle" 
+            id="dropdown-<%= servico.id %>" 
+            class="btn btn-vetmovel dropdown-toggle" 
             type="button" 
             data-toggle="dropdown" 
             aria-expanded="false"
           >
             <i class="fas fa-cog"></i>
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdown-<%= cirurgia.id %>">
-            <%= link_to edit_admin_cirurgia_path(cirurgia), class: 'dropdown-item' do %>
+          <div class="dropdown-menu" aria-labelledby="dropdown-<%= servico.id %>">
+            <%= link_to edit_admin_servico_path(servico), class: 'dropdown-item' do %>
               <i class="fas fa-edit"></i> Editar
             <% end %>
 
-            <%= link_to "cirurgia-modal-#{cirurgia.id}-destroy", class: 'dropdown-item', data: { toggle: 'modal', target: "#cirurgia-modal-#{cirurgia.id}-destroy" } do %>
+            <%= link_to "servico-modal-#{servico.id}-destroy", class: 'dropdown-item', data: { toggle: 'modal', target: "#servico-modal-#{servico.id}-destroy" } do %>
               <i class="fas fa-trash-alt"></i> Deletar
             <% end %>
 
             <% content_for :modal do %>
               <%= 
                 render partial: 'modal_destroy', locals: {
-                  title: 'Cirurgia',
+                  title: 'Serviço',
                   subtitle: 'Deletar',
-                  target: "cirurgia-modal-#{cirurgia.id}-destroy",
-                  cirurgia: cirurgia,
-                  action: admin_cirurgia_path(cirurgia),
+                  target: "servico-modal-#{servico.id}-destroy",
+                  servico: servico,
+                  action: admin_servico_path(servico),
                   method: 'delete'
                 }
               %>
