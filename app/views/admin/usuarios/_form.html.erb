@@ -1,0 +1,49 @@
+<%= render Admin::FormComponent.new(
+  title: title,
+  subtitle: subtitle,
+  model: model,
+  action: action,
+  back_url: back_url,
+  submit_text: submit_text,
+  method: method
+
+) do |form| %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.form_builder.label :nome %>
+        <%= form.form_builder.text_field :nome,
+          class: "form-control #{'is-invalid' if form.errors.has_key?(:nome)}", 
+          id: 'nome', 
+          placeholder: 'Digite o nome' 
+        %>
+        <span class="text-danger"><%= form.errors[:nome].first %></span>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.form_builder.label :email %>
+        <%= form.form_builder.text_field :email,
+          class: "form-control #{'is-invalid' if form.errors.has_key?(:email)}", 
+          id: 'email', 
+          placeholder: 'Digite o e-mail' 
+        %>
+        <span class="text-danger"><%= form.errors[:email].first %></span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <%= form.form_builder.fields_for :usuario_perfis do |usuario_perfis_form| %>
+        <%= usuario_perfis_form.label :perfil_id, "Perfil" %>
+        <%= usuario_perfis_form.select :perfil_id, @perfis, {},
+          class: "form-control #{'is-invalid' if usuario_perfis_form.object.errors[:perfil_id].any?}",
+          id: 'perfil_id'
+        %>
+        <% usuario_perfis_form.object.errors[:perfil_id].each do |error| %>
+          <span class="text-danger"><%= error %></span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

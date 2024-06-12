@@ -1,0 +1,92 @@
+<% content_for :breadcrumb do %>
+  <%= render Admin::BreadcrumbComponent.new do |component| %>
+    <% component.with_title do %> 
+      <i class="fas fa-user"></i> Usuários
+    <% end %>
+  <% end %>
+<% end %>
+
+<div class="row mb-3">
+  <div class="col-md-2 offset-md-10">
+    <%= link_to new_admin_usuario_path, class: 'btn btn-vetmovel btn-block text-uppercase font-weight-bold' do %>
+      <i class="fas fa-plus-circle"></i> Usuário
+    <% end %>
+  </div>
+</div>
+
+<%= render Admin::FormSearchComponent.new(
+  title: 'Usuários',
+  subtitle: 'Pesquisa',
+  action: admin_usuarios_path
+) do |form| %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.form_builder.label :nome, 'Nome' %>
+        <%= form.form_builder.text_field :nome,
+          class: 'form-control',
+          id: 'nome',
+          value: params[:nome],
+          placeholder: 'Digite o nome'
+        %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= render Admin::TableComponent.new(
+  title: 'Usuários',
+  subtitle: 'Listagem',
+  headers: ['Nome', 'E-mail', 'Perfil', 'Ativo', 'Ações'],
+  records: @usuarios,
+  pagy: @pagy
+) do %>
+  <% @usuarios.each do |usuario| %>
+    <tr class="text-center">
+      <td class="align-middle"><%= usuario.nome %></td>
+      <td class="align-middle"><%= usuario.email %></td>
+      <td class="align-middle">
+        <% if usuario.usuario_perfis.any? %>
+          <%= usuario.usuario_perfis.first.perfil.nome %>
+        <% end %>
+      </td>
+      <td class="align-middle">
+      </td>
+      <td class="align-middle">
+        <div class="dropdown dropright">
+          <button 
+            id="dropdown-<%= usuario.id %>" 
+            class="btn btn-warning dropdown-toggle" 
+            type="button" 
+            data-toggle="dropdown" 
+            aria-expanded="false"
+          >
+            <i class="fas fa-cog"></i>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdown-<%= usuario.id %>">
+            <%= link_to edit_admin_usuario_path(usuario), class: 'dropdown-item' do %>
+              <i class="fas fa-edit"></i> Editar
+            <% end %>
+
+            <%= link_to "usuario-modal-#{usuario.id}-destroy", class: 'dropdown-item', data: { toggle: 'modal', target: "#usuario-modal-#{usuario.id}-destroy" } do %>
+              <i class="fas fa-trash-alt"></i> Deletar
+            <% end %>
+
+            <% content_for :modal do %>
+              <%= 
+                render partial: 'modal_destroy', locals: {
+                  title: 'Usuário',
+                  subtitle: 'Deletar',
+                  target: "usuario-modal-#{usuario.id}-destroy",
+                  usuario: usuario,
+                  action: admin_usuario_path(usuario),
+                  method: 'delete'
+                }
+              %>
+            <% end %>
+          </div>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+<% end %>

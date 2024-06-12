@@ -9,6 +9,16 @@ class Usuario < ApplicationRecord
          :trackable
 
   has_many :usuario_perfis, class_name: 'UsuarioPerfil', foreign_key: 'usuario_id', dependent: :destroy
+  accepts_nested_attributes_for :usuario_perfis
+
+  validates :nome, :email, presence: true
+  validates :nome, :email, length: { maximum: 255 }
+  validates :email, uniqueness: true
+
+  # Sobrescreva o método password_required? do Devise
+  def password_required?
+    new_record? ? false : super
+  end
 
   # Método para verificar se o usuário possui um perfil
   def has_perfil?(perfil_codigo)

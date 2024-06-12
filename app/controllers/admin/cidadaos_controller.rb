@@ -1,5 +1,4 @@
 class Admin::CidadaosController < AdminController
-  before_action :set_current_usuario
   before_action :set_cidadao_repository
   before_action :set_cidadao, only: [:show, :edit, :update, :destroy]
 
@@ -59,10 +58,6 @@ class Admin::CidadaosController < AdminController
   end
 
   private
-
-  def set_current_usuario
-    Thread.current[:current_usuario] = current_usuario
-  end
 
   def set_cidadao_repository
     @cidadao_repository = CidadaoRepository.new

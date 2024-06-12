@@ -6,7 +6,7 @@ class UsuarioPerfil < ApplicationRecord
   belongs_to :perfil, class_name: 'Perfil', foreign_key: 'perfil_id', optional: true
   belongs_to :autor, class_name: 'Usuario', foreign_key: 'created_by', optional: true
 
-  validates :usuario_id, :perfil_id, presence: true
+  validates :perfil_id, presence: true
 
   before_create :set_created_by
   before_update :set_updated_by

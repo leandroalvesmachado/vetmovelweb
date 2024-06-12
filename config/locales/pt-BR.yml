@@ -30,7 +30,7 @@ pt-BR:
       other_than: deve ser diferente de %{count}
       present: deve ficar em branco
       required: é obrigatório(a)
-      taken: já está em uso
+      taken: "%{attribute} já está em uso"
       too_long:
         one: 'é muito longo (máximo: %{count} caracter)'
         other: 'é muito longo (máximo: %{count} caracteres)'

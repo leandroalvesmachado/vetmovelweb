@@ -81,6 +81,12 @@
           <% end %>
         </li>
         <li class="nav-item text-uppercase">
+          <%= link_to admin_usuarios_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/usuarios')}" do %>
+            <i class="nav-icon fas fa-user text-white"></i>
+            <p class="text-white">Usuários</p>
+          <% end %>
+        </li>
+        <li class="nav-item text-uppercase">
           <%= link_to admin_vacinas_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/vacinas')}" do %>
             <i class="nav-icon fas fa-syringe text-white"></i>
             <p class="text-white">Vacinas</p>

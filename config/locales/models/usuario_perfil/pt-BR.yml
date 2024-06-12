@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    models:
+      usuario_perfil: Usuário Perfil
+    attributes:
+      usuario_perfil:
+        usuario_id: Usuário
+        perfil_id: Perfil
+        created_by: Criado por
+        updated_by: Atualizado por
+        deleted_by: Deletado por
+        created_at: Criado em
+        updated_by: Atualizado em
+        deleted_by: Deletado em
