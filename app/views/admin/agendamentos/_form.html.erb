@@ -1,0 +1,35 @@
+<%= render Admin::FormComponent.new(
+  title: title,
+  subtitle: subtitle,
+  model: model,
+  action: action,
+  back_url: back_url,
+  submit_text: submit_text,
+  method: method
+
+) do |form| %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.form_builder.label :cidadao_id %>
+        <%= form.form_builder.select :cidadao_id, @cidadaos, {},
+          class: "form-control select2 select2-purple #{'is-invalid' if form.errors.has_key?(:cidadao_id)}",
+          id: 'cidadao_id'
+        %>
+        <span class="text-danger"><%= form.errors[:cidadao_id].first %></span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.form_builder.label :servico_id %>
+        <%= form.form_builder.select :servico_id, @servicos, {},
+          class: "form-control select2 select2-purple #{'is-invalid' if form.errors.has_key?(:servico_id)}",
+          id: 'servico_id'
+        %>
+        <span class="text-danger"><%= form.errors[:servico_id].first %></span>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -27,8 +27,19 @@ class CidadaoRepository
 
   def create(attributes)
     begin
-      @model.create!(attributes)
+      ActiveRecord::Base.transaction do
+        nome, email = attributes.values_at(:nome, :email)
 
+        usuario = Usuario.new(nome: nome, email: email, password: Devise.friendly_token.first(12))
+        usuario.save!
+
+        cidadao = Cidadao.new(attributes.merge(usuario_id: usuario.id))
+        cidadao.save!
+
+        usuario_perfil = UsuarioPerfil.new(usuario_id: usuario.id, perfil_id: Perfil.cidadao)
+        usuario_perfil.save!
+      end
+      
       return true
     rescue => e
       return "Ocorreu um erro: #{e.message}"
@@ -37,7 +48,9 @@ class CidadaoRepository
 
   def update(cidadao, attributes)
     begin
-      cidadao.update!(attributes)
+      ActiveRecord::Base.transaction do
+        cidadao.update!(attributes)
+      end
 
       return true
     rescue => e
@@ -48,7 +61,7 @@ class CidadaoRepository
   def destroy(cidadao)
     begin
       ActiveRecord::Base.transaction do
-        if cidadao.animais.any?
+        if cidadao.animais.present? && cidadao.animais.any?
           cidadao.animais.each do |animal|
             animal.imagem.purge if animal.imagem.attached?
 
@@ -63,10 +76,25 @@ class CidadaoRepository
         end
         
         cidadao.destroy!
+        cidadao.usuario.destroy!
       end
       return true
     rescue => e
       return "Ocorreu um erro: #{e.message}"
+    end
+  end
+
+  def select_option()
+    begin
+      cidadaos = @model.order(:nome).pluck(
+        Arel.sql("CONCAT(cpf, ' - ', nome, ' - ', email) AS nome"), :id
+      )
+      cidadaos.unshift(['Escolha a opção', nil])
+      options = cidadaos.to_h
+
+      return options
+    rescue => e
+      return [[e.message, nil]]
     end
   end
 end

@@ -5,7 +5,8 @@ class Perfil < ApplicationRecord
   PERFIL_ENUM = {
     admin: 1, 
     central: 2, 
-    cidadao: 3
+    cidadao: 3,
+    funcionario: 4
   }.freeze
 
   belongs_to :autor, class_name: 'Usuario', foreign_key: 'created_by', optional: true
@@ -17,6 +18,26 @@ class Perfil < ApplicationRecord
   before_create :set_created_by
   before_update :set_updated_by
   before_destroy :set_deleted_by
+
+  def self.admin
+    profile = find_by(codigo: Perfil::PERFIL_ENUM[:admin])
+    profile.present? ? profile.id : nil
+  end
+
+  def self.central
+    profile = find_by(codigo: Perfil::PERFIL_ENUM[:central])
+    profile.present? ? profile.id : nil
+  end
+
+  def self.cidadao
+    profile = find_by(codigo: Perfil::PERFIL_ENUM[:cidadao])
+    profile.present? ? profile.id : nil
+  end
+
+  def self.funcionario
+    profile = find_by(codigo: Perfil::PERFIL_ENUM[:funcionario])
+    profile.present? ? profile.id : nil
+  end
 
   private
 

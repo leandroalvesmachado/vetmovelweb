@@ -1,0 +1,85 @@
+<% content_for :breadcrumb do %>
+  <%= render Admin::BreadcrumbComponent.new do |component| %>
+    <% component.with_title do %> 
+      <i class="far fa-calendar-check"></i> Agendamentos
+    <% end %>
+  <% end %>
+<% end %>
+
+<div class="row mb-3">
+  <div class="col-md-2 offset-md-10">
+    <%= link_to new_admin_agendamento_path, class: 'btn btn-vetmovel btn-block text-uppercase font-weight-bold' do %>
+      <i class="fas fa-plus-circle"></i> Agendamento
+    <% end %>
+  </div>
+</div>
+
+<%= render Admin::FormSearchComponent.new(
+  title: 'Agendamentos',
+  subtitle: 'Pesquisa',
+  action: admin_agendamentos_path
+) do |form| %>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.form_builder.label :data_inicio, 'Data Início' %>
+        <%= form.form_builder.text_field :data_inicio,
+          class: 'form-control mask_date',
+          id: 'data_inicio',
+          value: params[:data_inicio],
+          placeholder: 'Digite a data inicial'
+        %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <%= form.form_builder.label :data_fim, 'Data Final' %>
+        <%= form.form_builder.text_field :data_fim,
+          class: 'form-control mask_date',
+          id: 'data_fim',
+          value: params[:data_fim],
+          placeholder: 'Digite a data final'
+        %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= render Admin::TableComponent.new(
+  title: 'Agendamentos',
+  subtitle: 'Listagem',
+  headers: ['Nome', 'E-mail', 'Perfil', 'Ativo', 'Ações'],
+  records: @agendamentos,
+  pagy: @pagy
+) do %>
+  <% @agendamentos.each do |agendamento| %>
+    <tr class="text-center">
+      <td class="align-middle"></td>
+      <td class="align-middle"></td>
+      <td class="align-middle">
+      </td>
+      <td class="align-middle">
+        <%= render Admin::BadgeComponent.new(
+            badge_title: agendamento.ativo ? 'Sim' : 'Não', 
+            badge_class: agendamento.ativo ? 'bg-success' : 'bg-danger'
+        ) %>
+      </td>
+      <td class="align-middle">
+        <div class="dropdown dropright">
+          <button 
+            id="dropdown-<%= agendamento.id %>" 
+            class="btn btn-warning dropdown-toggle" 
+            type="button" 
+            data-toggle="dropdown" 
+            aria-expanded="false"
+          >
+            <i class="fas fa-cog"></i>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdown-<%= agendamento.id %>">
+            
+          </div>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+<% end %>

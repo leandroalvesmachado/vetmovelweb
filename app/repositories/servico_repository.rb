@@ -54,4 +54,16 @@ class ServicoRepository
       return "Ocorreu um erro: #{e.message}"
     end
   end
+
+  def select_option()
+    begin
+      servicos = @model.order(:nome).pluck(:nome, :id)
+      servicos.unshift(['Escolha a opção', nil])
+      options = servicos.to_h
+
+      return options
+    rescue => e
+      return [[e.message, nil]]
+    end
+  end
 end

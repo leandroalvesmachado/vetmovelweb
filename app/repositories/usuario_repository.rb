@@ -11,6 +11,12 @@ class UsuarioRepository
         query = query.where("nome LIKE ?", "%#{params[:nome]}%")
       end
 
+      if params[:perfil_id].present?
+        query = query.joins('INNER JOIN usuarios_perfis ON usuarios_perfis.usuario_id = usuarios.id')
+          .joins('INNER JOIN perfis ON perfis.id = usuarios_perfis.perfil_id')
+          .where('usuarios_perfis.perfil_id = ?', params[:perfil_id])
+      end
+
       return query
     rescue => e
       return @model.none
@@ -33,7 +39,10 @@ class UsuarioRepository
 
   def update(usuario, attributes)
     begin
-      usuario.update!(attributes)
+      ActiveRecord::Base.transaction do
+        usuario.usuario_perfis.delete_all
+        usuario.update!(attributes)
+      end
 
       return true
     rescue => e
@@ -44,20 +53,6 @@ class UsuarioRepository
   def destroy(usuario)
     begin
       ActiveRecord::Base.transaction do
-        # if cidadao.animais.any?
-        #   cidadao.animais.each do |animal|
-        #     animal.imagem.purge if animal.imagem.attached?
-
-        #     if animal.imagens.attached?
-        #       animal.imagens.each do |imagem|
-        #         imagem.purge
-        #       end
-        #     end
-
-        #     animal.destroy!
-        #   end
-        # end
-        
         usuario.destroy!
       end
       return true

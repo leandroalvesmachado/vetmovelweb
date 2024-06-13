@@ -16,7 +16,8 @@ class Admin::UsuariosController < AdminController
     @usuario.usuario_perfis.build
   end
 
-  def edit; end
+  def edit
+  end
   
   def create
     @usuario = Usuario.new(usuario_params)
@@ -50,11 +51,25 @@ class Admin::UsuariosController < AdminController
 
       redirect_to edit_admin_usuario_path(@usuario)
     else
+      unless @usuario.usuario_perfis.empty?
+        @usuario.usuario_perfis = [@usuario.usuario_perfis.first]
+      end
+      
       render :edit, status: :unprocessable_entity
     end
   end
 
-  def destroy; end
+  def destroy
+    result = @usuario_repository.destroy(@usuario)
+    
+    if result == true
+      flash[:success] = 'Usuário deletado com sucesso'
+    else
+      flash[:error] = 'Erro ao deletar o usuário: ' + result
+    end
+
+    redirect_to admin_usuarios_path
+  end
 
   private
 

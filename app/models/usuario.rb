@@ -9,6 +9,7 @@ class Usuario < ApplicationRecord
          :trackable
 
   has_many :usuario_perfis, class_name: 'UsuarioPerfil', foreign_key: 'usuario_id', dependent: :destroy
+  has_one :cidadao, class_name: 'Cidadao', foreign_key: 'usuario_id', dependent: :destroy
   accepts_nested_attributes_for :usuario_perfis
 
   validates :nome, :email, presence: true
@@ -35,5 +36,9 @@ class Usuario < ApplicationRecord
 
   def is_cidadao?
     has_perfil?(Perfil::PERFIL_ENUM[:cidadao])
+  end
+
+  def is_funcionario?
+    has_perfil?(Perfil::PERFIL_ENUM[:funcionario])
   end
 end

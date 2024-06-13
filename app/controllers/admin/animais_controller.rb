@@ -1,5 +1,4 @@
 class Admin::AnimaisController < AdminController
-  before_action :set_current_usuario
   before_action :set_animal, only: [:show, :edit, :update, :destroy]
   before_action :set_repositories, only: [:index, :edit, :update, :destroy]
   before_action :set_dependencies, only: [:index, :edit, :update]
@@ -49,10 +48,6 @@ class Admin::AnimaisController < AdminController
   end
 
   private
-
-  def set_current_usuario
-    Thread.current[:current_usuario] = current_usuario
-  end
 
   def set_animal
     @animal = Animal.find(params[:id]).decorate

@@ -7,6 +7,7 @@ Turbo.session.drive = false
 import "./theme/plugins/jquery/jquery"
 import "./theme/plugins/bootstrap/js/bootstrap.bundle.min"
 import "./theme/plugins/inputmask/jquery.inputmask.min"
+import "./theme/plugins/select2/js/select2.full"
 import "./theme/dist/js/adminlte"
 
 $(document).ready(function() {
@@ -28,4 +29,6 @@ $(document).ready(function() {
   $(".mask_phone_with_ddd").inputmask({ 
     mask: "(99) 9999[9]-9999"
   });
+
+  $('.select2').select2();
 });

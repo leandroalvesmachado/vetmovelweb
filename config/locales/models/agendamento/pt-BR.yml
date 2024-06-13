@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      agendamento: Agendamento
+    attributes:
+      agendamento:
+        cidadao_id: Cidadão
+        animal_id: Animal
+        servico_id: Serviço
+        created_by: Criado por
+        updated_by: Atualizado por
+        deleted_by: Deletado por
+        created_at: Criado em
+        updated_by: Atualizado em
+        deleted_by: Deletado em

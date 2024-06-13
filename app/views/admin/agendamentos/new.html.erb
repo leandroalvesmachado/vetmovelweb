@@ -1,0 +1,21 @@
+<% content_for :breadcrumb do %>
+  <%= render Admin::BreadcrumbComponent.new do |component| %>
+    <% component.with_title do %> 
+      <i class="far fa-calendar-check"></i> Agendamentos
+    <% end %>
+    <% component.with_link(name: 'Agendamentos', link: admin_usuarios_path) %>
+    <% component.with_link(name: 'Novo Agendamento', link: '#') %>
+  <% end %>
+<% end %>
+
+<%= 
+  render partial: 'form', locals: {
+    title: 'Agendamento',
+    subtitle: 'Novo',
+    action: create_admin_agendamentos_path,
+    method: 'POST',
+    model: @agendamento,
+    back_url: admin_agendamentos_path,
+    submit_text: 'Salvar'
+  } 
+%>

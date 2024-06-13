@@ -27,6 +27,12 @@
           <% end %>
         </li>
         <li class="nav-item text-uppercase">
+          <%= link_to admin_agendamentos_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/agendamentos')}" do %>
+            <i class="nav-icon far fa-calendar-check text-white"></i>
+            <p class="text-white">Agendamentos</p>
+          <% end %>
+        </li>
+        <li class="nav-item text-uppercase">
           <%= link_to admin_animais_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/animais')}" do %>
             <i class="nav-icon fas fa-paw text-white"></i>
             <p class="text-white">Animais</p>

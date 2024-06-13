@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_07_012926) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_13_174909) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -43,6 +43,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_07_012926) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "agendamentos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "cidadao_id", null: false
+    t.uuid "animal_id", null: false
+    t.uuid "servico_id", null: false
+    t.datetime "data", null: false
+    t.text "observacao"
+    t.boolean "ativo", default: true, null: false
+    t.uuid "created_by", null: false
+    t.uuid "updated_by", null: false
+    t.uuid "deleted_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_agendamentos_on_deleted_at"
+  end
+
   create_table "animais", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "rga", null: false
     t.uuid "cidadao_id", null: false
@@ -53,8 +69,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_07_012926) do
     t.uuid "pelagem_id"
     t.uuid "especie_id", null: false
     t.uuid "raca_id"
-    t.boolean "castrado"
-    t.boolean "obito", default: false, null: false
+    t.boolean "castrado", null: false
+    t.boolean "obito", null: false
     t.boolean "ativo", default: true, null: false
     t.uuid "created_by", null: false
     t.uuid "updated_by", null: false
@@ -94,12 +110,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_07_012926) do
   end
 
   create_table "cidadaos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "usuario_id", null: false
     t.string "cpf", null: false
     t.string "rg"
     t.string "nome", null: false
     t.string "nome_social"
     t.datetime "data_nascimento"
-    t.string "email"
+    t.string "email", null: false
     t.string "telefone"
     t.string "celular"
     t.string "telefone_contato"
@@ -267,6 +284,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_07_012926) do
   create_table "servicos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nome", null: false
     t.text "descricao", null: false
+    t.decimal "preco", precision: 10, scale: 2
     t.boolean "ativo", default: true, null: false
     t.uuid "created_by", null: false
     t.uuid "updated_by", null: false
@@ -289,6 +307,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_07_012926) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.boolean "ativo", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
@@ -313,7 +332,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_07_012926) do
   create_table "vacinas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nome", null: false
     t.text "descricao", null: false
-    t.decimal "preco", precision: 8, scale: 2
+    t.decimal "preco", precision: 10, scale: 2
     t.boolean "ativo", default: true, null: false
     t.uuid "created_by", null: false
     t.uuid "updated_by", null: false
@@ -342,6 +361,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_07_012926) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "agendamentos", "animais"
+  add_foreign_key "agendamentos", "cidadaos"
+  add_foreign_key "agendamentos", "servicos"
+  add_foreign_key "agendamentos", "usuarios", column: "created_by"
+  add_foreign_key "agendamentos", "usuarios", column: "deleted_by"
+  add_foreign_key "agendamentos", "usuarios", column: "updated_by"
   add_foreign_key "animais", "animais_sexos"
   add_foreign_key "animais", "cidadaos"
   add_foreign_key "animais", "especies"
@@ -356,6 +381,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_07_012926) do
   add_foreign_key "antipulgas", "usuarios", column: "created_by"
   add_foreign_key "antipulgas", "usuarios", column: "deleted_by"
   add_foreign_key "antipulgas", "usuarios", column: "updated_by"
+  add_foreign_key "cidadaos", "usuarios"
   add_foreign_key "cidadaos", "usuarios", column: "created_by"
   add_foreign_key "cidadaos", "usuarios", column: "deleted_by"
   add_foreign_key "cidadaos", "usuarios", column: "updated_by"

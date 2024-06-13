@@ -3,6 +3,7 @@ namespace :admin, path: 'administracao' do
 
   # Loads `config/routes/admin/animais.rb`
   draw 'admin/ajax'
+  draw 'admin/agendamentos'
   draw 'admin/animais'
   draw 'admin/antipulgas'
   draw 'admin/cidadaos'

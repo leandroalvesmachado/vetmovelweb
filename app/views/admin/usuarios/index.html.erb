@@ -31,6 +31,15 @@
         %>
       </div>
     </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.form_builder.label :perfil_id, 'Perfil' %>
+        <%= form.form_builder.select :perfil_id, options_for_select(@perfis, selected: params[:perfil_id]), {},
+          class: 'form-control',
+          id: 'perfil_id'
+        %>
+      </div>
+    </div>
   </div>
 <% end %>
 
@@ -51,6 +60,10 @@
         <% end %>
       </td>
       <td class="align-middle">
+        <%= render Admin::BadgeComponent.new(
+            badge_title: usuario.ativo ? 'Sim' : 'Não', 
+            badge_class: usuario.ativo ? 'bg-success' : 'bg-danger'
+        ) %>
       </td>
       <td class="align-middle">
         <div class="dropdown dropright">
