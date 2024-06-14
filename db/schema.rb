@@ -44,6 +44,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_13_174909) do
   end
 
   create_table "agendamentos", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "agenda_id", null: false
     t.uuid "cidadao_id", null: false
     t.uuid "animal_id", null: false
     t.uuid "servico_id", null: false
@@ -57,6 +58,36 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_13_174909) do
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_agendamentos_on_deleted_at"
+  end
+
+  create_table "agendamentos_status", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "codigo", null: false
+    t.string "nome", null: false
+    t.text "descricao", null: false
+    t.boolean "ativo", default: true, null: false
+    t.uuid "created_by", null: false
+    t.uuid "updated_by", null: false
+    t.uuid "deleted_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["codigo"], name: "index_agendamentos_status_on_codigo", unique: true
+    t.index ["deleted_at"], name: "index_agendamentos_status_on_deleted_at"
+  end
+
+  create_table "agendas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "codigo", null: false
+    t.string "nome", null: false
+    t.text "descricao", null: false
+    t.boolean "ativo", default: true, null: false
+    t.uuid "created_by", null: false
+    t.uuid "updated_by", null: false
+    t.uuid "deleted_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["codigo"], name: "index_agendas_on_codigo", unique: true
+    t.index ["deleted_at"], name: "index_agendas_on_deleted_at"
   end
 
   create_table "animais", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -361,12 +392,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_13_174909) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "agendamentos", "agendas"
   add_foreign_key "agendamentos", "animais"
   add_foreign_key "agendamentos", "cidadaos"
   add_foreign_key "agendamentos", "servicos"
   add_foreign_key "agendamentos", "usuarios", column: "created_by"
   add_foreign_key "agendamentos", "usuarios", column: "deleted_by"
   add_foreign_key "agendamentos", "usuarios", column: "updated_by"
+  add_foreign_key "agendamentos_status", "usuarios", column: "created_by"
+  add_foreign_key "agendamentos_status", "usuarios", column: "deleted_by"
+  add_foreign_key "agendamentos_status", "usuarios", column: "updated_by"
+  add_foreign_key "agendas", "usuarios", column: "created_by"
+  add_foreign_key "agendas", "usuarios", column: "deleted_by"
+  add_foreign_key "agendas", "usuarios", column: "updated_by"
   add_foreign_key "animais", "animais_sexos"
   add_foreign_key "animais", "cidadaos"
   add_foreign_key "animais", "especies"

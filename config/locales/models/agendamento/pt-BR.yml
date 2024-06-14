@@ -7,6 +7,8 @@ pt-BR:
         cidadao_id: Cidadão
         animal_id: Animal
         servico_id: Serviço
+        data: Data
+        observacao: Observação
         created_by: Criado por
         updated_by: Atualizado por
         deleted_by: Deletado por

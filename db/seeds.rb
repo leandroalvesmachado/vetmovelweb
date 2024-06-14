@@ -210,6 +210,42 @@ begin
           updated_by: usuario.id
         )
       end
+
+      agendamentos_status = [
+        { codigo: 1, nome: 'Aguardando Confirmação', descricao: 'Quando o agendamento precisa ser confirmado pelo cliente ou responsável' },
+        { codigo: 2, nome: 'Confirmado', descricao: 'Quando o agendamento foi confirmado pelo responsável' },
+        { codigo: 3, nome: 'Cancelado', descricao: 'Quando o agendamento foi cancelado por alguma razão' },
+        { codigo: 4, nome: 'Concluído', descricao: 'Quando o serviço agendado foi realizado com sucesso' },
+        { codigo: 5, nome: 'Falta', descricao: 'Quando o cidadão não compareceu ao agendamento' },
+      ]
+
+      agendamentos_status.each do |agendamento_status|
+        AgendamentoStatus.create!(
+          codigo: agendamento_status[:codigo],
+          nome: agendamento_status[:nome],
+          descricao: agendamento_status[:descricao],
+          created_by: usuario.id,
+          updated_by: usuario.id
+        )
+      end
+
+      agendas = [
+        { codigo: 1, nome: 'Cirurgia', descricao: 'Cirurgia' },
+        { codigo: 2, nome: 'Consulta', descricao: 'Consulta' },
+        { codigo: 3, nome: 'Exame', descricao: 'Exame' },
+        { codigo: 4, nome: 'Vacina', descricao: 'Vacina' },
+        { codigo: 5, nome: 'Retorno', descricao: 'Retorno' }
+      ]
+
+      agendas.each do |agenda|
+        Agenda.create!(
+          codigo: agenda[:codigo],
+          nome: agenda[:nome],
+          descricao: agenda[:descricao],
+          created_by: usuario.id,
+          updated_by: usuario.id
+        )
+      end
     else
       puts 'Usuário não encontrado com o email especificado'
     end

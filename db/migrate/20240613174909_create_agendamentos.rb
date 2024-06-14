@@ -1,6 +1,7 @@
 class CreateAgendamentos < ActiveRecord::Migration[7.1]
   def change
     create_table :agendamentos, id: :uuid do |t|
+      t.uuid :agenda_id, null: false
       t.uuid :cidadao_id, null: false
       t.uuid :animal_id, null: false
       t.uuid :servico_id, null: false
@@ -14,6 +15,7 @@ class CreateAgendamentos < ActiveRecord::Migration[7.1]
       t.datetime :deleted_at, index: true
     end
 
+    add_foreign_key :agendamentos, :agendas, column: :agenda_id, primary_key: "id"
     add_foreign_key :agendamentos, :cidadaos, column: :cidadao_id, primary_key: "id"
     add_foreign_key :agendamentos, :animais, column: :animal_id, primary_key: "id"
     add_foreign_key :agendamentos, :servicos, column: :servico_id, primary_key: "id"

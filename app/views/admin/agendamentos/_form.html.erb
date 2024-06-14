@@ -32,4 +32,18 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= form.form_builder.label :observacao %>
+        <%= form.form_builder.text_area :observacao,
+          class: "form-control #{'is-invalid' if form.errors.has_key?(:observacao)}", 
+          id: 'observacao', 
+          placeholder: 'Digite a observação',
+          rows: 4
+        %>
+        <span class="text-danger"><%= form.errors[:observacao].first %></span>
+      </div>
+    </div>
+  </div>
 <% end %>
