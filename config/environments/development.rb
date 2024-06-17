@@ -75,15 +75,22 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   # E-mail
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  config.action_mailer.delivery_method = :smtp
+  routes.default_url_options = { host: 'localhost', port: 3000, protocol: 'http' }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000, protocol: 'http' }
+  config.action_mailer.default_options = { from: '"Vet" <vetmovel@fortaleza.ce.gov.br>' }
   config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.asset_host = 'http://localhost:3000'
+
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: 'sandbox.smtp.mailtrap.io',
-    port: 2525,
-    user_name: '6cdf6bac59c55b',
-    password: '8f74ee758105ad',
-    authentication: 'login'
+    address: 'smtps.fortaleza.ce.gov.br',
+    port: 587,
+    openssl_verify_mode: 'none',
+    domain: 'fortaleza.ce.gov.br',
+    user_name: ENV["SMTP_USER_NAME"],
+    password: ENV["SMTP_PASSWORD"],
+    authentication: :plain,
+    enable_starttls_auto: true
   }
 
   # Store files locally.

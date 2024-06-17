@@ -49,6 +49,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_13_174909) do
     t.uuid "animal_id", null: false
     t.uuid "servico_id", null: false
     t.datetime "data", null: false
+    t.time "hora_inicio", null: false
+    t.time "hora_fim", null: false
+    t.uuid "funcionario_id", null: false
     t.text "observacao"
     t.boolean "ativo", default: true, null: false
     t.uuid "created_by", null: false
@@ -398,6 +401,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_13_174909) do
   add_foreign_key "agendamentos", "servicos"
   add_foreign_key "agendamentos", "usuarios", column: "created_by"
   add_foreign_key "agendamentos", "usuarios", column: "deleted_by"
+  add_foreign_key "agendamentos", "usuarios", column: "funcionario_id"
   add_foreign_key "agendamentos", "usuarios", column: "updated_by"
   add_foreign_key "agendamentos_status", "usuarios", column: "created_by"
   add_foreign_key "agendamentos_status", "usuarios", column: "deleted_by"

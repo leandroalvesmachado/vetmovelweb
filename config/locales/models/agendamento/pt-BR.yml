@@ -4,10 +4,14 @@ pt-BR:
       agendamento: Agendamento
     attributes:
       agendamento:
+        agenda_id: Agenda
         cidadao_id: Cidadão
         animal_id: Animal
         servico_id: Serviço
         data: Data
+        hora_inicio: Horário de início
+        hora_fim: Horário de término
+        funcionario_id: Funcionário
         observacao: Observação
         created_by: Criado por
         updated_by: Atualizado por

@@ -18,7 +18,7 @@ class Admin::CidadaosController < AdminController
 
   def create
     @cidadao = Cidadao.new(cidadao_params)
-
+  
     if @cidadao.valid?
       result = @cidadao_repository.create(cidadao_params)
 

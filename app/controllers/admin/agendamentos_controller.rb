@@ -44,18 +44,28 @@ class Admin::AgendamentosController < AdminController
     @agendamento_repository = AgendamentoRepository.new
     @cidadao_repository = CidadaoRepository.new
     @servico_repository = ServicoRepository.new
+    @agenda_repository = AgendaRepository.new
+    @usuario_repository = UsuarioRepository.new
   end
 
   def set_dependencies
     @cidadaos = @cidadao_repository.select_option()
     @servicos = @servico_repository.select_option()
+    @agendas = @agenda_repository.select_option()
+    @funcionarios = @usuario_repository.select_option_funcionario()
   end
 
   def agendamento_params
     params.require(:agendamento).permit(
+      :agenda_id,
       :cidadao_id, 
       :animal_id,
-      :servico_id
+      :servico_id,
+      :data,
+      :hora_inicio,
+      :hora_fim,
+      :funcionario_id,
+      :observacao
     )
   end
 end

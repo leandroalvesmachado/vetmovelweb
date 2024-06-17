@@ -6,6 +6,9 @@ class CreateAgendamentos < ActiveRecord::Migration[7.1]
       t.uuid :animal_id, null: false
       t.uuid :servico_id, null: false
       t.datetime :data, null: false
+      t.time :hora_inicio, null: false
+      t.time :hora_fim, null: false
+      t.uuid :funcionario_id, null: false
       t.text :observacao, null: true
       t.boolean :ativo, null: false, default: true
       t.uuid :created_by, null: false
@@ -19,6 +22,7 @@ class CreateAgendamentos < ActiveRecord::Migration[7.1]
     add_foreign_key :agendamentos, :cidadaos, column: :cidadao_id, primary_key: "id"
     add_foreign_key :agendamentos, :animais, column: :animal_id, primary_key: "id"
     add_foreign_key :agendamentos, :servicos, column: :servico_id, primary_key: "id"
+    add_foreign_key :agendamentos, :usuarios, column: :funcionario_id, primary_key: "id"
     add_foreign_key :agendamentos, :usuarios, column: :created_by, primary_key: "id"
     add_foreign_key :agendamentos, :usuarios, column: :updated_by, primary_key: "id"
     add_foreign_key :agendamentos, :usuarios, column: :deleted_by, primary_key: "id"

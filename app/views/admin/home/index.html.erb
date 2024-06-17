@@ -5,42 +5,39 @@
     <% end %>
   <% end %>
 <% end %>
-<!--
-<div class="col-md-12">
-  <div class="card card-widget widget-user">
-    <div class="widget-user-header bg-info">
-      <h3 class="widget-user-username"><%= current_usuario.nome %></h3>
-      <h5 class="widget-user-desc">
-        <% if current_usuario.usuario_perfis.any? %>
-          <%= current_usuario.usuario_perfis.first.perfil.nome %>
-        <% end %>
-      </h5>
+
+<div class="row">
+  <div class="col-lg-4 col-12">
+    <div class="small-box bg-vetmovel">
+      <div class="inner text-white">
+        <h3><%= @cidadaos %></h3>
+        <p>Cidadãos</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-user-tie"></i>
+      </div>
     </div>
-    <div class="widget-user-image">
-      <%= image_tag "usuario.png", class: "img-circle elevation-2", alt: "Usuário Avatar" %>
+  </div>
+  <div class="col-lg-4 col-12">
+    <div class="small-box bg-vetmovel">
+      <div class="inner text-white">
+        <h3><%= @animais %></h3>
+        <p>Animais</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-paw"></i>
+      </div>
     </div>
-    <div class="card-footer">
-      <div class="row">
-        <div class="col-sm-4 border-right">
-          <div class="description-block">
-            <h5 class="description-header">3,200</h5>
-            <span class="description-text">SALES</span>
-          </div>
-        </div>
-        <div class="col-sm-4 border-right">
-          <div class="description-block">
-            <h5 class="description-header">13,000</h5>
-            <span class="description-text">FOLLOWERS</span>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="description-block">
-            <h5 class="description-header">35</h5>
-            <span class="description-text">PRODUCTS</span>
-          </div>
-        </div>
+  </div>
+  <div class="col-lg-4 col-12">
+    <div class="small-box bg-vetmovel">
+      <div class="inner text-white">
+        <h3><%= @agendamentos %></h3>
+        <p>Agendamentos</p>
+      </div>
+      <div class="icon">
+        <i class="far fa-calendar-check"></i>
       </div>
     </div>
   </div>
 </div>
--->

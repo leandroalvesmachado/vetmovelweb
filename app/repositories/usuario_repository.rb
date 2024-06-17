@@ -60,4 +60,23 @@ class UsuarioRepository
       return "Ocorreu um erro: #{e.message}"
     end
   end
+
+  def select_option_funcionario()
+    begin
+      query = @model
+      query = query.joins('INNER JOIN usuarios_perfis ON usuarios_perfis.usuario_id = usuarios.id')
+        .joins('INNER JOIN perfis ON perfis.id = usuarios_perfis.perfil_id')
+        .where('perfis.codigo = ?', Perfil::PERFIL_ENUM[:funcionario])
+        .select('usuarios.id, usuarios.nome')
+        .order('usuarios.nome')
+      
+      funcionarios = query.pluck(:nome, :id)
+      funcionarios.unshift(['Escolha a opção', nil])
+      options = funcionarios.to_h
+
+      return options
+    rescue => e
+      return [[e.message, nil]]
+    end
+  end
 end

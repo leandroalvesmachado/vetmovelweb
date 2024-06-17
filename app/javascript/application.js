@@ -26,6 +26,14 @@ $(document).ready(function() {
     showMaskOnFocus: false 
   });
 
+  $(".mask_time").inputmask({ 
+    mask: "99:99:99",
+    placeholder: "hh:mm:ss",
+    clearIncomplete: true, 
+    showMaskOnHover: false, 
+    showMaskOnFocus: false 
+  });
+
   $(".mask_phone_with_ddd").inputmask({ 
     mask: "(99) 9999[9]-9999"
   });

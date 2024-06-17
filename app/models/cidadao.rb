@@ -20,7 +20,6 @@ class Cidadao < ApplicationRecord
   validates :nome_social, length: { maximum: 255 }, allow_blank: true
   validates :email, length: { maximum: 255 }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validate :email_uniqueness
   # validates :telefone, allow_blank: true, format: { with: /\A\d{2}\d{4,5}-\d{4}\z/, message: "formato inválido" }
   # validates :telefone, :celular, length: { minimum: 8, maximum: 9 }, allow_blank: true
   # validates :celular, allow_blank: true, format: { with: /\A\d{2}\d{4,5}-\d{4}\z/, message: "formato inválido" }
@@ -47,15 +46,5 @@ class Cidadao < ApplicationRecord
     self.telefone = telefone.gsub(/\D/, '') if telefone.present?
     self.celular = celular.gsub(/\D/, '') if celular.present?
     self.telefone_contato = telefone_contato.gsub(/\D/, '') if telefone_contato.present?
-  end
-
-  def email_uniqueness
-    if Usuario.exists?(email: email)
-      errors.add(:email, 'já está sendo usado por um usuário')
-    end
-
-    if Cidadao.exists?(email: email)
-      errors.add(:email, 'já está sendo usado por um cidadão')
-    end
   end
 end

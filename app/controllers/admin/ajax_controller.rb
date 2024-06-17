@@ -8,9 +8,17 @@ class Admin::AjaxController < AdminController
     render json: racas
   end
 
+  def animais_by_cidadao
+    cidadao_id = params[:cidadao_id]
+    animais = @animal_repository.find_by_cidadao(cidadao_id)
+    
+    render json: animais
+  end
+
   private
 
   def set_repositories
     @raca_repository = RacaRepository.new
+    @animal_repository = AnimalRepository.new
   end
 end

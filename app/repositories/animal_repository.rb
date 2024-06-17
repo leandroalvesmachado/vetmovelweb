@@ -121,4 +121,14 @@ class AnimalRepository
       return [[e.message, nil]]
     end
   end
+
+  def find_by_cidadao(cidadao_id)
+    begin
+      query = @model.where(cidadao_id: cidadao_id)
+
+      return query
+    rescue => e
+      return {}
+    end
+  end
 end

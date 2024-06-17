@@ -8,15 +8,51 @@
   method: method
 
 ) do |form| %>
+
+  <% if @agendamento.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@agendamento.errors.count, "error") %> occurred:</h2>
+    <ul>
+      <% @agendamento.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.form_builder.label :agenda_id %>
+        <%= form.form_builder.select :agenda_id, @agendas, {},
+          class: "form-control #{'is-invalid' if form.errors.has_key?(:agenda_id)}",
+          id: 'agenda_id'
+        %>
+        <span class="text-danger"><%= form.errors[:agenda_id].first %></span>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">
         <%= form.form_builder.label :cidadao_id %>
         <%= form.form_builder.select :cidadao_id, @cidadaos, {},
           class: "form-control select2 select2-purple #{'is-invalid' if form.errors.has_key?(:cidadao_id)}",
+          data: { controller: 'animais', action: 'change->animais#loadAnimais', animais_target: 'cidadao' },
           id: 'cidadao_id'
         %>
         <span class="text-danger"><%= form.errors[:cidadao_id].first %></span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.form_builder.label :animal_id %>
+        <%= form.form_builder.select :animal_id, {}, {},
+          class: "form-control #{'is-invalid' if form.errors.has_key?(:animal_id)}",
+          id: 'animal_id'
+        %>
+        <span class="text-danger"><%= form.errors[:animal_id].first %></span>
       </div>
     </div>
   </div>
@@ -29,6 +65,53 @@
           id: 'servico_id'
         %>
         <span class="text-danger"><%= form.errors[:servico_id].first %></span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.form_builder.label :data %>
+        <%= form.form_builder.text_field :data,
+          class: "form-control mask_date #{'is-invalid' if form.errors.has_key?(:data)}", 
+          id: 'data', 
+          placeholder: 'Digite a data'
+        %>
+        <span class="text-danger"><%= form.errors[:data].first %></span>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.form_builder.label :hora_inicio %>
+        <%= form.form_builder.text_field :hora_inicio,
+          class: "form-control mask_time #{'is-invalid' if form.errors.has_key?(:hora_inicio)}", 
+          id: 'hora_inicio', 
+          placeholder: 'Digite o horário de início' 
+        %>
+        <span class="text-danger"><%= form.errors[:hora_inicio].first %></span>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form.form_builder.label :hora_fim %>
+        <%= form.form_builder.text_field :hora_fim,
+          class: "form-control mask_time #{'is-invalid' if form.errors.has_key?(:hora_fim)}", 
+          id: 'hora_fim', 
+          placeholder: 'Digite o horário de término' 
+        %>
+        <span class="text-danger"><%= form.errors[:hora_fim].first %></span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= form.form_builder.label :funcionario_id %>
+        <%= form.form_builder.select :funcionario_id, @funcionarios, {},
+          class: "form-control select2 select2-purple #{'is-invalid' if form.errors.has_key?(:funcionario_id)}",
+          id: 'funcionario_id'
+        %>
+        <span class="text-danger"><%= form.errors[:funcionario_id].first %></span>
       </div>
     </div>
   </div>
