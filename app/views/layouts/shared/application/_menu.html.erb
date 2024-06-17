@@ -20,85 +20,85 @@
     </div>
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column  font-weight-bold" data-widget="treeview" role="menu" data-accordion="false">
-        <li class="nav-item text-uppercase">
+        <li class="nav-item text-uppercase py-1 elevation-1">
           <%= link_to admin_root_path, class: 'nav-link' + (current_page?(admin_root_path) ? ' active' : '') do %>
             <i class="nav-icon fas fa-tachometer-alt text-white"></i>
             <p class="text-white">Dashboard</p>
           <% end %>
         </li>
-        <li class="nav-item text-uppercase">
+        <li class="nav-item text-uppercase py-1 elevation-1">
           <%= link_to admin_agendamentos_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/agendamentos')}" do %>
             <i class="nav-icon far fa-calendar-check text-white"></i>
             <p class="text-white">Agendamentos</p>
           <% end %>
         </li>
-        <li class="nav-item text-uppercase">
+        <li class="nav-item text-uppercase py-1 elevation-1">
           <%= link_to admin_animais_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/animais')}" do %>
             <i class="nav-icon fas fa-paw text-white"></i>
             <p class="text-white">Animais</p>
           <% end %>
         </li>
-        <li class="nav-item text-uppercase">
+        <li class="nav-item text-uppercase py-1 elevation-1">
           <%= link_to admin_antipulgas_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/antipulgas')}" do %>
             <i class="nav-icon fas fa-bug text-white"></i>
             <p class="text-white">Antipulgas</p>
           <% end %>
         </li>
-        <li class="nav-item text-uppercase">
+        <li class="nav-item text-uppercase py-1 elevation-1">
           <%= link_to admin_cidadaos_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/cidadaos')}" do %>
             <i class="nav-icon fas fa-user-tie text-white"></i>
             <p class="text-white">Cidadãos</p>
           <% end %>
         </li>
-        <li class="nav-item text-uppercase">
+        <li class="nav-item text-uppercase py-1 elevation-1">
           <%= link_to admin_cirurgias_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/cirurgias')}" do %>
             <i class="nav-icon fas fa-procedures text-white"></i>
             <p class="text-white">Cirurgias</p>
           <% end %>
         </li>
-        <li class="nav-item text-uppercase">
+        <li class="nav-item text-uppercase py-1 elevation-1">
           <%= link_to admin_especies_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/especies')}" do %>
             <i class="nav-icon fas fa-database text-white"></i>
             <p class="text-white">Espécies</p>
           <% end %>
         </li>
-        <li class="nav-item text-uppercase">
+        <li class="nav-item text-uppercase py-1 elevation-1">
           <%= link_to admin_exames_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/exames')}" do %>
             <i class="nav-icon fas fa-stethoscope text-white"></i>
             <p class="text-white">Exames</p>
           <% end %>
         </li>
-        <li class="nav-item text-uppercase">
+        <li class="nav-item text-uppercase py-1 elevation-1">
           <%= link_to admin_pelagens_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/pelagens')}" do %>
             <i class="nav-icon fas fa-palette text-white"></i>
             <p class="text-white">Pelagens</p>
           <% end %>
         </li>
-        <li class="nav-item text-uppercase">
+        <li class="nav-item text-uppercase py-1 elevation-1">
           <%= link_to admin_racas_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/racas')}" do %>
             <i class="nav-icon fas fa-stethoscope text-white"></i>
             <p class="text-white">Raças</p>
           <% end %>
         </li>
-        <li class="nav-item text-uppercase">
+        <li class="nav-item text-uppercase py-1 elevation-1">
           <%= link_to admin_servicos_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/servicos')}" do %>
             <i class="nav-icon fas fa-tools text-white"></i>
             <p class="text-white">Serviços</p>
           <% end %>
         </li>
-        <li class="nav-item text-uppercase">
+        <li class="nav-item text-uppercase py-1 elevation-1">
           <%= link_to admin_usuarios_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/usuarios')}" do %>
             <i class="nav-icon fas fa-user text-white"></i>
             <p class="text-white">Usuários</p>
           <% end %>
         </li>
-        <li class="nav-item text-uppercase">
+        <li class="nav-item text-uppercase py-1 elevation-1">
           <%= link_to admin_vacinas_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/vacinas')}" do %>
             <i class="nav-icon fas fa-syringe text-white"></i>
             <p class="text-white">Vacinas</p>
           <% end %>
         </li>
-        <li class="nav-item text-uppercase">
+        <li class="nav-item text-uppercase py-1 elevation-1">
           <%= link_to admin_vermifugos_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/vermifugos')}" do %>
             <i class="nav-icon fas fa-pills text-white"></i>
             <p class="text-white">Vermífugos</p>
