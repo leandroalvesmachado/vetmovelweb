@@ -48,27 +48,25 @@
 <%= render Admin::TableComponent.new(
   title: 'Agendamentos',
   subtitle: 'Listagem',
-  headers: ['Nome', 'E-mail', 'Perfil', 'Ativo', 'Ações'],
+  headers: ['Agenda', 'Cidadão', 'Animal', 'Serviço', 'Data', 'Horário', 'Funcionário', 'Status', 'Ações'],
   records: @agendamentos,
   pagy: @pagy
 ) do %>
   <% @agendamentos.each do |agendamento| %>
     <tr class="text-center">
-      <td class="align-middle"></td>
-      <td class="align-middle"></td>
-      <td class="align-middle">
-      </td>
-      <td class="align-middle">
-        <%= render Admin::BadgeComponent.new(
-            badge_title: agendamento.ativo ? 'Sim' : 'Não', 
-            badge_class: agendamento.ativo ? 'bg-success' : 'bg-danger'
-        ) %>
-      </td>
+      <td class="align-middle"><%= agendamento.agenda.nome %></td>
+      <td class="align-middle"><%= agendamento.cidadao.nome %></td>
+      <td class="align-middle"><%= agendamento.animal.nome %></td>
+      <td class="align-middle"><%= agendamento.servico.nome %></td>
+      <td class="align-middle"><%= agendamento.formatted_data %></td>
+      <td class="align-middle"><%= agendamento.formatted_hora_inicio %> - <%= agendamento.formatted_hora_fim %></td>
+      <td class="align-middle"><%= agendamento.funcionario.nome %></td>
+      <td class="align-middle"><%= agendamento %></td>
       <td class="align-middle">
         <div class="dropdown dropright">
           <button 
             id="dropdown-<%= agendamento.id %>" 
-            class="btn btn-warning dropdown-toggle" 
+            class="btn btn-vetmovel dropdown-toggle" 
             type="button" 
             data-toggle="dropdown" 
             aria-expanded="false"
@@ -76,7 +74,9 @@
             <i class="fas fa-cog"></i>
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdown-<%= agendamento.id %>">
-            
+            <%= link_to edit_admin_agendamento_path(agendamento), class: 'dropdown-item' do %>
+              <i class="fas fa-edit"></i> Editar
+            <% end %>
           </div>
         </div>
       </td>

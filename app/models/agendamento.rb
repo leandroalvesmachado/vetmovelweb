@@ -6,6 +6,7 @@ class Agendamento < ApplicationRecord
   belongs_to :cidadao, class_name: 'Cidadao', foreign_key: 'cidadao_id'
   belongs_to :animal, class_name: 'Animal', foreign_key: 'animal_id'
   belongs_to :servico, class_name: 'Servico', foreign_key: 'servico_id'
+  belongs_to :status, class_name: 'AgendamentoStatus', foreign_key: 'agendamento_status_id', optional: true
   belongs_to :funcionario, class_name: 'Usuario', foreign_key: 'funcionario_id'
   belongs_to :autor, class_name: 'Usuario', foreign_key: 'created_by', optional: true
 
@@ -14,6 +15,7 @@ class Agendamento < ApplicationRecord
   validates :hora_inicio, presence: true, format: { with: /([01]?[0-9]|2[0-3]):[0-5][0-9]/, message: "deve estar no formato HH:MM:SS e no intervalo de 00:00:00 até 23:59:59" }
   validates :hora_fim, presence: true, format: { with: /([01]?[0-9]|2[0-3]):[0-5][0-9]/, message: "deve estar no formato HH:MM:SS e no intervalo de 00:00:00 até 23:59:59" }
   validates :observacao, length: { maximum: 500 }, allow_blank: true
+  validates :agendamento_status_id, presence: true, on: :update
   validate :horario
 
   before_validation :remove_mask

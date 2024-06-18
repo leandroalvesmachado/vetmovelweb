@@ -49,10 +49,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_13_174909) do
     t.uuid "animal_id", null: false
     t.uuid "servico_id", null: false
     t.datetime "data", null: false
-    t.time "hora_inicio", null: false
-    t.time "hora_fim", null: false
+    t.time "hora_inicio", precision: 0, null: false
+    t.time "hora_fim", precision: 0, null: false
     t.uuid "funcionario_id", null: false
     t.text "observacao"
+    t.uuid "agendamento_status_id", null: false
     t.boolean "ativo", default: true, null: false
     t.uuid "created_by", null: false
     t.uuid "updated_by", null: false
@@ -395,6 +396,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_13_174909) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "agendamentos", "agendamentos_status", column: "agendamento_status_id"
   add_foreign_key "agendamentos", "agendas"
   add_foreign_key "agendamentos", "animais"
   add_foreign_key "agendamentos", "cidadaos"

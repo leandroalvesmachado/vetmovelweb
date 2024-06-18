@@ -29,7 +29,6 @@ export default class extends Controller {
       })
     } catch (error) {
       racaSelect.innerHTML = "<option value=''>Escolha a opção</option>"
-      console.error("Erro ao carregar as raças:", error)
     }
   }
 }

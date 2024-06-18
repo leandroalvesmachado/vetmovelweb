@@ -4,19 +4,18 @@ export default class extends Controller {
   static targets = ["cidadao"]
 
   connect() {
+    $(this.cidadaoTarget).on('change', this.loadAnimais.bind(this))
     this.loadAnimais()
   }
 
   async loadAnimais() {
-    const cidadaoId = document.querySelector("#cidadao_id")
+    const cidadaoId = this.cidadaoTarget.value;
     const animalSelect = document.querySelector("#animal_id")
     
     if (!cidadaoId) {
       animalSelect.innerHTML = "<option value=''>Escolha a opção</option>"
       return
     }
-
-    console.log(cidadaoId);
 
     try {
       const response = await fetch(`${window.location.origin}/administracao/ajax/cidadaos/${cidadaoId}/animais`)

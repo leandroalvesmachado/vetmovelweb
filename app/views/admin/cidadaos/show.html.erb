@@ -57,8 +57,8 @@
               <div class="card-body pt-0">
                 <div class="row mt-2 mb-2">
                   <div class="col-md-12 text-center">
-                    <% if animal.thumbnail.present? %>
-                      <%= image_tag animal.thumbnail.variant(:cover), class: 'rounded img-fluid' %>
+                    <% if animal.imagem.present? %>
+                      <%= image_tag animal.imagem, class: 'rounded img-fluid' %>
                     <% else %>
                       <%= image_tag 'sem-foto.png', class: '' %>
                     <% end %>

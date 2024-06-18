@@ -1,6 +1,7 @@
 class Admin::AgendamentosController < AdminController
   before_action :set_repositories, only: [:index, :new, :edit, :create, :update, :destroy]
   before_action :set_dependencies, only: [:index, :new, :edit, :create, :update]
+  before_action :set_agendamento, only: [:edit, :update, :destroy]
 
   def index
     @agendamentos = @agendamento_repository.paginate(params)
@@ -20,7 +21,7 @@ class Admin::AgendamentosController < AdminController
     @agendamento = Agendamento.new(agendamento_params)
     
     if @agendamento.valid?
-      result = @agendamento_repository.create(usuario_params)
+      result = @agendamento_repository.create(agendamento_params)
 
       if result == true
         flash[:success] = 'Agendamento cadastrado com sucesso'
@@ -67,5 +68,9 @@ class Admin::AgendamentosController < AdminController
       :funcionario_id,
       :observacao
     )
+  end
+
+  def set_agendamento
+    @agendamento = Agendamento.find(params[:id]).decorate
   end
 end
