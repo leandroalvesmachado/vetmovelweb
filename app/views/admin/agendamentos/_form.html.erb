@@ -115,6 +115,21 @@
       </div>
     </div>
   </div>
+  <% if params[:action] == 'edit' && current_usuario.admin? %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <%= params[:action] %>
+          <%= form.form_builder.label :agendamento_status_id %>
+          <%= form.form_builder.select :agendamento_status_id, @status, {},
+            class: "form-control #{'is-invalid' if form.errors.has_key?(:agendamento_status_id)}",
+            id: 'agendamento_status_id'
+          %>
+          <span class="text-danger"><%= form.errors[:agendamento_status_id].first %></span>
+        </div>
+      </div>
+    </div>
+  <% end %>
   <div class="row">
     <div class="col-md-12">
       <div class="form-group">

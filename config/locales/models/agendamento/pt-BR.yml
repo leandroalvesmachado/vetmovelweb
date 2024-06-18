@@ -12,6 +12,7 @@ pt-BR:
         hora_inicio: Horário de início
         hora_fim: Horário de término
         funcionario_id: Funcionário
+        agendamento_status_id: Status
         observacao: Observação
         created_by: Criado por
         updated_by: Atualizado por

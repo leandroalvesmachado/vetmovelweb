@@ -47,6 +47,7 @@ class Admin::AgendamentosController < AdminController
     @servico_repository = ServicoRepository.new
     @agenda_repository = AgendaRepository.new
     @usuario_repository = UsuarioRepository.new
+    @agendamento_status_repository = AgendamentoStatusRepository.new
   end
 
   def set_dependencies
@@ -54,6 +55,7 @@ class Admin::AgendamentosController < AdminController
     @servicos = @servico_repository.select_option()
     @agendas = @agenda_repository.select_option()
     @funcionarios = @usuario_repository.select_option_funcionario()
+    @status = @agendamento_status_repository.select_option()
   end
 
   def agendamento_params
