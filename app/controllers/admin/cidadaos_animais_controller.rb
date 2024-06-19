@@ -1,8 +1,7 @@
-class Admin::CidadaosAnimaisController < ApplicationController
-  before_action :set_current_usuario
+class Admin::CidadaosAnimaisController < AdminController
   before_action :set_repositories
-  before_action :set_cidadao
   before_action :set_dependencies, only: [:new, :edit, :create]
+  before_action :set_cidadao
   before_action :set_animal, only: [:destroy]
 
   def new
@@ -42,10 +41,6 @@ class Admin::CidadaosAnimaisController < ApplicationController
   end
 
   private
-
-  def set_current_usuario
-    Thread.current[:current_usuario] = current_usuario
-  end
 
   def set_cidadao
     @cidadao = Cidadao.find(params[:cidadao_id]).decorate

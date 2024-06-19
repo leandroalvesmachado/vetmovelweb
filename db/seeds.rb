@@ -246,6 +246,58 @@ begin
           updated_by: usuario.id
         )
       end
+
+      servicos = [
+        { nome: 'Serviço 1', descricao: 'Serviço' },
+        { nome: 'Serviço 2', descricao: 'Serviço' },
+      ]
+
+      servicos.each do |servico|
+        Servico.create!(
+          nome: servico[:nome],
+          descricao: servico[:descricao],
+          created_by: usuario.id,
+          updated_by: usuario.id
+        )
+      end
+
+      usuario_cidadao = Usuario.new(
+        nome: 'Leandro Machado',
+        email: 'leandroalvesmachado@gmail.com',
+        password: Devise.friendly_token.first(12)
+      )
+      usuario_cidadao.save!
+
+      cidadao = Cidadao.new(
+        cpf: '01049251326',
+        nome: 'Leandro Machado',
+        email: 'leandroalvesmachado@gmail.com',
+        created_by: usuario.id,
+        updated_by: usuario.id,
+        usuario_id: usuario_cidadao.id
+      )
+      cidadao.save!
+
+      UsuarioPerfil.create!(
+        usuario_id: usuario_cidadao.id, 
+        perfil_id: Perfil.cidadao, 
+        created_by: usuario.id,
+        updated_by: usuario.id
+      )
+
+      usuario_funcionario = Usuario.new(
+        nome: 'Funcionario',
+        email: 'funcionario@gmail.com',
+        password: Devise.friendly_token.first(12)
+      )
+      usuario_funcionario.save!
+
+      UsuarioPerfil.create!(
+        usuario_id: usuario_funcionario.id,
+        perfil_id:Perfil.funcionario,
+        created_by: usuario.id,
+        updated_by: usuario.id
+      )
     else
       puts 'Usuário não encontrado com o email especificado'
     end

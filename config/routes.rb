@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   root 'admin/home#index'
 
   draw :admin # Loads `config/routes/admin.rb`
+
+  get '*unmatched_route', to: 'application#render_404', constraints: ->(req) { req.path.exclude? 'rails/active_storage' }
 end

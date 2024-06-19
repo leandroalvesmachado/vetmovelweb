@@ -1,4 +1,5 @@
 class Admin::AgendamentosController < AdminController
+  before_action :set_authorize
   before_action :set_repositories, only: [:index, :new, :edit, :create, :update, :destroy]
   before_action :set_dependencies, only: [:index, :new, :edit, :create, :update]
   before_action :set_agendamento, only: [:edit, :update, :destroy]
@@ -40,6 +41,10 @@ class Admin::AgendamentosController < AdminController
   def destroy; end
 
   private
+
+  def set_authorize
+    authorize @agendamento || Agendamento
+  end
 
   def set_repositories
     @agendamento_repository = AgendamentoRepository.new

@@ -26,12 +26,16 @@
             <p class="text-white">Dashboard</p>
           <% end %>
         </li>
-        <li class="nav-item text-uppercase py-1 elevation-1">
-          <%= link_to admin_agendamentos_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/agendamentos')}" do %>
-            <i class="nav-icon far fa-calendar-check text-white"></i>
-            <p class="text-white">Agendamentos</p>
-          <% end %>
-        </li>
+
+        <% if policy(Agendamento).index? %>
+          <li class="nav-item text-uppercase py-1 elevation-1">
+            <%= link_to admin_agendamentos_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/agendamentos')}" do %>
+              <i class="nav-icon far fa-calendar-check text-white"></i>
+              <p class="text-white">Agendamentos</p>
+            <% end %>
+          </li>
+        <% end %>
+
         <li class="nav-item text-uppercase py-1 elevation-1">
           <%= link_to admin_animais_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/animais')}" do %>
             <i class="nav-icon fas fa-paw text-white"></i>
@@ -92,12 +96,16 @@
             <p class="text-white">Usuários</p>
           <% end %>
         </li>
-        <li class="nav-item text-uppercase py-1 elevation-1">
-          <%= link_to admin_vacinas_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/vacinas')}" do %>
-            <i class="nav-icon fas fa-syringe text-white"></i>
-            <p class="text-white">Vacinas</p>
-          <% end %>
-        </li>
+
+        <% if policy(Vacina).index? %>
+          <li class="nav-item text-uppercase py-1 elevation-1">
+            <%= link_to admin_vacinas_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/vacinas')}" do %>
+              <i class="nav-icon fas fa-syringe text-white"></i>
+              <p class="text-white">Vacinas</p>
+            <% end %>
+          </li>
+        <% end %>
+
         <li class="nav-item text-uppercase py-1 elevation-1">
           <%= link_to admin_vermifugos_path, class: "nav-link #{'active' if request.path.start_with?('/administracao/vermifugos')}" do %>
             <i class="nav-icon fas fa-pills text-white"></i>

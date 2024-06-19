@@ -1,9 +1,9 @@
 class Admin::VacinasController < AdminController
-  before_action :set_current_usuario
-  before_action :set_vacina_repository
+  before_action :set_authorize
+  before_action :set_repositories
   before_action :set_vacina, only: [:edit, :update, :destroy]
 
-  def index
+  def index 
     @vacinas = @vacina_repository.paginate(params)
     @pagy, @vacinas = pagy(@vacinas)
   end
@@ -59,11 +59,11 @@ class Admin::VacinasController < AdminController
 
   private
 
-  def set_current_usuario
-    Thread.current[:current_usuario] = current_usuario
+  def set_authorize
+    authorize @vacina || Vacina
   end
 
-  def set_vacina_repository
+  def set_repositories
     @vacina_repository = VacinaRepository.new
   end
 
